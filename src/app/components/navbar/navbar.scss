@@ -1,5 +1,5 @@
 /* ==========================================================================
-   COMPONENT FOOTER STYLES
+   COMPONENT NAVBAR STYLES
    ========================================================================== */
 
 .header-wrapper {
@@ -11,7 +11,9 @@
   background-color: var(--bg-white);
   box-shadow: var(--shadow-sm);
 }
-
+/* ==========================================================================
+   TOP BAR
+   ========================================================================== */
 .top-bar {
   background-color: var(--secondary);
   color: var(--white);
@@ -39,13 +41,13 @@
       gap: 8px;
       text-decoration: none;
       color: rgba(255, 255, 255, 0.8);
-      transition: all 0.3s ease-in-out;
+      transition: color 0.2s ease-in-out;
 
       img {
         width: 16px;
-        transition: all 0.3s ease-in-out;
         filter: brightness(0) invert(1);
         opacity: 0.7;
+        transition: transform 0.2s ease-in-out;
       }
 
       &:hover {
@@ -59,8 +61,11 @@
   }
 }
 
+/* ==========================================================================
+   NAVBAR
+   ========================================================================== */
 .navbar {
-  height: 80px;
+  height: var(--navbar-height, 85px);
   display: flex;
   align-items: center;
   background: var(--bg-white);
@@ -76,33 +81,71 @@
   }
 }
 
+// Branding & Logos
 .brand-group {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 20px;
   position: relative;
   z-index: 1201;
 
-  .logo-mersol {
-    height: 40px;
+  .logo-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+
+    &:hover {
+      transform: scale(1.03);
+    }
   }
+
+  .logo-partner-img {
+    height: 60px;
+    width: auto;
+    display: block;
+  }
+
   .brand-divider {
     width: 1px;
-    height: 25px;
+    height: 35px;
     background-color: #ddd;
+    margin: 0 5px;
   }
-  .logo-partner-img {
-    height: 28px;
+
+  .logo-mersol {
+    height: 45px;
+    width: auto;
+    display: block;
+    opacity: 0.85;
   }
-  .partner-tag {
-    font-family: var(--font-primary);
-    font-size: 0.6rem;
-    font-weight: 800;
-    text-transform: uppercase;
-    color: var(--gray-medium);
+
+  @media (max-width: 991px) {
+    .logo-partner-img {
+      height: 50px;
+    }
+    .logo-mersol {
+      height: 40px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    gap: 12px;
+    .logo-partner-img {
+      height: 45px;
+    }
+    .logo-mersol {
+      height: 32px;
+    }
+    .brand-divider {
+      height: 25px;
+    }
   }
 }
-
+/* ==========================================================================
+   MEDIA QUERIES (RESPONSIVE)
+   ========================================================================== */
 .nav-links {
   display: flex;
   align-items: center;
@@ -111,23 +154,24 @@
 
   @media (max-width: 991px) {
     position: fixed;
-    top: 80px;
+    top: 0;
     right: 0;
     width: 100%;
-    height: calc(100vh - 80px);
+    height: 100vh;
+    padding-top: var(--navbar-height, 85px);
     background-color: #ffffff;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 20px;
     gap: 2rem;
-
-    transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+    transition: transform 0.4s cubic-bezier(0.7, 0, 0.3, 1);
     transform: translateX(100%);
     z-index: 1050;
+    pointer-events: none;
 
     &.active {
       transform: translateX(0);
+      pointer-events: auto;
     }
 
     li a {
@@ -136,8 +180,6 @@
       font-size: 2rem;
       color: var(--secondary);
       text-transform: uppercase;
-      display: block;
-      padding: 15px 0;
     }
   }
 
@@ -148,16 +190,20 @@
     font-size: 0.9rem;
     color: var(--secondary);
     text-decoration: none;
-    transition: var(--transition);
+    transition: color 0.2s ease;
+    cursor: pointer;
+
     &:hover {
       color: var(--primary);
     }
   }
 }
 
+// Menú Móvil (Opciones de Contacto)
 .mobile-menu-contact {
   display: none;
   margin-bottom: 2rem;
+
   @media (max-width: 991px) {
     display: block;
   }
@@ -183,12 +229,14 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 10px 20px rgba(210, 36, 42, 0.25);
+      box-shadow: 0 10px 20px rgba(210, 36, 42, 0.2);
+
       img {
         width: 35px;
         filter: brightness(0) invert(1) !important;
       }
     }
+
     span {
       font-family: var(--font-primary) !important;
       font-weight: 800;
@@ -198,6 +246,7 @@
   }
 }
 
+// Menú (Hamburguesa)
 .menu-toggle {
   display: none;
   flex-direction: column;
@@ -207,13 +256,14 @@
   background: none;
   border: none;
   z-index: 1300;
+  cursor: pointer;
 
   span {
     width: 100%;
     height: 3px;
     background-color: var(--secondary);
     border-radius: 3px;
-    transition: 0.3s;
+    transition: all 0.3s ease;
   }
 
   @media (max-width: 991px) {

@@ -1,172 +1,276 @@
 /* ==========================================================================
-   COMPONENT NOSOTROS STYLES
+   COMPONENT NOSOTROS STYLES (AUSTROMEX & MERSOL)
    ========================================================================== */
-
 .nosotros-section {
-  padding: 100px 0;
-  background-color: #ffffff !important;
+  padding: 140px 0 60px;
+  background-color: #ffffff;
   position: relative;
-  z-index: 10;
-  overflow: hidden;
+  z-index: 5;
 
-  &::before,
-  &::after,
-  *::before,
-  *::after {
-    display: none !important;
-    content: none !important;
+  .scroll-anchor {
+    position: absolute;
+    top: -120px;
   }
 
   .nosotros-main {
     display: grid;
     grid-template-columns: 1.1fr 0.9fr;
-    gap: 6rem;
-    align-items: center;
-    margin-bottom: 6rem;
-    position: relative;
+    gap: 4rem;
+    align-items: start;
+    margin-bottom: 2.5rem;
 
-    .subtitle {
-      display: block;
-      font-family: var(--font-main);
-      color: var(--primary);
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      margin-bottom: 1rem;
-      font-size: 0.9rem;
-    }
+    .nosotros-content {
+      margin-top: 5px;
 
-    h2 {
-      margin-bottom: 2rem;
-      font-family: var(--font-primary);
-      color: var(--secondary);
-      position: relative;
-      padding-left: 20px;
-      border-left: 5px solid var(--primary);
-    }
-
-    .description {
-      font-family: var(--font-main);
-      font-size: 1.05rem;
-      line-height: 1.8;
-      color: var(--text-main);
-      margin-bottom: 1.5rem;
-
-      strong {
-        color: var(--secondary);
-        font-weight: 700;
-      }
-    }
-  }
-
-  .nosotros-visual {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-
-    .warranty-badge-pure {
-      background-color: var(--primary);
-      color: var(--white);
-      padding: 50px 40px;
-      border-radius: var(--border-radius);
-      box-shadow: var(--shadow-lg);
-      text-align: center;
-      transition: var(--transition);
-      min-width: 280px;
-
-      &:hover {
-        transform: translateY(-10px);
-        box-shadow: var(--shadow-xl);
-      }
-
-      .number {
-        display: block;
-        font-family: var(--font-primary);
-        font-size: 4rem;
-        font-weight: 900;
-        line-height: 1;
-        margin-bottom: 10px;
-      }
-
-      .txt {
+      .subtitle {
         display: block;
         font-family: var(--font-main);
-        font-size: 1rem;
-        text-transform: uppercase;
+        color: #d2242a;
         font-weight: 700;
-        letter-spacing: 1px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin-bottom: 0.8rem;
+        font-size: 0.85rem;
+      }
+
+      h2 {
+        margin-bottom: 1.5rem;
+        font-family: var(--font-primary);
+        color: #403b33;
+        position: relative;
+        padding-left: 20px;
+        border-left: 5px solid #d2242a;
+        line-height: 1.1;
+        font-size: 2.2rem;
+      }
+
+      .description {
+        font-family: var(--font-main);
+        font-size: 1.05rem;
+        line-height: 1.6;
+        color: #706e70;
+        margin-bottom: 0;
+
+        strong {
+          color: #403b33;
+          font-weight: 700;
+        }
       }
     }
   }
 
+  /* ==========================================================================
+    KPI'S GRID
+  ========================================================================== */
+  .nosotros-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.2rem;
+
+    .stat-card {
+      background-color: #f8f9fa;
+      padding: 30px 20px;
+      border-radius: 8px;
+      text-align: center;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+      }
+
+      &.highlight-red,
+      &.highlight-dark {
+        background-color: #d2242a;
+        border: none;
+        .stat-number,
+        .stat-label {
+          color: #ffffff;
+        }
+      }
+
+      .stat-number {
+        display: block;
+        font-family: var(--font-primary);
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: #d2242a;
+        line-height: 1;
+        margin-bottom: 8px;
+      }
+
+      .stat-label {
+        font-family: var(--font-main);
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        color: #403b33;
+      }
+    }
+
+    .osa-tag-full {
+      grid-column: span 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 15px;
+      margin-top: 5px;
+      border: 1px dashed #a3a19e;
+      border-radius: 8px;
+
+      .osa-icon {
+        width: 28px;
+        filter: invert(19%) sepia(88%) saturate(3942%) hue-rotate(348deg) brightness(89%)
+          contrast(92%);
+      }
+
+      span {
+        font-size: 0.9rem;
+        color: #706e70;
+        strong {
+          color: #403b33;
+        }
+      }
+    }
+  }
+
+  /* ==========================================================================
+     BENEFITS GRID
+     ========================================================================== */
   .nosotros-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 2.5rem;
+    gap: 1.5rem;
+    margin-top: 1rem;
 
     .info-card {
-      background-color: var(--bg-light);
-      padding: 45px 35px;
-      border-radius: var(--border-radius);
-      transition: var(--transition);
-      border-top: 5px solid transparent;
+      background-color: #ffffff;
+      padding: 30px 25px;
+      border-radius: 12px;
+      border: 1px solid #f0f0f0;
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
 
       &:hover {
-        transform: translateY(-10px);
-        background-color: var(--white);
-        box-shadow: var(--shadow-md);
-        border-top-color: var(--primary);
+        transform: translateY(-5px);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.05);
+        border-color: #d2242a;
+      }
+
+      .card-header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        margin-bottom: 15px;
+        width: 100%;
+
+        .pilar-icon {
+          width: 35px;
+          height: 35px;
+          filter: invert(19%) sepia(88%) saturate(3942%) hue-rotate(348deg) brightness(89%)
+            contrast(92%);
+          flex-shrink: 0;
+        }
+
+        h3 {
+          font-size: 1.1rem;
+          color: #403b33;
+          font-family: var(--font-primary);
+          margin: 0;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+          line-height: 1.2;
+        }
+      }
+
+      p {
+        font-size: 0.88rem;
+        color: #706e70;
+        line-height: 1.4;
+        margin: 0;
+        text-align: center;
       }
     }
   }
-}
 
-/* ==========================================================================
-   MEDIA QUERIES (RESPONSIVE)
-   ========================================================================== */
-@media (max-width: 992px) {
-  .nosotros-section {
-    padding: 60px 0;
+  /* ==========================================================================
+     FINAL QUOTE
+     ========================================================================== */
+  .nosotros-footer-quote {
+    text-align: center;
+    margin-top: 3.5rem;
+    padding-top: 0;
+    border-top: none;
+
+    .quote-text {
+      font-family: var(--font-primary);
+      font-size: 1.15rem;
+      font-style: italic;
+      color: #a3a19e;
+      margin: 0;
+
+      &::before,
+      &::after {
+        content: '"';
+        color: #d2242a;
+        font-weight: 700;
+      }
+    }
+  }
+
+  /* ==========================================================================
+     MEDIA QUERIES (RESPONSIVE)
+     ========================================================================== */
+  @media (max-width: 991px) {
+    padding: 100px 0 60px;
 
     .nosotros-main {
       grid-template-columns: 1fr;
       gap: 3rem;
-      text-align: center;
+    }
 
-      h2 {
-        border-left: none;
-        padding-left: 0;
-        display: inline-block;
-        margin-bottom: 2.5rem;
+    .nosotros-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
 
-        &::after {
-          content: '';
-          display: block;
-          width: 80px;
-          height: 4px;
-          background-color: var(--primary);
-          margin: 15px auto 0;
+  @media (max-width: 768px) {
+    .nosotros-main {
+      .nosotros-content {
+        h2 {
+          font-size: 1.8rem;
+          padding-left: 15px;
         }
       }
     }
 
-    .nosotros-visual {
-      .warranty-badge-pure {
-        min-width: 240px;
-        padding: 40px 30px;
-
-        .number {
-          font-size: 3rem;
-        }
-        .txt {
-          font-size: 0.9rem;
+    .nosotros-stats-grid {
+      .stat-card {
+        padding: 20px 15px;
+        .stat-number {
+          font-size: 2rem;
         }
       }
     }
 
     .nosotros-grid {
       grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .nosotros-footer-quote {
+      .quote-text {
+        font-size: 1rem;
+      }
     }
   }
 }

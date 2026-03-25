@@ -1,16 +1,20 @@
+<!-- ==========================================================================
+     NAVEGATION BAR (HEADER)
+     ======================================================================= -->
+
 <header class="header-wrapper">
-  <!-- TOP BAR (SOCIAL MEDIA) -->
+  <!-- TOP BAR -->
   <div class="top-bar">
     <div class="container top-bar-content">
       <div class="contact-info">
-        <a href="tel:+529990000000" class="contact-item">
+        <a href="tel:+525555571966" class="contact-item">
           <img src="assets/brand/socials/phone.svg" alt="Teléfono" class="contact-icon-svg" />
-          <span>+52 (999) 000 0000</span>
+          <span>(55) 5557 1966</span>
         </a>
         <span class="contact-divider"></span>
-        <a href="mailto:ventas@mersol.com.mx" class="contact-item">
+        <a href="mailto:servicioaclientes@austromex.com.mx" class="contact-item">
           <img src="assets/brand/socials/mail.svg" alt="Correo" class="contact-icon-svg" />
-          <span>ventas@mersol.com.mx</span>
+          <span>servicioaclientes@austromex.com.mx</span>
         </a>
       </div>
       <app-social-links></app-social-links>
@@ -20,31 +24,41 @@
   <!-- NAVBAR -->
   <nav class="navbar" role="navigation" aria-label="Navegación principal">
     <div class="container navbar-content">
-      <!-- BRAND LOGO -->
       <div class="brand-group">
-        <a href="#inicio" class="logo-link" (click)="closeMenu()">
-          <img src="assets/brand/MERSOL.svg" alt="Mersol" class="logo-mersol" />
-        </a>
-        <div class="brand-divider"></div>
-        <div class="partner-horizontal">
+        <a
+          [routerLink]="['/']"
+          fragment="inicio"
+          class="logo-link"
+          (click)="closeMenu()"
+          title="Ir al inicio - Austromex"
+        >
           <img
             src="assets/brand/AUSTROMEX.svg"
-            alt="Partner Oficial Austromex"
+            alt="Distribuidor Autorizado Austromex"
             class="logo-partner-img"
           />
-          <div class="partner-info">
-            <span class="partner-tag">Distribuidor</span>
-            <span class="partner-tag">Autorizado</span>
-          </div>
-        </div>
+        </a>
+
+        <div class="brand-divider"></div>
+
+        <a
+          [routerLink]="['/']"
+          fragment="inicio"
+          class="logo-link"
+          (click)="closeMenu()"
+          title="Mersol Sureste"
+        >
+          <img src="assets/brand/MERSOL.svg" alt="Mersol Sureste" class="logo-mersol" />
+        </a>
       </div>
 
-      <!-- MENU -->
+      <!-- MENU (MOBILE) -->
       <button
         class="menu-toggle"
         (click)="toggleMenu()"
         [class.open]="isMenuOpen"
-        aria-label="Abrir menú"
+        aria-label="Abrir menú de navegación"
+        [attr.aria-expanded]="isMenuOpen"
       >
         <span></span>
         <span></span>
@@ -52,30 +66,33 @@
       </button>
 
       <ul class="nav-links" [class.active]="isMenuOpen">
-        <!-- CONTACTS -->
+        <!-- CONTACT -->
         <li class="mobile-menu-contact">
           <div class="contact-buttons-container">
-            <a href="tel:+529990000000" class="menu-contact-btn">
+            <a href="tel:+525555571966" class="menu-contact-btn">
               <div class="icon-box">
-                <img src="assets/brand/socials/phone.svg" alt="Llamar" />
+                <img src="assets/brand/socials/phone.svg" alt="Icono Llamar" />
               </div>
               <span>Llamar</span>
             </a>
-            <a href="mailto:ventas@mersol.com.mx" class="menu-contact-btn">
+            <a href="mailto:servicioaclientes@austromex.com.mx" class="menu-contact-btn">
               <div class="icon-box">
-                <img src="assets/brand/socials/mail.svg" alt="Correo" />
+                <img src="assets/brand/socials/mail.svg" alt="Icono Correo" />
               </div>
               <span>Correo</span>
             </a>
           </div>
         </li>
 
-        <li><a href="#inicio" (click)="closeMenu()">Inicio</a></li>
-        <li><a href="#nosotros" (click)="closeMenu()">Nosotros</a></li>
-        <li><a href="#productos" (click)="closeMenu()">Productos</a></li>
+        <!-- LINKS & BUTTON -->
+        <li><a [routerLink]="['/']" fragment="inicio" (click)="closeMenu()">Inicio</a></li>
+        <li><a [routerLink]="['/']" fragment="nosotros" (click)="closeMenu()">Nosotros</a></li>
+        <li><a [routerLink]="['/']" fragment="productos" (click)="closeMenu()">Productos</a></li>
 
         <li class="nav-cta">
-          <a href="#contacto" class="btn btn-primary" (click)="closeMenu()"> Cotizar Ahora </a>
+          <a [routerLink]="['/']" fragment="contacto" class="btn btn-primary" (click)="closeMenu()">
+            Cotizar Ahora
+          </a>
         </li>
       </ul>
     </div>

@@ -18,15 +18,15 @@ export class NavbarComponent {
     this.isMenuOpen = !this.isMenuOpen;
   }
 
-  // Cerrar menú hamburguesa
+  // Cerrar menú hamburguesa (Útil al hacer clic en un link)
   closeMenu(): void {
     this.isMenuOpen = false;
   }
 
-  // Cerrar menú automáticamente (Responsive)
+  // Cerrar menú automáticamente
   @HostListener('window:resize', ['$event'])
   onResize(event: any): void {
-    if (event.target.innerWidth > 768 && this.isMenuOpen) {
+    if (event.target.innerWidth > 991 && this.isMenuOpen) {
       this.closeMenu();
     }
   }

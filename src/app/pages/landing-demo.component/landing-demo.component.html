@@ -1,9 +1,25 @@
-<app-hero id="inicio"></app-hero>
+<!-- ==========================================================================
+     LANDING PAGE STRUCTURE
+     ======================================================================= -->
 
-<section class="promo-wrapper">
+<!-- HERO -->
+<header id="inicio" role="banner">
+  <app-hero></app-hero>
+</header>
+
+<!-- PROMO -->
+<section class="promo-wrapper" aria-label="Promociones destacadas">
   <div class="container">
     <app-promo-carousel></app-promo-carousel>
   </div>
 </section>
 
-<app-nosotros id="nosotros"></app-nosotros>
+<!-- NOSOTROS -->
+<section id="nosotros" aria-labelledby="nosotros-title">
+  <app-nosotros></app-nosotros>
+</section>
+
+<!-- ROADMAP -->
+<section id="productos" aria-label="Nuestros Productos"></section>
+
+<section id="contacto" aria-label="Formulario de Contacto"></section>

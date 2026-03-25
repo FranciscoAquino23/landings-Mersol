@@ -1,5 +1,5 @@
 /* ==========================================================================
-   FONT (Halenoir)
+   FONT (Halenoir) - Asegúrate de que los archivos existan en esta ruta
    ========================================================================== */
 @font-face {
   font-family: 'Halenoir';
@@ -30,10 +30,10 @@
 }
 
 /* ==========================================================================
-   DESIGN TOKENS (Basados en Manual de Identidad Mersol)
+   DESIGN TOKENS (Estrategia Austromex x Mersol)
    ========================================================================== */
 :root {
-  // Paleta de colores Mersol
+  // Paleta de colores Mersol (Identidad Visual)
   --primary: #d2242a;
   --primary-hover: #b71c1c;
   --secondary: #403b33;
@@ -61,10 +61,11 @@
   --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
   --shadow-md: 0 10px 30px -10px rgba(64, 59, 51, 0.3);
   --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.1);
+  --navbar-height: 85px;
 }
 
 /* ==========================================================================
-   RENDER & BASE
+   RENDER & BASE (Instant Jump Configuration)
    ========================================================================== */
 * {
   margin: 0;
@@ -75,9 +76,8 @@
 }
 
 html {
-  scroll-behavior: smooth;
   font-size: var(--font-size-base);
-  scroll-padding-top: 100px;
+  scroll-padding-top: var(--navbar-height);
 }
 
 body {
@@ -110,7 +110,7 @@ body {
 }
 
 /* ==========================================================================
-   TYPOGRAPHY (Halenoir & Montserrat)
+   TYPOGRAPHY
    ========================================================================== */
 h1,
 h2,
@@ -171,7 +171,9 @@ img {
    ========================================================================== */
 .btn {
   font-family: var(--font-primary);
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   padding: 14px 32px;
   border-radius: var(--border-radius);
   font-weight: 700;
@@ -187,7 +189,7 @@ img {
 .btn-primary {
   background-color: var(--primary);
   color: var(--white);
-  box-shadow: 0 4px 14px 0 rgba(210, 36, 42, 0.3); // Sombra con color primario oficial
+  box-shadow: 0 4px 14px 0 rgba(210, 36, 42, 0.3);
 
   &:hover {
     background-color: var(--primary-hover);
@@ -210,6 +212,12 @@ img {
 /* ==========================================================================
    MEDIA QUERIES (RESPONSIVE)
    ========================================================================== */
+@media (max-width: 991px) {
+  html {
+    scroll-padding-top: var(--navbar-height);
+  }
+}
+
 @media (max-width: 768px) {
   :root {
     --section-padding: 60px 15px;
@@ -218,7 +226,6 @@ img {
   h1 {
     font-size: 2.25rem;
   }
-
   h2 {
     font-size: 1.8rem;
     &::after {
