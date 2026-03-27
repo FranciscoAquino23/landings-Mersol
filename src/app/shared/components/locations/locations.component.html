@@ -1,0 +1,90 @@
+<!-- ==========================================================================
+     LOCATIONS STRUCTURE
+     ========================================================================== -->
+
+<section class="locations-section" id="sucursales">
+  <div class="container">
+    <!-- HEADER -->
+    <div class="section-header">
+      <span class="subtitle">Presencia Regional</span>
+      <h2 class="title">Nuestras <strong>Sucursales</strong></h2>
+      <div class="title-line"></div>
+      <p class="description">
+        Contamos con una sólida infraestructura en el Sureste y puntos estratégicos en el país para
+        garantizar el suministro inmediato de tus equipos y consumibles.
+      </p>
+    </div>
+
+    <div class="locations-content">
+      <!-- MAP -->
+      <div class="map-container">
+        <iframe
+          [src]="safeMapUrl"
+          width="100%"
+          height="100%"
+          style="border: 0"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Mapa de sucursales Mersol"
+        >
+        </iframe>
+      </div>
+
+      <!-- BRANCHES -->
+      <div class="branches-grid">
+        @for (branch of branches; track branch.name; let i = $index) {
+          <div
+            class="branch-card"
+            [class.active]="activeIndex === i"
+            (click)="selectBranch(i)"
+            role="button"
+            tabindex="0"
+          >
+            <div class="card-header">
+              <div class="icon-box">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+                  <path
+                    d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-12-7zm0 9.5a2.5 2.5 0 0 1 0-5 2.5 2.5 0 0 1 0 5z"
+                  />
+                </svg>
+              </div>
+              <h3>{{ branch.name }}</h3>
+            </div>
+
+            <div class="card-body">
+              <p class="address">{{ branch.address }}</p>
+
+              <div class="contact-info">
+                <div class="phone-item">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                    <path
+                      d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"
+                    />
+                  </svg>
+                  <span>{{ branch.phone }}</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-footer">
+              <span class="view-map-text">
+                Ver ubicación en mapa
+                <svg
+                  viewBox="0 0 24 24"
+                  width="14"
+                  height="14"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </span>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</section>

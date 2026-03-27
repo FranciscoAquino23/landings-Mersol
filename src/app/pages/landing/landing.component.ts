@@ -18,6 +18,8 @@ import { FeaturesComponent } from '../../components/features/features.component'
 import { ContactFormComponent } from '../../shared/components/contact-form/form.component';
 import { FaqComponent } from '../../shared/components/faq/faq.component';
 import { TestimonialsComponent } from '../../shared/components/testimonials/testimonials.component';
+import { CtaComponent } from '../../shared/components/cta/cta.component';
+import { LocationsComponent } from '../../shared/components/locations/locations.component';
 
 @Component({
   selector: 'app-landing',
@@ -32,6 +34,8 @@ import { TestimonialsComponent } from '../../shared/components/testimonials/test
     ContactFormComponent,
     FaqComponent,
     TestimonialsComponent,
+    CtaComponent,
+    LocationsComponent,
   ],
   templateUrl: './landing.component.html',
   styleUrl: './landing.component.scss',

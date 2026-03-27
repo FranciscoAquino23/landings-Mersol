@@ -1,0 +1,255 @@
+/* ==========================================================================
+   LOCATIONS STYLES
+   ========================================================================== */
+
+$primary-red: #d32f2f;
+$bg-white: #ffffff;
+$bg-light: #f8f9fa;
+$text-dark: #212529;
+$text-muted: #6c757d;
+$border-color: #dee2e6;
+$transition-smooth: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+.locations-section {
+  padding: 80px 0;
+  background-color: $bg-white;
+  color: $text-dark;
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 50px;
+
+  .subtitle {
+    color: $primary-red;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 2px;
+    font-size: 0.9rem;
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  .title {
+    font-size: 2.5rem;
+    margin: 10px 0;
+    strong {
+      color: $primary-red;
+    }
+  }
+
+  .title-line {
+    width: 60px;
+    height: 3px;
+    background-color: $primary-red;
+    margin: 0 auto 20px;
+  }
+
+  .description {
+    max-width: 700px;
+    margin: 0 auto;
+    color: $text-muted;
+    line-height: 1.6;
+  }
+}
+
+.locations-content {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 30px;
+  align-items: start;
+}
+
+.map-container {
+  border-radius: 12px;
+  overflow: hidden;
+  height: 600px;
+  border: 1px solid $border-color;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+  background-color: #eee;
+}
+
+.branches-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 15px;
+  max-height: 600px;
+  overflow-y: auto;
+  padding-right: 10px;
+
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #ced4da;
+    border-radius: 10px;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background: $primary-red;
+  }
+}
+
+.branch-card {
+  background-color: $bg-light;
+  border-radius: 10px;
+  padding: 20px;
+  border: 1px solid $border-color;
+  cursor: pointer;
+  transition: $transition-smooth;
+  position: relative;
+
+  &:hover {
+    background-color: $bg-white;
+    border-color: rgba($primary-red, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  }
+
+  &.active {
+    background-color: $bg-white;
+    border-color: $primary-red;
+    border-left: 5px solid $primary-red;
+    box-shadow: 0 8px 15px rgba($primary-red, 0.1);
+
+    h3 {
+      color: $primary-red;
+    }
+  }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+
+    .icon-box {
+      color: $primary-red;
+      margin-right: 12px;
+      display: flex;
+      align-items: center;
+    }
+
+    h3 {
+      margin: 0;
+      font-size: 1.1rem;
+      font-weight: 700;
+      transition: color 0.3s ease;
+    }
+  }
+
+  .card-body {
+    .address {
+      color: $text-muted;
+      font-size: 0.9rem;
+      margin-bottom: 12px;
+      line-height: 1.4;
+    }
+
+    .contact-info .phone-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: $text-dark;
+      font-weight: 600;
+      font-size: 0.85rem;
+      svg {
+        color: $primary-red;
+      }
+    }
+  }
+
+  .card-footer {
+    margin-top: 15px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+
+    .view-map-text {
+      color: $primary-red;
+      font-size: 0.8rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+  }
+}
+
+/* ==========================================================================
+   LOCATIONS STYLES (MEDIA QUERIES)
+   ========================================================================== */
+
+@media (max-width: 1200px) {
+  .locations-content {
+    grid-template-columns: 1.1fr 0.9fr;
+  }
+}
+
+@media (max-width: 992px) {
+  .locations-section {
+    padding: 60px 0;
+  }
+
+  .section-header .title {
+    font-size: 2rem;
+  }
+
+  .locations-content {
+    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .branches-grid {
+    order: 1;
+    max-height: 400px;
+    margin-bottom: 20px;
+    padding-right: 0;
+  }
+
+  .map-container {
+    order: 2;
+    height: 350px;
+  }
+}
+
+@media (max-width: 576px) {
+  .locations-section {
+    padding: 40px 0;
+  }
+
+  .section-header .title {
+    font-size: 1.75rem;
+  }
+
+  .branch-card {
+    padding: 15px;
+    .card-header h3 {
+      font-size: 1rem;
+    }
+    .contact-info .phone-item {
+      font-size: 0.8rem;
+    }
+  }
+
+  .map-container {
+    height: 300px;
+  }
+}
+
+@media (pointer: coarse) {
+  .branches-grid {
+    &::-webkit-scrollbar {
+      width: 0px;
+    }
+  }
+  .branch-card:hover {
+    transform: none;
+  }
+}
