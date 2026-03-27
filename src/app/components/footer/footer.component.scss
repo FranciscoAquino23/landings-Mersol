@@ -12,55 +12,12 @@
   color: #cccccc;
   font-family: 'Halenoir', sans-serif;
   position: relative;
-  padding-bottom: 20px;
+  padding: 60px 0 20px 0;
 
-  .footer-cta-banner {
-    background: linear-gradient(135deg, var(--primary) 0%, #a81d22 100%);
-    padding: 15px 0;
-    margin-bottom: 35px;
-    box-shadow: var(--shadow-sm);
-
-    .cta-content-inline {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 2rem;
-
-      .cta-text .single-line-question {
-        color: var(--white);
-        margin: 0;
-        font-size: 1rem;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 0.3px;
-      }
-
-      .btn-whatsapp-cta {
-        background-color: var(--white);
-        color: var(--primary);
-        padding: 10px 22px;
-        border-radius: 4px;
-        font-weight: 800;
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        border: none;
-        cursor: pointer;
-        transition:
-          transform 0.3s ease,
-          box-shadow 0.3s ease;
-
-        &:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-        }
-
-        .wa-icon {
-          width: 18px;
-          filter: invert(15%) sepia(95%) saturate(4000%) hue-rotate(350deg);
-        }
-      }
-    }
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
   }
 
   .footer-main-grid {
@@ -223,11 +180,7 @@
 
 @media (max-width: 768px) {
   .main-footer {
-    .footer-cta-banner .cta-content-inline {
-      flex-direction: column;
-      text-align: center;
-      gap: 1.5rem;
-    }
+    padding-top: 40px;
 
     .footer-main-grid {
       grid-template-columns: 1fr;
