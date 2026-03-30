@@ -13,21 +13,21 @@ import { CommonModule } from '@angular/common';
   styleUrl: './cta.component.scss',
 })
 export class CtaComponent {
-  // Información de contactos
+  // Información de contacto
   contactData = {
-    phone: '5555571966',
-    message: 'Hola, me gustaría solicitar una asesoría sobre sus equipos industriales.',
+    phone: '529939805654',
+    message: 'Hola, me gustaría solicitar una asesoría industrial.',
   };
 
   constructor() {}
 
-  // Generar enlace directo a WhatsApp empresarial
+  // Generar enlace directo a contacto dentro de WhatsApp
   get whatsappUrl(): string {
     const encodedMsg = encodeURIComponent(this.contactData.message);
     return `https://wa.me/${this.contactData.phone}?text=${encodedMsg}`;
   }
 
-  // Activar acción de contacto
+  // Abrir chat de WhatsApp
   onContactClick(): void {
     window.open(this.whatsappUrl, '_blank');
   }

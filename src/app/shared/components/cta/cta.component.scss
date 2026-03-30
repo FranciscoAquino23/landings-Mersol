@@ -4,70 +4,89 @@
 
 $primary-red: #d2242a;
 $text-white: #ffffff;
-$transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+$font-primary: 'Halenoir', sans-serif;
 
 .cta-banner {
   background-color: $primary-red;
-  padding: 60px 0;
+  padding: 30px 0;
+  width: 100%;
   display: flex;
   align-items: center;
+  justify-content: center;
 
   .container {
-    max-width: 1200px;
+    max-width: 1600px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 60px;
     width: 100%;
   }
-}
 
-.cta-wrapper {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 30px;
-}
-
-.cta-content {
-  flex: 1;
-  .cta-title {
-    color: $text-white;
-    font-size: 1.4rem;
-    font-weight: 800;
-    line-height: 1.4;
-    margin: 0;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+  .cta-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 60px;
   }
 }
 
+/* ==========================================================================
+   QUOTE
+   ========================================================================== */
+
+.cta-content {
+  display: flex;
+  align-items: center;
+
+  .cta-title {
+    color: $text-white;
+    font-family: $font-primary;
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1;
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    transform: translateY(1px);
+  }
+}
+
+/* ==========================================================================
+   BUTTON (WHATSAPP)
+   ========================================================================== */
+
 .cta-action {
+  display: flex;
+  align-items: center;
+
   .cta-button {
     background-color: $text-white;
     color: $primary-red;
-    padding: 15px 30px;
-    border-radius: 8px;
+    padding: 20px 45px;
+    border-radius: 12px;
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 15px;
     text-decoration: none;
-    font-weight: 700;
-    transition: $transition;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    font-family: $font-primary;
+    font-weight: 800;
+    font-size: 1.05rem;
+    text-transform: uppercase;
+    line-height: 1;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
 
-    .cta-icon {
-      display: flex;
-      align-items: center;
-      img {
-        width: 22px;
-        height: 22px;
-        filter: none;
-      }
+    .cta-icon img {
+      width: 24px;
+      height: 24px;
+      display: block;
     }
 
     &:hover {
       transform: translateY(-3px);
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
-      background-color: #f8f8f8;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
     }
   }
 }
@@ -76,19 +95,54 @@ $transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
    CTA (CALL TO ACTION) STYLES (MEDIA QUERIES)
    ========================================================================== */
 
-@media (max-width: 992px) {
-  .cta-wrapper {
-    flex-direction: column;
-    text-align: center;
-  }
-}
+@media (max-width: 991px) {
+  .cta-banner {
+    padding: 25px 0;
 
-@media (max-width: 576px) {
+    .container {
+      padding: 0 10px;
+    }
+
+    .cta-wrapper {
+      flex-direction: column;
+      text-align: center;
+      gap: 20px;
+    }
+  }
+
+  .cta-content {
+    width: 100%;
+    justify-content: center;
+
+    .cta-title {
+      white-space: normal;
+      font-size: 0.88rem;
+      line-height: 1.4;
+      letter-spacing: -0.2px;
+      max-width: 95%;
+      margin: 0 auto;
+      transform: none;
+    }
+  }
+
   .cta-action {
     width: 100%;
+    justify-content: center;
+
     .cta-button {
+      display: inline-flex;
       justify-content: center;
-      width: 100%;
+      width: 85%;
+      max-width: 280px;
+      padding: 14px 20px;
+      font-size: 0.9rem;
+      border-radius: 10px;
+      gap: 10px;
+
+      .cta-icon img {
+        width: 18px;
+        height: 18px;
+      }
     }
   }
 }
