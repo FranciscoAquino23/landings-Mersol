@@ -5,7 +5,7 @@
 @use 'sass:color';
 
 /* ==========================================================================
-    DESING TOKENS
+    DESIGN TOKENS
    ========================================================================== */
 
 :host {
@@ -89,30 +89,15 @@
         color: #ffffff;
         transform: translateY(-1px);
         .contact-icon-svg {
-          background-color: #ffffff;
+          background-color: var(--primary-red);
         }
       }
     }
   }
 
-  .social-links {
+  .social-links-wrapper {
     display: flex;
     align-items: center;
-    gap: 18px;
-
-    .social-item {
-      color: #ffffff;
-      font-size: 1.1rem;
-      text-decoration: none;
-      transition: all 0.3s ease;
-      display: flex;
-      align-items: center;
-
-      &:hover {
-        color: var(--primary-red);
-        transform: scale(1.15);
-      }
-    }
   }
 }
 
@@ -142,13 +127,13 @@
   display: flex;
   align-items: center;
   gap: 20px;
+  flex-shrink: 0;
 
   .logo-link {
     display: flex;
     align-items: center;
     transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     cursor: pointer;
-
     &:hover {
       transform: scale(1.06);
     }
@@ -170,7 +155,7 @@
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 2.2rem;
+  gap: 1.8rem;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -185,7 +170,8 @@
     letter-spacing: 0.8px;
     position: relative;
     padding: 8px 0;
-    transition: color 0.3s ease;
+    transition: all 0.3s ease;
+    cursor: pointer;
 
     &::after {
       content: '';
@@ -205,11 +191,16 @@
       }
     }
   }
+
+  .mobile-only-content {
+    display: none !important;
+  }
 }
 
-/* ==========================================================================
-    CTA BUTTON
-   ========================================================================== */
+.nav-cta-desktop {
+  display: block;
+  flex-shrink: 0;
+}
 
 .btn-primary {
   background-color: var(--primary-red);
@@ -234,16 +225,10 @@
     transform: translateY(-3px);
     box-shadow: 0 8px 20px rgba(210, 36, 42, 0.3);
   }
-
-  &:active {
-    transform: translateY(-1px);
-  }
 }
 
-.menu-toggle,
-.mobile-only-cta,
-.mobile-contact-info {
-  display: none !important;
+.menu-toggle {
+  display: none;
 }
 
 /* ==========================================================================
@@ -255,138 +240,23 @@
     --nav-height: 80px;
   }
 
-  .top-bar {
+  .top-bar,
+  .nav-cta-desktop {
     display: none !important;
   }
 
   .navbar {
     height: var(--nav-height);
-    background-color: #ffffff;
-    border-bottom: 1px solid #eeeeee;
-
     .navbar-content {
       padding: 0 20px !important;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-  }
-
-  .brand-group {
-    gap: 15px;
-    .logo-partner-img,
-    .logo-mersol {
-      height: 42px !important;
-      width: auto;
-    }
-    .brand-divider {
-      height: 25px;
-      width: 1px;
-      background-color: #ddd;
-    }
-  }
-
-  .nav-links {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
-    position: fixed;
-    top: var(--nav-height);
-    right: 0;
-    width: 100%;
-    height: calc(100vh - var(--nav-height));
-    background-color: #ffffff;
-    z-index: 1100;
-    padding: 10px 0;
-    overflow: hidden;
-    transform: translateX(100%);
-    transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1);
-
-    &.active {
-      transform: translateX(0);
-    }
-
-    li {
-      width: 100%;
-      text-align: center;
-      a {
-        font-size: 1.15rem;
-        font-weight: 700;
-        color: var(--text-dark);
-        padding: 10px 0;
-        display: block;
-        text-decoration: none;
-        text-transform: uppercase;
-        &::after {
-          display: none !important;
-        }
-      }
-    }
-  }
-
-  .nav-cta-desktop {
-    display: none !important;
-  }
-
-  .mobile-only-cta {
-    display: block !important;
-    width: 85%;
-    max-width: 300px;
-    margin: 0;
-
-    .btn-primary {
-      width: 100%;
-      padding: 14px;
-      font-size: 1rem;
-      border-radius: 50px;
-      background-color: var(--primary-red);
-      color: #ffffff !important;
-      text-align: center;
-      font-weight: 800;
-      text-decoration: none;
-      display: block;
-      border: none;
-    }
-  }
-
-  .mobile-contact-info {
-    display: flex !important;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 0;
-
-    p {
-      font-size: 0.7rem;
-      color: #999;
-      margin-bottom: 5px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    .m-link {
-      font-size: 0.9rem !important;
-      color: var(--text-dark) !important;
-      font-weight: 600;
-      margin-bottom: 5px;
-      text-decoration: none;
-    }
-
-    .m-socials {
-      display: flex;
-      gap: 15px;
-      margin-top: 8px;
-
-      a {
-        color: var(--primary-red);
-        font-size: 1.3rem;
-        text-decoration: none;
-      }
+      justify-content: center;
     }
   }
 
   .menu-toggle {
     display: flex !important;
+    position: absolute;
+    right: 20px;
     flex-direction: column;
     justify-content: space-between;
     width: 26px;
@@ -401,19 +271,149 @@
       height: 3px;
       background-color: var(--text-dark);
       border-radius: 3px;
-      transition: 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+      transition: 0.3s ease;
     }
-
     &.open {
       span:nth-child(1) {
         transform: translateY(7.5px) rotate(45deg);
       }
       span:nth-child(2) {
         opacity: 0;
-        transform: translateX(-10px);
       }
       span:nth-child(3) {
         transform: translateY(-7.5px) rotate(-45deg);
+      }
+    }
+  }
+
+  .brand-group {
+    margin: 0 auto;
+    gap: 15px;
+    .logo-mersol,
+    .logo-partner-img {
+      height: 42px !important;
+    }
+  }
+
+  .nav-links {
+    position: fixed;
+    top: var(--nav-height);
+    right: 0;
+    width: 100%;
+    height: calc(100vh - var(--nav-height));
+    background-color: #ffffff;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 40px 0;
+    gap: 0;
+    transform: translateX(100%);
+    transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+    z-index: 1100;
+    overflow-y: auto;
+
+    &.active {
+      transform: translateX(0);
+    }
+
+    li {
+      width: 100%;
+      text-align: center;
+      a {
+        font-size: 1.1rem;
+        padding: 18px 0;
+        display: block;
+        &::after {
+          display: none;
+        }
+      }
+    }
+
+    .mobile-only-content {
+      display: flex !important;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      margin-top: 15px;
+    }
+  }
+
+  .mobile-only-cta {
+    width: 85%;
+    margin-bottom: 25px;
+    .btn-primary {
+      width: 100%;
+      padding: 16px;
+      font-size: 0.9rem;
+    }
+  }
+
+  .mobile-contact-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    padding-bottom: 40px;
+    width: 100%;
+
+    p {
+      font-size: 0.65rem;
+      color: #bbbbbb;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 5px;
+    }
+
+    .m-link {
+      display: flex !important;
+      flex-direction: row !important;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      text-decoration: none;
+      width: 100%;
+
+      span {
+        font-size: 0.85rem;
+        color: #555555;
+        font-weight: 500;
+        white-space: nowrap;
+      }
+
+      &.email-link span {
+        text-transform: lowercase;
+        font-size: 0.75rem;
+      }
+
+      .icon-circle {
+        width: 26px;
+        height: 26px;
+        background-color: var(--primary-red);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+
+        .contact-icon-svg {
+          width: 12px;
+          height: 12px;
+          background-color: #ffffff;
+          display: block;
+          -webkit-mask-size: contain;
+          mask-size: contain;
+          -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
+
+          &.icon-phone {
+            mask-image: url('../../../assets/brand/socials/phone.svg');
+            -webkit-mask-image: url('../../../assets/brand/socials/phone.svg');
+          }
+          &.icon-mail {
+            mask-image: url('../../../assets/brand/socials/mail.svg');
+            -webkit-mask-image: url('../../../assets/brand/socials/mail.svg');
+          }
+        }
       }
     }
   }

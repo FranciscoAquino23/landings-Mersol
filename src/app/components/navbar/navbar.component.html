@@ -27,19 +27,6 @@
   <!-- NAVBAR -->
   <nav class="navbar" role="navigation" aria-label="Navegación Principal">
     <div class="navbar-content">
-      <!-- LOGOS -->
-      <div class="brand-group">
-        <a (click)="scrollToAnchor('inicio')" class="logo-link" title="Mersol Sureste">
-          <img src="assets/brand/MERSOL.svg" alt="Logo Mersol Sureste" class="logo-mersol" />
-        </a>
-
-        <div class="brand-divider" aria-hidden="true"></div>
-
-        <a (click)="scrollToAnchor('inicio')" class="logo-link" title="Ir a Inicio">
-          <img src="assets/brand/AUSTROMEX.svg" alt="Logo Austromex" class="logo-partner-img" />
-        </a>
-      </div>
-
       <!-- MENU -->
       <button
         class="menu-toggle"
@@ -47,11 +34,21 @@
         [class.open]="isMenuOpen"
         aria-label="Menú de navegación"
       >
-        <span></span>
-        <span></span>
-        <span></span>
+        <span></span><span></span><span></span>
       </button>
 
+      <!-- LOGOS -->
+      <div class="brand-group">
+        <a (click)="scrollToAnchor('inicio')" class="logo-link" title="Mersol Sureste">
+          <img src="assets/brand/MERSOL.svg" alt="Logo Mersol Sureste" class="logo-mersol" />
+        </a>
+        <div class="brand-divider" aria-hidden="true"></div>
+        <a (click)="scrollToAnchor('inicio')" class="logo-link" title="Ir a Inicio">
+          <img src="assets/brand/AUSTROMEX.svg" alt="Logo Austromex" class="logo-partner-img" />
+        </a>
+      </div>
+
+      <!-- COMPONENTS -->
       <ul class="nav-links" [class.active]="isMenuOpen">
         <li><a (click)="scrollToAnchor('inicio')">Inicio</a></li>
         <li><a (click)="scrollToAnchor('productos')">Productos</a></li>
@@ -59,27 +56,27 @@
         <li><a (click)="scrollToAnchor('testimonios')">Opiniones</a></li>
         <li><a (click)="scrollToAnchor('faq')">Preguntas</a></li>
         <li><a (click)="scrollToAnchor('sucursales')">Sucursales</a></li>
+        <li class="mobile-only-content">
+          <div class="mobile-only-cta">
+            <a (click)="scrollToAnchor('contacto')" class="btn-primary"> Cotizar Ahora </a>
+          </div>
 
-        <!-- MOBILE -->
-        <li class="mobile-only-cta">
-          <a (click)="scrollToAnchor('contacto')" class="btn-primary"> Cotizar Ahora </a>
-        </li>
-
-        <!-- CONTACT -->
-        <li class="mobile-contact-info">
-          <div class="divider"></div>
-          <p>CONTÁCTANOS</p>
-          <a href="tel:529939805654" class="m-link">+52 993 980 5654</a>
-          <a href="mailto:ventas@mersolsureste.com.mx" class="m-link"
-            >ventas@mersolsureste.com.mx</a
-          >
-          <div class="m-socials">
-            <app-social-links></app-social-links>
+          <div class="mobile-contact-info">
+            <div class="divider"></div>
+            <p>CONTÁCTANOS</p>
+            <a href="tel:529939805654" class="m-link">
+              <div class="icon-circle"><span class="contact-icon-svg icon-phone"></span></div>
+              <span>+52 993 980 5654</span>
+            </a>
+            <a href="mailto:ventas@mersolsureste.com.mx" class="m-link email-link">
+              <div class="icon-circle"><span class="contact-icon-svg icon-mail"></span></div>
+              <span>ventas@mersolsureste.com.mx</span>
+            </a>
           </div>
         </li>
       </ul>
 
-      <!--BUTTON (DESKTOP) -->
+      <!-- CTA -->
       <div class="nav-cta-desktop">
         <a (click)="scrollToAnchor('contacto')" class="btn-primary"> Cotizar Ahora </a>
       </div>
