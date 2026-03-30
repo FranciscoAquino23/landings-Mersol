@@ -1,89 +1,88 @@
 <!-- ==========================================================================
      NAVBAR COMPONENT STRUCTURE
-     ======================================================================= -->
+     ========================================================================== -->
 
-<header class="header-wrapper">
+<header class="header-wrapper" [class.scrolled]="isScrolled">
   <!-- TOP BAR -->
   <div class="top-bar">
-    <div class="container top-bar-content">
+    <div class="top-bar-content">
       <div class="contact-info">
-        <a href="tel:+525555571966" class="contact-item">
-          <img
-            src="assets/brand/socials/phone.svg"
-            alt="Icono de Teléfono"
-            class="contact-icon-svg"
-          />
-          <span>(55) 5557 1966</span>
+        <a href="https://wa.me/529939805654" target="_blank" class="contact-item">
+          <div class="contact-icon-svg icon-phone"></div>
+          <span>+52 993 980 5654</span>
         </a>
-        <span class="contact-divider" aria-hidden="true"></span>
-        <a href="mailto:servicioaclientes@austromex.com.mx" class="contact-item">
-          <img src="assets/brand/socials/mail.svg" alt="Icono de Correo" class="contact-icon-svg" />
-          <span>servicioaclientes@austromex.com.mx</span>
+
+        <a href="mailto:ventas@mersolsureste.com.mx" class="contact-item">
+          <div class="contact-icon-svg icon-mail"></div>
+          <span>ventas@mersolsureste.com.mx</span>
         </a>
       </div>
-      <!-- SOCIAL MEDIA -->
-      <app-social-links></app-social-links>
+
+      <div class="social-links-wrapper">
+        <app-social-links></app-social-links>
+      </div>
     </div>
   </div>
 
   <!-- NAVBAR -->
-  <nav class="navbar" role="navigation" aria-label="Navegación principal">
-    <div class="container navbar-content">
+  <nav class="navbar" role="navigation" aria-label="Navegación Principal">
+    <div class="navbar-content">
       <!-- LOGOS -->
       <div class="brand-group">
-        <a
-          [routerLink]="['/']"
-          fragment="inicio"
-          class="logo-link"
-          (click)="closeMenu()"
-          title="Ir al inicio - Austromex"
-        >
-          <img
-            src="assets/brand/AUSTROMEX.svg"
-            alt="Distribuidor Autorizado Austromex"
-            class="logo-partner-img"
-          />
+        <a (click)="scrollToAnchor('inicio')" class="logo-link" title="Mersol Sureste">
+          <img src="assets/brand/MERSOL.svg" alt="Logo Mersol Sureste" class="logo-mersol" />
         </a>
 
         <div class="brand-divider" aria-hidden="true"></div>
 
-        <a
-          [routerLink]="['/']"
-          fragment="inicio"
-          class="logo-link"
-          (click)="closeMenu()"
-          title="Mersol Sureste"
-        >
-          <img src="assets/brand/MERSOL.svg" alt="Mersol Sureste" class="logo-mersol" />
+        <a (click)="scrollToAnchor('inicio')" class="logo-link" title="Ir a Inicio">
+          <img src="assets/brand/AUSTROMEX.svg" alt="Logo Austromex" class="logo-partner-img" />
         </a>
       </div>
 
-      <!-- MENU TOGGLE -->
+      <!-- MENU -->
       <button
         class="menu-toggle"
         (click)="toggleMenu()"
         [class.open]="isMenuOpen"
-        aria-label="Abrir menú de navegación"
-        [attr.aria-expanded]="isMenuOpen"
+        aria-label="Menú de navegación"
       >
         <span></span>
         <span></span>
         <span></span>
       </button>
 
-      <!-- NAVIGATION LINKS -->
       <ul class="nav-links" [class.active]="isMenuOpen">
-        <li><a [routerLink]="['/']" fragment="inicio" (click)="closeMenu()">Inicio</a></li>
-        <li><a [routerLink]="['/']" fragment="nosotros" (click)="closeMenu()">Nosotros</a></li>
-        <li><a [routerLink]="['/']" fragment="productos" (click)="closeMenu()">Productos</a></li>
+        <li><a (click)="scrollToAnchor('inicio')">Inicio</a></li>
+        <li><a (click)="scrollToAnchor('productos')">Productos</a></li>
+        <li><a (click)="scrollToAnchor('nosotros')">Nosotros</a></li>
+        <li><a (click)="scrollToAnchor('testimonios')">Opiniones</a></li>
+        <li><a (click)="scrollToAnchor('faq')">Preguntas</a></li>
+        <li><a (click)="scrollToAnchor('sucursales')">Sucursales</a></li>
 
-        <!-- BUTTON (CTA) -->
-        <li class="nav-cta">
-          <a [routerLink]="['/']" fragment="contacto" class="btn btn-primary" (click)="closeMenu()">
-            Cotizar Ahora
-          </a>
+        <!-- MOBILE -->
+        <li class="mobile-only-cta">
+          <a (click)="scrollToAnchor('contacto')" class="btn-primary"> Cotizar Ahora </a>
+        </li>
+
+        <!-- CONTACT -->
+        <li class="mobile-contact-info">
+          <div class="divider"></div>
+          <p>CONTÁCTANOS</p>
+          <a href="tel:529939805654" class="m-link">+52 993 980 5654</a>
+          <a href="mailto:ventas@mersolsureste.com.mx" class="m-link"
+            >ventas@mersolsureste.com.mx</a
+          >
+          <div class="m-socials">
+            <app-social-links></app-social-links>
+          </div>
         </li>
       </ul>
+
+      <!--BUTTON (DESKTOP) -->
+      <div class="nav-cta-desktop">
+        <a (click)="scrollToAnchor('contacto')" class="btn-primary"> Cotizar Ahora </a>
+      </div>
     </div>
   </nav>
 </header>
