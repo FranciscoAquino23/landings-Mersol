@@ -2,113 +2,83 @@
      FOOTER COMPONENT STRUCTURE
      ========================================================================== -->
 
-<footer class="main-footer">
+<footer class="main-footer" role="contentinfo">
   <div class="container">
     <div class="footer-main-grid">
-      <!-- BRANDING -->
+      <!-- LOGOS -->
       <div class="footer-col branding">
         <div class="brand-partnership">
-          <img
-            src="assets/brand/AUSTROMEX.svg"
-            alt="Austromex"
-            class="brand-logo-clean main-logo"
-          />
+          <a [routerLink]="['/']" class="logo-link" aria-label="Ir al inicio - Mersol Sureste">
+            <img
+              src="assets/brand/MERSOL-white.svg"
+              alt="Mersol Sureste"
+              class="mersol-logo"
+              width="120"
+            />
+          </a>
           <div class="brand-separator" aria-hidden="true"></div>
-          <img src="assets/brand/MERSOL.svg" alt="Mersol" class="brand-logo-clean mersol-logo" />
+          <a [routerLink]="['/']" class="logo-link" aria-label="Ir al inicio - Austromex">
+            <img src="assets/brand/AUSTROMEX.svg" alt="Austromex" class="main-logo" width="140" />
+          </a>
         </div>
         <p class="brand-tagline">Tu socio experto en herramientas industriales</p>
       </div>
 
-      <!-- SOCIAL MEDIA -->
+      <!-- CONTACT -->
       <div class="footer-col contact">
         <h4>CONTACTO</h4>
         <ul class="contact-list">
           <li class="schedule-item">
             <strong>HORARIO DE ATENCIÓN:</strong>
-            <span>Lun a Vie 07:00 AM - 06:30 PM</span>
+            <div class="schedule-lines">
+              @for (line of contactInfo.schedules; track line) {
+                <span class="time-line">{{ line }}</span>
+              }
+            </div>
           </li>
           <li class="icon-inline">
-            <img src="assets/brand/socials/phone.svg" alt="" class="li-icon" aria-hidden="true" />
-            <a href="tel:+525555571966">(55) 5557 1966</a>
+            <img src="assets/brand/socials/phone.svg" alt="" width="18" class="icon-red" />
+            <a [href]="'tel:' + contactInfo.phone">{{ contactInfo.phone }}</a>
           </li>
           <li class="icon-inline">
-            <img src="assets/brand/socials/mail.svg" alt="" class="li-icon" aria-hidden="true" />
-            <a href="mailto:servicioaclientes@austromex.com.mx"
-              >servicioaclientes@austromex.com.mx</a
-            >
+            <img src="assets/brand/socials/mail.svg" alt="" width="18" class="icon-red" />
+            <a [href]="'mailto:' + contactInfo.email">{{ contactInfo.email }}</a>
           </li>
         </ul>
-
         <div class="social-wrapper">
           <p class="social-label">SÍGUENOS EN REDES:</p>
           <div class="footer-social-icons">
-            <a
-              href="https://www.facebook.com/GrupoAustromex"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Facebook"
-            >
-              <img src="assets/brand/socials/facebook.svg" alt="Facebook" />
-            </a>
-            <a
-              href="https://www.instagram.com/austromex"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Instagram"
-            >
-              <img src="assets/brand/socials/instagram.svg" alt="Instagram" />
-            </a>
-            <a
-              href="https://www.youtube.com/user/grupoaustromex/videos"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="YouTube"
-            >
-              <img src="assets/brand/socials/youtube.svg" alt="YouTube" />
-            </a>
-            <a
-              href="https://www.linkedin.com/company/grupo-austromex"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="LinkedIn"
-            >
-              <img src="assets/brand/socials/linkedin.svg" alt="LinkedIn" />
-            </a>
+            @for (social of socialNetworks; track social.name) {
+              <a [href]="social.url" target="_blank" rel="noopener" [aria-label]="social.name">
+                <img
+                  [src]="'assets/brand/socials/' + social.name.toLowerCase() + '.svg'"
+                  [alt]="social.name"
+                  width="24"
+                />
+              </a>
+            }
           </div>
         </div>
       </div>
 
       <!-- PRODUCTS -->
-      <div class="footer-col products-nav">
-        <div class="products-header">
-          <h4>PRODUCTOS</h4>
-        </div>
-        <div class="products-grid-wrapper">
-          <ul class="resource-links">
-            <li><a [routerLink]="['/']" fragment="productos">Abrasivos Sólidos</a></li>
-            <li><a [routerLink]="['/']" fragment="productos">Productos de Lija</a></li>
-            <li><a [routerLink]="['/']" fragment="productos">Productos de Fibra</a></li>
-            <li><a [routerLink]="['/']" fragment="productos">Pulido y Limpieza</a></li>
-            <li><a [routerLink]="['/']" fragment="productos">Estética Automotriz</a></li>
-            <li><a [routerLink]="['/']" fragment="productos">Construcción</a></li>
-          </ul>
-          <ul class="resource-links">
-            <li><a [routerLink]="['/']" fragment="productos">Superabrasivos</a></li>
-            <li><a [routerLink]="['/']" fragment="productos">Rectificado Automotriz</a></li>
-            <li><a [routerLink]="['/']" fragment="productos">Cepillos de Alambre</a></li>
-            <li><a [routerLink]="['/']" fragment="productos">Herramientas</a></li>
-            <li><a [routerLink]="['/']" fragment="productos">Máquinas</a></li>
-            <li><a [routerLink]="['/']" fragment="productos">Accesorios</a></li>
-          </ul>
-        </div>
-      </div>
+      <nav class="footer-col products-nav">
+        <h4>PRODUCTOS</h4>
+        <ul class="products-grid">
+          @for (item of allProducts; track item.label) {
+            <li>
+              <a [routerLink]="['/']" [fragment]="'nuestros-productos'">
+                {{ item.label }}
+              </a>
+            </li>
+          }
+        </ul>
+      </nav>
     </div>
 
-    <!-- FOOTER BOTTOM -->
+    <!-- COPYRIGHT -->
     <div class="footer-bottom">
-      <div class="bottom-info">
-        <p>© {{ currentYear }} Grupo Austromex. Todos los derechos reservados.</p>
-      </div>
+      <p>© {{ currentYear }} Mersol Sureste & Grupo Austromex. Todos los derechos reservados.</p>
     </div>
   </div>
 </footer>
