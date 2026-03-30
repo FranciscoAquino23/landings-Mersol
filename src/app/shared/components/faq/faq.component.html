@@ -1,42 +1,58 @@
 <!-- ==========================================================================
-     FAQ STRUCTURE
-     ======================================================================= -->
+     FAQ (QUESTIONS / ANSWERS) STRUCTURE
+     ========================================================================== -->
 
-<section class="faq-section">
+<section class="faq-section" id="preguntas" aria-labelledby="faq-title">
   <div class="container">
-    <div class="section-header">
-      <h2>Preguntas Frecuentes</h2>
-      <p>Resolvemos tus dudas principales sobre nuestros servicios y equipos.</p>
-    </div>
+    <!-- TITLE -->
+    <header class="section-header">
+      <span class="overline">SERVICIO TÉCNICO Y SOPORTE</span>
+      <div class="title-with-l-shape">
+        <h2 id="faq-title" class="main-title">
+          PREGUNTAS <br />
+          FRECUENTES
+        </h2>
+      </div>
+      <div class="description-container">
+        <p class="description-text">
+          Resolvemos tus dudas principales sobre nuestros servicios, equipos y procesos.
+        </p>
+      </div>
+    </header>
 
-    <div class="faq-list">
+    <!-- (QUESTIONS / ANSWERS) -->
+    <div class="faq-list" role="list">
       @for (item of faqs; track item.pregunta; let i = $index) {
-        <div class="faq-item" [class.active]="item.isOpen">
-          <!-- REVEAL BUTTON -->
+        <div class="faq-item" [class.active]="item.isOpen" role="listitem">
           <button
             type="button"
             class="faq-question"
             (click)="toggleFaq(i)"
             [attr.aria-expanded]="item.isOpen"
+            [attr.aria-controls]="'faq-answer-' + i"
           >
             <span class="question-text">{{ item.pregunta }}</span>
 
-            <!-- DYNAMIC ICON -->
-            <span class="icon" aria-hidden="true">
-              {{ item.isOpen ? '−' : '+' }}
+            <!-- DINAMIC MENU-->
+            <span class="icon-wrapper" aria-hidden="true">
+              <span class="icon-symbol">{{ item.isOpen ? '-' : '+' }}</span>
             </span>
           </button>
 
-          <!-- ANSWER -->
+          <!-- CONTENT -->
           @if (item.isOpen) {
-            <div class="faq-answer">
-              <p>{{ item.respuesta }}</p>
+            <div class="faq-answer" [id]="'faq-answer-' + i" role="region">
+              <div class="answer-content">
+                <p>{{ item.respuesta }}</p>
+              </div>
             </div>
           }
         </div>
       } @empty {
-        <!-- OPCIONAL -->
-        <p class="empty-msg">No hay preguntas disponibles por el momento.</p>
+        <!-- STATE -->
+        <div class="empty-msg-container">
+          <p class="empty-msg">No hay preguntas disponibles por el momento.</p>
+        </div>
       }
     </div>
   </div>

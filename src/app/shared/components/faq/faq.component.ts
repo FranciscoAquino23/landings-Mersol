@@ -1,10 +1,11 @@
 /* ==========================================================================
-     FAQ LOGIC
+   FAQ (QUESTIONS / ANSWERS)
    ========================================================================== */
 
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+// Interfaz para definir la estructura de cada FAQ
 interface FaqItem {
   pregunta: string;
   respuesta: string;
@@ -19,39 +20,72 @@ interface FaqItem {
   styleUrl: './faq.component.scss',
 })
 export class FaqComponent {
-  // Preguntas & Respuestas
+  // Lista de preguntas y respuestas
   faqs: FaqItem[] = [
     {
-      pregunta: '¿Cuál es el tiempo de entrega de los equipos?',
+      pregunta: '¿Qué es Mersol Sureste y qué tipo de soluciones ofrece?',
       respuesta:
-        'Contamos con entrega inmediata en la zona metropolitana de Mérida y envíos de 24 a 48 horas a Campeche y Quintana Roo.',
+        'Empresa especializada en soluciones industriales, enfocada en soldadura, corte, herramientas, abrasivos y equipo de protección personal.',
       isOpen: false,
     },
     {
-      pregunta: '¿Ofrecen servicio de mantenimiento preventivo?',
+      pregunta: '¿En qué sectores industriales tiene experiencia Mersol Sureste?',
       respuesta:
-        'Sí, contamos con un equipo técnico especializado para el mantenimiento y reparación de máquinas de soldar de todas las marcas.',
+        'Atendemos sectores como metalmecánico, construcción, manufactura, mantenimiento industrial y energía.',
       isOpen: false,
     },
     {
-      pregunta: '¿Cómo puedo solicitar una demostración de productos?',
+      pregunta: '¿Los productos son originales y cuentan con garantía de fábrica?',
       respuesta:
-        'Puedes solicitarla a través de nuestro formulario de contacto o vía WhatsApp. Coordinamos visitas técnicas a tu taller o planta.',
+        'Sí, todos nuestros productos son 100% originales y cuentan con garantía directa del fabricante.',
       isOpen: false,
     },
     {
-      pregunta: '¿Manejan precios especiales por volumen?',
+      pregunta: '¿Manejan productos especializados o bajo pedido?',
       respuesta:
-        'Correcto, para proyectos industriales o compras al mayoreo de consumibles, ofrecemos planes de descuento personalizados.',
+        'Sí, podemos conseguir equipos y consumibles especializados bajo pedido según tus necesidades.',
+      isOpen: false,
+    },
+    {
+      pregunta: '¿Realizan envíos a toda la República Mexicana?',
+      respuesta: 'Sí, realizamos envíos a todo México con opciones rápidas y seguras.',
+      isOpen: false,
+    },
+    {
+      pregunta: '¿Puedo recoger mi pedido en sucursal?',
+      respuesta: 'Sí, puedes recoger directamente en cualquiera de nuestras sucursales.',
+      isOpen: false,
+    },
+    {
+      pregunta: '¿Manejan precios especiales por volumen o mayoreo?',
+      respuesta:
+        'Sí, ofrecemos precios preferenciales para compras por volumen y clientes recurrentes.',
+      isOpen: false,
+    },
+    {
+      pregunta: '¿Ofrecen crédito a empresas?',
+      respuesta: 'Sí, contamos con opciones de crédito sujetas a evaluación.',
+      isOpen: false,
+    },
+    {
+      pregunta: '¿Venden refacciones originales?',
+      respuesta:
+        'Sí, manejamos refacciones originales para asegurar el correcto funcionamiento de tus equipos.',
+      isOpen: false,
+    },
+    {
+      pregunta: '¿Atienden proyectos industriales o compras a gran escala?',
+      respuesta:
+        'Sí, brindamos atención especializada para proyectos industriales y compras de alto volumen.',
       isOpen: false,
     },
   ];
 
-  // Conocer estado de la pregunta (Abierta / Cerrada)
+  // Cambiar estado de la pregunta seleccionada (Abierto / Cerrado)
   toggleFaq(index: number): void {
-    this.faqs[index].isOpen = !this.faqs[index].isOpen;
-    this.faqs.forEach((item, i) => {
-      if (i !== index) item.isOpen = false;
-    });
+    const targetState = !this.faqs[index].isOpen;
+    // Cerrar todas las preguntas exceptuando la seleccionada
+    this.faqs.forEach((item) => (item.isOpen = false));
+    this.faqs[index].isOpen = targetState;
   }
 }
