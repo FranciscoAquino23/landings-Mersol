@@ -2,49 +2,63 @@
      HERO COMPONENT STRUCTURE
      ========================================================================== -->
 
-<section
-  class="hero-section"
-  id="inicio"
-  [style.backgroundImage]="
-    'linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(' + backgroundImage + ')'
-  "
->
-  <div class="container">
+<section class="hero-section" id="inicio" [class.is-active]="isVisible()">
+  <!-- BANNER -->
+  <div class="hero-bg-wrapper">
+    <div class="hero-image" [style.backgroundImage]="heroBgStyle"></div>
+    <div class="hero-overlay"></div>
+  </div>
+
+  <div class="container hero-container">
     <div class="hero-grid">
-      <!-- ACTIONS -->
+      <!-- HEADER -->
       <div class="hero-content">
-        <span class="brand-badge">Mersol Sureste</span>
-
-        <h1 [innerHTML]="title"></h1>
-
-        <p class="hero-tagline">{{ subtitle }}</p>
-
-        <div class="hero-actions">
-          <a
-            href="https://wa.me/529990000000?text=Hola,%20me%20gustaría%20solicitar%20una%20cotización"
-            target="_blank"
-            class="btn btn-primary"
-            rel="noopener noreferrer"
-          >
-            {{ primaryCtaText }}
-          </a>
-
-          <button (click)="scrollToSection('nosotros')" class="btn btn-outline">
-            {{ secondaryCtaText }}
-          </button>
-        </div>
-      </div>
-
-      <!-- VISUALS -->
-      <div class="hero-visual">
-        <div class="experience-badge">
-          <div class="exp-content">
-            <span class="exp-number">+10</span>
-            <span class="exp-text">Años de<br />Experiencia</span>
+        <div class="content-inner">
+          <div class="brand-tag">
+            <span class="line"></span>
+            <span class="tag-text">MERSOL SURESTE</span>
           </div>
-          <div class="exp-decoration"></div>
+          <h1 class="hero-title" [innerHTML]="title"></h1>
+          <p class="hero-subtitle">Expertos en soldadura y abrasivos para el sureste mexicano.</p>
+
+          <!-- BUTTONS -->
+          <div class="hero-actions">
+            <!-- CATALOG -->
+            <button
+              (click)="onPrimaryAction()"
+              class="btn-hero primary"
+              type="button"
+              aria-label="Descargar catálogo de productos PDF"
+            >
+              <span class="btn-text">DESCARGAR CATÁLOGO</span>
+            </button>
+
+            <!-- WHATSAPP -->
+            <a
+              href="https://wa.me/529939805654?text=Hola,%20vengo%20de%20su%20sitio%20web%20y%20solicito%20información%20sobre%20sus%20productos."
+              target="_blank"
+              class="btn-hero secondary"
+              aria-label="Contactar por WhatsApp"
+            >
+              CONTACTO
+            </a>
+          </div>
+
+          <!-- EXPERIENCE -->
+          <div class="experience-ticker-integrated">
+            <div class="ticker-content">
+              <div class="stat-item">
+                <span class="stat-number">{{ stats.value }}</span>
+                <div class="stat-text">
+                  <strong>{{ stats.label }}</strong>
+                  <span>{{ stats.description }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
+      <div class="hero-visual-space"></div>
     </div>
   </div>
 </section>
