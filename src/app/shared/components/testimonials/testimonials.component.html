@@ -1,50 +1,103 @@
 <!-- ==========================================================================
-      TESTIMONIALS STRUCTURE
-      ======================================================================= -->
+     TESTIMONIALS STRUCTURE
+     ========================================================================== -->
 
 <section class="testimonials-section" aria-labelledby="testimonials-title">
   <div class="container">
-    <!-- HEADER -->
-    <div class="section-header">
-      <span class="subtitle">Casos de Éxito</span>
-      <h2 id="testimonials-title">Lo que dicen nuestros clientes industriales</h2>
-      <div class="header-line"></div>
-    </div>
+    <!-- TITLE -->
+    <header class="section-header">
+      <span class="overline">Casos de Éxito</span>
+      <div class="title-with-l-shape">
+        <h2 id="testimonials-title" class="main-title">Lo que dicen nuestros clientes</h2>
+      </div>
+      <div class="description-container">
+        <p class="description-text">
+          Opiniones reales de socios industriales que confían en nuestra calidad y servicio técnico.
+        </p>
+      </div>
+    </header>
 
-    <div class="testimonials-grid">
-      @for (item of testimonials; track item.author) {
-        <article class="testimonial-card">
-          <!-- ICONS -->
-          <div class="quote-icon">
-            <img
-              src="assets/brand/icons/comment.svg"
-              alt="Icono Profesional"
-              class="testimonial-brand-icon"
-            />
-          </div>
+    <!-- CAROUSEL -->
+    <div class="carousel-main-column">
+      <div class="carousel-container">
+        <div class="carousel-viewport">
+          <div
+            class="carousel-track"
+            [class.no-transition]="!isTransitioning"
+            [style.transform]="transformOffset"
+            (transitionend)="onTransitionEnd()"
+          >
+            @for (item of displayTestimonials; track $index) {
+              <article class="testimonial-card" [class.active]="$index === currentIndex">
+                <div class="card-inner">
+                  <!-- ICON & RATING -->
+                  <div class="card-header-info">
+                    <div class="profile-mark">
+                      <img src="assets/brand/icons/profile.svg" alt="Profile" class="profile-svg" />
+                    </div>
+                    <div
+                      class="rating-stars"
+                      [attr.aria-label]="'Calificación de ' + item.rating + ' estrellas'"
+                    >
+                      @for (star of getStars(item.rating); track $index) {
+                        <img src="assets/brand/icons/star.svg" alt="Estrella" class="star-svg" />
+                      }
+                    </div>
+                  </div>
 
-          <div class="rating-stars" aria-label="Calificación de 5 estrellas">
-            @for (star of getStars(item.rating); track $index) {
-              <img src="assets/brand/icons/star.svg" alt="Estrella" class="star-svg" />
+                  <!-- QUOTE -->
+                  <blockquote class="testimonial-body">
+                    <p>"{{ item.quote }}"</p>
+                  </blockquote>
+
+                  <!-- FOOTER -->
+                  <footer class="testimonial-footer">
+                    <div class="author-info">
+                      <span class="author-name">{{ item.author }}</span>
+                      @if (item.location) {
+                        <span class="author-location">
+                          {{ item.location }}
+                        </span>
+                      }
+                    </div>
+                  </footer>
+                </div>
+              </article>
+            } @empty {
+              <p class="empty-msg">Cargando experiencias de nuestros clientes...</p>
             }
           </div>
+        </div>
 
-          <!-- TESTIMONIALS -->
-          <blockquote class="testimonial-body">
-            <p>"{{ item.quote }}"</p>
-          </blockquote>
+        <!-- BUTTONS (FORWARD / BACKWARD) -->
+        <nav class="carousel-navigation" aria-label="Navegación de testimonios">
+          <button class="nav-arrow prev" (click)="prev()" aria-label="Anterior testimonio">
+            <span class="arrow-icon">←</span>
+          </button>
 
-          <footer class="testimonial-footer">
-            <div class="author-info">
-              <span class="author-name">{{ item.author }}</span>
-              <span class="author-position">{{ item.position }}</span>
-              <span class="author-company">{{ item.company }}</span>
-            </div>
-          </footer>
-        </article>
-      } @empty {
-        <p class="empty-msg">Próximamente más historias de éxito en el sureste.</p>
-      }
+          <button class="nav-arrow next" (click)="next()" aria-label="Siguiente testimonio">
+            <span class="arrow-icon">→</span>
+          </button>
+        </nav>
+      </div>
+
+      <!-- INDEX -->
+      <div class="carousel-dots" role="tablist">
+        @for (item of testimonials; track $index) {
+          <button
+            class="dot"
+            role="tab"
+            (click)="goToSlide($index)"
+            [class.active-dot]="
+              $index + 2 === currentIndex ||
+              (currentIndex === 1 && $index === testimonials.length - 1) ||
+              (currentIndex === displayTestimonials.length - 1 && $index === 0)
+            "
+            [attr.aria-selected]="$index + 2 === currentIndex"
+            [attr.aria-label]="'Ir al testimonio ' + ($index + 1)"
+          ></button>
+        }
+      </div>
     </div>
   </div>
 </section>
