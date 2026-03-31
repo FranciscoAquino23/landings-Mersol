@@ -2,7 +2,7 @@
      BANNER COMPONENT LOGIC
      ========================================================================== */
 
-import { Component, OnInit, OnDestroy, signal } from '@angular/core';
+import { Component, OnInit, OnDestroy, signal, HostListener, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -15,6 +15,9 @@ import { CommonModule } from '@angular/common';
 export class BannerComponent implements OnInit, OnDestroy {
   public currentIndex = signal(0);
   private autoPlayInterval: any;
+
+  // Detectar dispositivo (Desktop / Mobile)
+  public isMobile = signal(false);
 
   // Información de los banners
   public promociones = [
@@ -36,16 +39,31 @@ export class BannerComponent implements OnInit, OnDestroy {
     },
   ];
 
+  // Actualizar el estado dependiendo del dispositivo
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event) {
+    this.checkBreakpoint();
+  }
+
   ngOnInit(): void {
+    this.checkBreakpoint();
     this.startAutoPlay();
   }
 
-  // Mejorar rendimiento
   ngOnDestroy(): void {
     this.stopAutoPlay();
   }
 
-  // Iniciar cambio automático (5 segundos)
+  private checkBreakpoint(): void {
+    this.isMobile.set(window.innerWidth <= 768);
+  }
+
+  // Obtener la imagen correcta de acuerdo al dispositivo
+  public getActiveImage(promo: any): string {
+    return this.isMobile() ? promo.imgMobile : promo.imgDesktop;
+  }
+
+  // Lógica de recorrido automático
   public startAutoPlay(): void {
     this.stopAutoPlay();
     if (this.promociones.length > 1) {
@@ -55,26 +73,26 @@ export class BannerComponent implements OnInit, OnDestroy {
     }
   }
 
-  // Detener temporizador activo
+  // Detener el recorrido automático
   public stopAutoPlay(): void {
     if (this.autoPlayInterval) {
       clearInterval(this.autoPlayInterval);
     }
   }
 
-  // Avanzar al siguiente banner
+  // Navegación mediante botones (UI / UX)
   public nextSlide(): void {
     const next = (this.currentIndex() + 1) % this.promociones.length;
     this.currentIndex.set(next);
   }
 
-  // Retroceder al anterior banner
+  // Deslizamiento hacia atrás
   public prevSlide(): void {
     const prev = (this.currentIndex() - 1 + this.promociones.length) % this.promociones.length;
     this.currentIndex.set(prev);
   }
 
-  // Mover banners de acuerdo a interacción de usuario (Avanzar / Retroceder)
+  // Deslizamiento hacia adelante
   public goToSlide(index: number): void {
     this.currentIndex.set(index);
     this.startAutoPlay();

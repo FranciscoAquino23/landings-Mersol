@@ -6,37 +6,46 @@
   class="promo-viewport"
   role="region"
   aria-roledescription="carousel"
-  aria-label="Promociones destacadas"
+  aria-label="Promociones destacadas de Mersol Sureste"
   (mouseenter)="stopAutoPlay()"
   (mouseleave)="startAutoPlay()"
+  (focusin)="stopAutoPlay()"
+  (focusout)="startAutoPlay()"
 >
   <!-- BANNERS -->
-  <div class="promo-track" [style.transform]="'translateX(-' + currentIndex() * 100 + '%)'">
+  <div
+    class="promo-track"
+    [style.transform]="'translateX(-' + currentIndex() * 100 + '%)'"
+    aria-live="polite"
+  >
     @for (promo of promociones; track promo.id; let i = $index) {
       <div
         class="promo-slide"
         role="group"
         aria-roledescription="slide"
         [aria-label]="i + 1 + ' de ' + promociones.length"
+        [attr.aria-hidden]="i !== currentIndex()"
       >
         <a
           [href]="promo.link"
           class="promo-link"
           [target]="promo.link.startsWith('http') ? '_blank' : '_self'"
           rel="noopener noreferrer"
+          [attr.tabindex]="i === currentIndex() ? '0' : '-1'"
         >
           <picture>
-            <!-- BANNER (MOBILE) -->
-            <source media="(max-width: 991px)" [srcset]="promo.imgMobile" />
-            <!-- BANNER (WEB) -->
-            <source media="(min-width: 992px)" [srcset]="promo.imgDesktop" />
+            <!-- BANNER MOBILE -->
+            <source media="(max-width: 768px)" [srcset]="promo.imgMobile" />
+
+            <!-- BANNER DESKTOP -->
+            <source media="(min-width: 769px)" [srcset]="promo.imgDesktop" />
 
             <img
               [src]="promo.imgDesktop"
-              [alt]="promo.alt || 'Promoción Mersol'"
+              [alt]="promo.alt"
               class="promo-img"
-              fetchpriority="high"
-              loading="eager"
+              [attr.fetchpriority]="i === 0 ? 'high' : 'auto'"
+              [attr.loading]="i === 0 ? 'eager' : 'lazy'"
             />
           </picture>
         </a>
@@ -44,27 +53,40 @@
     }
   </div>
 
-  <!-- NAV BUTTONS -->
+  <!-- BUTTONS -->
   @if (promociones.length > 1) {
     <div class="promo-nav">
-      <button class="nav-btn prev" (click)="prevSlide()" aria-label="Diapositiva anterior">
-        <span aria-hidden="true">‹</span>
+      <button
+        class="nav-btn prev"
+        (click)="prevSlide()"
+        aria-label="Ver promoción anterior"
+        type="button"
+      >
+        <span aria-hidden="true">&lsaquo;</span>
       </button>
 
-      <button class="nav-btn next" (click)="nextSlide()" aria-label="Siguiente diapositiva">
-        <span aria-hidden="true">›</span>
+      <button
+        class="nav-btn next"
+        (click)="nextSlide()"
+        aria-label="Ver siguiente promoción"
+        type="button"
+      >
+        <span aria-hidden="true">&rsaquo;</span>
       </button>
     </div>
 
-    <!-- POSITION DOTS -->
-    <div class="promo-dots">
+    <!-- DOTS -->
+    <div class="promo-dots" role="tablist">
       @for (p of promociones; track p.id; let i = $index) {
         <button
           class="dot"
           [class.active]="i === currentIndex()"
           (click)="goToSlide(i)"
-          [attr.aria-label]="'Ir a la diapositiva ' + (i + 1)"
+          role="tab"
+          [attr.aria-label]="'Ir a promoción ' + (i + 1)"
+          [attr.aria-selected]="i === currentIndex()"
           [attr.aria-current]="i === currentIndex() ? 'true' : 'false'"
+          type="button"
         ></button>
       }
     </div>
