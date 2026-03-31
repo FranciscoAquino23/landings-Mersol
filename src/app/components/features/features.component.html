@@ -2,21 +2,38 @@
      FEATURES COMPONENT STRUCTURE
      ======================================================================= -->
 
-<section class="features-container" aria-label="Nuestras ventajas competitivas">
+<section class="features-container" aria-labelledby="features-main-title">
   <div class="container">
-    <div class="features-header">
-      <h2>¿Por qué elegir Mersol Sureste?</h2>
-    </div>
-    <!-- CARD -->
-    <div class="features-grid">
+    <!-- TITLE -->
+    <header class="features-header">
+      <span class="subtitle-red">VALOR AGREGADO</span>
+
+      <div class="main-title-wrapper">
+        <h2 id="features-main-title">
+          ¿POR QUÉ ELEGIR<br />
+          MERSOL SURESTE?
+        </h2>
+      </div>
+
+      <p class="header-description">
+        Soluciones integrales con el respaldo de las mejores marcas del mercado industrial.
+      </p>
+    </header>
+
+    <!-- FEATURES GRID -->
+    <div class="features-grid" role="list">
       @for (item of features; track item.title) {
-        <article class="feature-card">
+        <article class="feature-card" role="listitem">
+          <!-- ICONS -->
           <div class="icon-wrapper">
             <img
               [src]="ICON_PATH + item.icon"
-              [alt]="item.title"
+              alt=""
+              aria-hidden="true"
               class="feature-icon"
               loading="lazy"
+              width="40"
+              height="40"
             />
           </div>
 

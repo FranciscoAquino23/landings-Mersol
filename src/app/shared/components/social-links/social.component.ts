@@ -31,11 +31,6 @@ export class SocialComponent {
       icon: 'assets/brand/socials/instagram.svg',
     },
     {
-      name: 'X',
-      url: '#',
-      icon: 'assets/brand/socials/x-twitter.svg',
-    },
-    {
       name: 'TikTok',
       url: 'https://www.tiktok.com/@mersol.sureste',
       icon: 'assets/brand/socials/tiktok.svg',

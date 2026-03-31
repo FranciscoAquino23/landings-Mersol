@@ -5,6 +5,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+// Interfaz de la estructura de los beneficios
 interface FeatureItem {
   icon: string;
   title: string;
@@ -26,22 +27,22 @@ export class FeaturesComponent {
     {
       icon: 'crosshairs.svg',
       title: 'Tecnología de Punta',
-      desc: 'Equipos de última generación para procesos MIG, TIG y arco manual con alta precisión.',
+      desc: 'Herramientas y máquinas de calidad.',
     },
     {
       icon: 'cart.svg',
       title: 'Logística Eficiente',
-      desc: 'Entregas garantizadas en 24-48 horas en toda la zona del sureste mexicano.',
+      desc: 'Entregas garantizadas en todo el país.',
     },
     {
       icon: 'user.svg',
       title: 'Respaldo Total',
-      desc: 'Garantía directa y soporte técnico especializado para asegurar tu continuidad operativa.',
+      desc: 'Garantía y soporte técnico especializado.',
     },
     {
       icon: 'hammer.svg',
       title: 'Asesoría Experta',
-      desc: 'Contamos con ingenieros certificados para optimizar tus procesos de soldadura.',
+      desc: 'Certificados para optimizar tus procesos.',
     },
   ];
 
