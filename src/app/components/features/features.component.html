@@ -20,9 +20,9 @@
       </p>
     </header>
 
-    <!-- FEATURES GRID -->
+    <!-- FEATURES -->
     <div class="features-grid" role="list">
-      @for (item of features; track item.title) {
+      @for (item of mainFeatures; track item.title) {
         <article class="feature-card" role="listitem">
           <!-- ICONS -->
           <div class="icon-wrapper">
@@ -43,10 +43,32 @@
             <p>{{ item.desc }}</p>
           </div>
         </article>
-      } @empty {
-        <div class="empty-state">
-          <p>Cargando beneficios de Mersol Sureste...</p>
-        </div>
+      }
+    </div>
+
+    <!-- FEATURES -->
+    <div class="features-grid pillars-row" role="list">
+      @for (pillar of pillarFeatures; track pillar.title) {
+        <article class="feature-card pillar-variant" role="listitem">
+          <!-- ICONS -->
+          <div class="icon-wrapper">
+            <img
+              [src]="ICON_PATH + pillar.icon"
+              alt=""
+              aria-hidden="true"
+              class="feature-icon"
+              loading="lazy"
+              width="40"
+              height="40"
+            />
+          </div>
+
+          <!-- CONTENT -->
+          <div class="feature-content">
+            <h3>{{ pillar.title }}</h3>
+            <p>{{ pillar.desc }}</p>
+          </div>
+        </article>
       }
     </div>
   </div>

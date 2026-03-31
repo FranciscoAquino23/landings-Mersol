@@ -1,15 +1,18 @@
 <!-- ==========================================================================
      INFO COMPONENT STRUCTURE
-     ======================================================================= -->
+     ========================================================================== -->
 
-<section class="nosotros-section">
-  <span id="nosotros" class="scroll-anchor"></span>
+<section #statsSection class="nosotros-section" aria-labelledby="nosotros-title">
+  <span id="nosotros" class="scroll-anchor" aria-hidden="true"></span>
 
   <div class="container">
     <div class="nosotros-main">
+      <!-- HEADER -->
       <div class="nosotros-content">
-        <span class="subtitle">Liderazgo y Respaldo Regional</span>
-        <h2>{{ sectionTitle() }}</h2>
+        <span class="subtitle-red">{{ subtitle() }}</span>
+        <div class="main-title-wrapper">
+          <h2 id="nosotros-title">{{ sectionTitle() }}</h2>
+        </div>
 
         <p class="description">
           {{ mainDescription() }}
@@ -20,34 +23,53 @@
       <div class="nosotros-stats-grid">
         @for (stat of stats(); track stat.label) {
           <div class="stat-card" [class.highlight-red]="stat.highlight">
-            <span class="stat-number">{{ stat.number }}</span>
+            <span class="stat-number"> {{ stat.currentValue }}{{ stat.suffix }} </span>
             <span class="stat-label">{{ stat.label }}</span>
           </div>
         }
-
-        <div class="osa-tag-full">
-          <img src="assets/brand/icons/award.svg" alt="Certificación oSa" class="osa-icon" />
-          <span>Seguridad avalada por <strong>oSa Alemania</strong></span>
-        </div>
       </div>
     </div>
 
-    <!-- BENEFITS -->
-    <div class="nosotros-grid">
-      @for (item of beneficios(); track item.titulo) {
-        <article class="info-card">
-          <div class="card-header">
-            <img [src]="item.icon" [alt]="item.titulo" class="pilar-icon" />
-            <h3>{{ item.titulo }}</h3>
-          </div>
-          <p>{{ item.desc }}</p>
-        </article>
-      }
+    <!-- CERTIFICATIONS -->
+    <div class="certifications-detailed-section">
+      <div class="cert-section-header">
+        <h3>Seguridad y Calidad Avalada Internacionalmente</h3>
+        <p class="single-line-text">
+          Nuestras operaciones y productos cumplen con las normativas globales más exigentes del
+          sector industrial.
+        </p>
+      </div>
+
+      <div class="cert-detailed-grid">
+        @for (cert of certificaciones(); track cert.nombre) {
+          <article class="cert-detail-card">
+            <div class="cert-icon-wrapper">
+              <img
+                src="assets/brand/icons/award.svg"
+                [alt]="cert.nombre"
+                class="cert-icon-red"
+                loading="lazy"
+              />
+            </div>
+            <div class="cert-text-content">
+              <h4>{{ cert.nombre }}</h4>
+              <span class="cert-tag">{{ cert.subtitulo }}</span>
+
+              <hr class="cert-divider" />
+
+              <p>{{ cert.desc }}</p>
+            </div>
+          </article>
+        }
+      </div>
     </div>
 
     <!-- QUOTE -->
-    <div class="nosotros-footer-quote">
-      <blockquote class="quote-text">Tu éxito es el nuestro — Grupo Austromex</blockquote>
+    <div class="nosotros-quote-clean">
+      <blockquote class="quote-text">
+        <p>"Tu éxito es el nuestro"</p>
+        <cite>— Grupo Austromex & Mersol Sureste</cite>
+      </blockquote>
     </div>
   </div>
 </section>

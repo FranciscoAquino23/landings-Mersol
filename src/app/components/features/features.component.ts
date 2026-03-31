@@ -1,11 +1,11 @@
 /* ==========================================================================
-     FEATURES COMPONENT LOGIC
+      FEATURES COMPONENT LOGIC
    ========================================================================== */
 
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-// Interfaz de la estructura de los beneficios
+// Interfaz única para la estructura de todos los beneficios
 interface FeatureItem {
   icon: string;
   title: string;
@@ -22,8 +22,8 @@ interface FeatureItem {
 export class FeaturesComponent {
   readonly ICON_PATH = 'assets/brand/icons/';
 
-  // Beneficios (Features)
-  features: FeatureItem[] = [
+  // Información de las primeras features
+  readonly mainFeatures: FeatureItem[] = [
     {
       icon: 'crosshairs.svg',
       title: 'Tecnología de Punta',
@@ -43,6 +43,25 @@ export class FeaturesComponent {
       icon: 'hammer.svg',
       title: 'Asesoría Experta',
       desc: 'Certificados para optimizar tus procesos.',
+    },
+  ];
+
+  // Información de las segundas features
+  readonly pillarFeatures: FeatureItem[] = [
+    {
+      icon: 'truck.svg',
+      title: 'Logística de Respuesta',
+      desc: 'Garantizamos stock y entregas eficientes.',
+    },
+    {
+      icon: 'shield.svg',
+      title: 'Confianza Certificada',
+      desc: 'Nuestros procesos y productos cumplen están certificados.',
+    },
+    {
+      icon: 'globe.svg',
+      title: 'Innovación Sustentable',
+      desc: 'Impulsamos tecnologías que reducen el impacto ambiental.',
     },
   ];
 
