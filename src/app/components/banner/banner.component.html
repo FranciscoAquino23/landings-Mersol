@@ -2,93 +2,162 @@
      BANNER COMPONENT STRUCTURE
      ========================================================================== -->
 
-<div
-  class="promo-viewport"
-  role="region"
-  aria-roledescription="carousel"
-  aria-label="Promociones destacadas de Mersol Sureste"
-  (mouseenter)="stopAutoPlay()"
-  (mouseleave)="startAutoPlay()"
-  (focusin)="stopAutoPlay()"
-  (focusout)="startAutoPlay()"
->
-  <!-- BANNERS -->
-  <div
-    class="promo-track"
-    [style.transform]="'translateX(-' + currentIndex() * 100 + '%)'"
-    aria-live="polite"
-  >
-    @for (promo of promociones; track promo.id; let i = $index) {
-      <div
-        class="promo-slide"
-        role="group"
-        aria-roledescription="slide"
-        [aria-label]="i + 1 + ' de ' + promociones.length"
-        [attr.aria-hidden]="i !== currentIndex()"
-      >
-        <a
-          [href]="promo.link"
-          class="promo-link"
-          [target]="promo.link.startsWith('http') ? '_blank' : '_self'"
-          rel="noopener noreferrer"
-          [attr.tabindex]="i === currentIndex() ? '0' : '-1'"
-        >
-          <picture>
-            <!-- BANNER MOBILE -->
-            <source media="(max-width: 768px)" [srcset]="promo.imgMobile" />
+<section class="full-width-banner-container">
+  @if (currentMonth()) {
+    <!-- TOP PROMO BAR -->
+    <div class="promo-bar top" role="marquee" aria-live="off">
+      <div class="marquee-track">
+        <div class="marquee-content">
+          @for (text of promoTextsList(); track $index) {
+            <span class="promo-text">
+              <img
+                src="assets/brand/icons/tag.svg"
+                alt="icon"
+                class="promo-icon"
+                aria-hidden="true"
+              />
+              {{ text }}
+            </span>
+          }
+        </div>
 
-            <!-- BANNER DESKTOP -->
-            <source media="(min-width: 769px)" [srcset]="promo.imgDesktop" />
-
-            <img
-              [src]="promo.imgDesktop"
-              [alt]="promo.alt"
-              class="promo-img"
-              [attr.fetchpriority]="i === 0 ? 'high' : 'auto'"
-              [attr.loading]="i === 0 ? 'eager' : 'lazy'"
-            />
-          </picture>
-        </a>
+        <div class="marquee-content" aria-hidden="true">
+          @for (text of promoTextsList(); track $index) {
+            <span class="promo-text">
+              <img
+                src="assets/brand/icons/tag.svg"
+                alt="icon"
+                class="promo-icon"
+                aria-hidden="true"
+              />
+              {{ text }}
+            </span>
+          }
+        </div>
       </div>
-    }
-  </div>
-
-  <!-- BUTTONS -->
-  @if (promociones.length > 1) {
-    <div class="promo-nav">
-      <button
-        class="nav-btn prev"
-        (click)="prevSlide()"
-        aria-label="Ver promoción anterior"
-        type="button"
-      >
-        <span aria-hidden="true">&lsaquo;</span>
-      </button>
-
-      <button
-        class="nav-btn next"
-        (click)="nextSlide()"
-        aria-label="Ver siguiente promoción"
-        type="button"
-      >
-        <span aria-hidden="true">&rsaquo;</span>
-      </button>
-    </div>
-
-    <!-- DOTS -->
-    <div class="promo-dots" role="tablist">
-      @for (p of promociones; track p.id; let i = $index) {
-        <button
-          class="dot"
-          [class.active]="i === currentIndex()"
-          (click)="goToSlide(i)"
-          role="tab"
-          [attr.aria-label]="'Ir a promoción ' + (i + 1)"
-          [attr.aria-selected]="i === currentIndex()"
-          [attr.aria-current]="i === currentIndex() ? 'true' : 'false'"
-          type="button"
-        ></button>
-      }
     </div>
   }
-</div>
+
+  <!-- BANNER WRAPPER-->
+  <div class="banner-component-wrapper">
+    <div
+      class="promo-viewport"
+      role="region"
+      aria-roledescription="carousel"
+      aria-label="Promociones destacadas de Mersol Sureste"
+      (mouseenter)="stopAutoPlay()"
+      (mouseleave)="startAutoPlay()"
+      (focusin)="stopAutoPlay()"
+      (focusout)="startAutoPlay()"
+    >
+      <div
+        class="promo-track"
+        [style.transform]="'translateX(-' + currentIndex() * 100 + '%)'"
+        aria-live="polite"
+      >
+        @for (promo of promociones; track promo.id; let i = $index) {
+          <div
+            class="promo-slide"
+            role="group"
+            aria-roledescription="slide"
+            [aria-label]="i + 1 + ' de ' + promociones.length"
+            [attr.aria-hidden]="i !== currentIndex()"
+          >
+            <a
+              [href]="promo.link"
+              class="promo-link"
+              [target]="promo.link.startsWith('http') ? '_blank' : '_self'"
+              rel="noopener noreferrer"
+              [attr.tabindex]="i === currentIndex() ? '0' : '-1'"
+            >
+              <picture>
+                <source media="(max-width: 768px)" [srcset]="promo.imgMobile" />
+                <source media="(min-width: 769px)" [srcset]="promo.imgDesktop" />
+                <img
+                  [src]="promo.imgDesktop"
+                  [alt]="promo.alt"
+                  class="promo-img"
+                  [attr.fetchpriority]="i === 0 ? 'high' : 'auto'"
+                  [attr.loading]="i === 0 ? 'eager' : 'lazy'"
+                />
+              </picture>
+            </a>
+          </div>
+        }
+      </div>
+
+      <!-- NAVIGATION BUTTONS -->
+      @if (promociones.length > 1) {
+        <div class="promo-nav">
+          <button
+            class="nav-btn prev"
+            (click)="prevSlide()"
+            aria-label="Ver promoción anterior"
+            type="button"
+          >
+            <span aria-hidden="true">&lsaquo;</span>
+          </button>
+
+          <button
+            class="nav-btn next"
+            (click)="nextSlide()"
+            aria-label="Ver siguiente promoción"
+            type="button"
+          >
+            <span aria-hidden="true">&rsaquo;</span>
+          </button>
+        </div>
+
+        <div class="promo-dots" role="tablist">
+          @for (p of promociones; track p.id; let i = $index) {
+            <button
+              class="dot"
+              [class.active]="i === currentIndex()"
+              (click)="goToSlide(i)"
+              role="tab"
+              [attr.aria-label]="'Ir a promoción ' + (i + 1)"
+              [attr.aria-selected]="i === currentIndex()"
+              [attr.aria-current]="i === currentIndex() ? 'true' : 'false'"
+              type="button"
+            ></button>
+          }
+        </div>
+      }
+    </div>
+  </div>
+
+  <!-- BOTTOM PROMO BAR -->
+  @if (currentMonth()) {
+    <div class="promo-bar bottom" role="marquee" aria-live="off">
+      <div class="marquee-track">
+        <div class="marquee-content">
+          @for (text of brandTextsList(); track $index) {
+            <span class="promo-text">
+              <img
+                src="assets/brand/icons/star.svg"
+                alt="icon"
+                class="promo-icon"
+                aria-hidden="true"
+              />
+              {{ text }}
+            </span>
+          }
+        </div>
+
+        <div class="marquee-content" aria-hidden="true">
+          @for (text of brandTextsList(); track $index) {
+            <span class="promo-text">
+              <img
+                src="assets/brand/icons/star.svg"
+                alt="icon"
+                class="promo-icon"
+                aria-hidden="true"
+              />
+              {{ text }}
+            </span>
+          }
+        </div>
+      </div>
+    </div>
+  }
+</section>
