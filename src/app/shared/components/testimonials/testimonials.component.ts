@@ -102,7 +102,6 @@ export class TestimonialsComponent implements OnInit, OnDestroy, AfterViewInit {
   // Iniciar movimiento automático
   ngAfterViewInit(): void {
     if (this.isBrowser) {
-      this.cdr.detectChanges();
       this.startAutoPlay();
     }
   }
@@ -121,8 +120,13 @@ export class TestimonialsComponent implements OnInit, OnDestroy, AfterViewInit {
   // Determinar dispositivo actual (Desktop / Mobile)
   private checkScreenSize(): void {
     if (this.isBrowser) {
-      this.isMobile = window.innerWidth <= 768;
-      this.cdr.detectChanges();
+      const isMobileNow = window.innerWidth <= 768;
+
+      // Actualizar estado
+      if (this.isMobile !== isMobileNow) {
+        this.isMobile = isMobileNow;
+        this.cdr.detectChanges();
+      }
     }
   }
 
@@ -193,7 +197,7 @@ export class TestimonialsComponent implements OnInit, OnDestroy, AfterViewInit {
     setTimeout(() => {
       this.isTransitioning = true;
       this.cdr.detectChanges();
-    }, 20);
+    }, 50);
   }
 
   // Ir al siguiente testimonio

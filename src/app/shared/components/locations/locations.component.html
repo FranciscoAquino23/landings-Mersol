@@ -7,16 +7,19 @@
     <!-- HEADER -->
     <div class="section-header">
       <span class="subtitle">Presencia Regional</span>
-      <h2 class="title">Nuestras <strong>Sucursales</strong></h2>
-      <div class="title-line"></div>
+
+      <div class="title-with-l-shape">
+        <h2 class="title">Nuestras <strong>Sucursales</strong></h2>
+      </div>
+
       <p class="description">
-        Contamos con una sólida infraestructura en el Sureste y puntos estratégicos en el país para
-        garantizar el suministro inmediato de tus equipos y consumibles.
+        Contamos con una sólida infraestructura en puntos estratégicos en el país para garantizar el
+        suministro inmediato de tus equipos y consumibles.
       </p>
     </div>
 
+    <!-- MAP -->
     <div class="locations-content">
-      <!-- MAP -->
       <div class="map-container">
         <iframe
           [src]="safeMapUrl"
@@ -31,13 +34,14 @@
         </iframe>
       </div>
 
-      <!-- BRANCHES -->
+      <!-- BRANCHES GRID -->
       <div class="branches-grid">
         @for (branch of branches; track branch.name; let i = $index) {
           <div
             class="branch-card"
             [class.active]="activeIndex === i"
             (click)="selectBranch(i)"
+            (keydown.enter)="selectBranch(i)"
             role="button"
             tabindex="0"
           >

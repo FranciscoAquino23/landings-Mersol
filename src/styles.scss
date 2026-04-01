@@ -1,11 +1,13 @@
 /* ==========================================================================
-   FUENTES (Halenoir)
+   FUENTES (Halenoir) - Manual Mersol Sureste
    ========================================================================== */
+
 @font-face {
   font-family: 'Halenoir';
   src: url('assets/brand/font/Halenoir-Regular.otf') format('opentype');
   font-weight: 400;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -13,6 +15,7 @@
   src: url('assets/brand/font/Halenoir-Bold.otf') format('opentype');
   font-weight: 700;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -20,43 +23,47 @@
   src: url('assets/brand/font/Halenoir-Black.otf') format('opentype');
   font-weight: 900;
   font-style: normal;
+  font-display: swap;
 }
 
 /* ==========================================================================
    DESIGN TOKENS
    ========================================================================== */
+
 :root {
   // Paleta de colores oficial
   --primary: #d2242a;
-  --primary-hover: #b71c1c;
+  --primary-hover: #b11d22;
   --secondary: #403b33;
   --gray-medium: #706e70;
   --gray-light: #a3a19e;
+  --black: #000000;
 
   // Interfaz
-  --bg-light: #f8f9fa;
+  --bg-light: #f4f4f4;
   --bg-white: #ffffff;
-  --text-main: #212121;
+  --text-main: #1a1a1a;
   --text-muted: var(--gray-medium);
-  --border-color: #eeeeee;
+  --border-color: #e0e0e0;
   --white: #ffffff;
 
   // Tipografía
   --font-primary: 'Halenoir', sans-serif;
-  --font-main: 'Montserrat', sans-serif;
+  --font-main: 'Helvetica Now Text', 'Helvetica';
   --font-size-base: 16px;
 
   // Layout & Efectos
-  --container-width: 1200px;
-  --section-padding: 100px 20px;
-  --border-radius: 4px;
-  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  --navbar-height: 85px;
+  --container-width: 1240px;
+  --section-padding: 80px 20px;
+  --border-radius: 2px;
+  --transition: all 0.25s ease-in-out;
+  --navbar-height: 90px;
 }
 
 /* ==========================================================================
    BASE & RENDER
    ========================================================================== */
+
 * {
   margin: 0;
   padding: 0;
@@ -75,27 +82,36 @@ body {
   font-family: var(--font-main);
   color: var(--text-main);
   background-color: var(--bg-white);
-  line-height: 1.6;
+  line-height: 1.5;
   overflow-x: hidden;
 }
 
 /* ==========================================================================
    LAYOUT COMPONENTS
    ========================================================================== */
+
 .container {
   width: 100%;
   max-width: var(--container-width);
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 24px;
 }
 
-.section {
-  padding: var(--section-padding);
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
 }
 
 /* ==========================================================================
    TIPOGRAFÍA GLOBAL
    ========================================================================== */
+
 h1,
 h2,
 h3,
@@ -103,49 +119,48 @@ h4 {
   font-family: var(--font-primary);
   text-transform: uppercase;
   color: var(--secondary);
-  line-height: 1.1;
-  margin-bottom: 1.5rem;
+  line-height: 1.2;
+  margin-bottom: 1.25rem;
+  letter-spacing: -0.02em;
 }
 
 h1 {
-  font-size: clamp(2.5rem, 6vw, 3.8rem);
+  font-size: clamp(2.4rem, 5vw, 4rem);
   font-weight: 900;
 }
 
 h2 {
-  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
   font-weight: 700;
   position: relative;
-  padding-bottom: 15px;
+  padding-bottom: 12px;
 
   &::after {
     content: '';
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 60px;
-    height: 4px;
+    width: 50px;
+    height: 3px;
     background: var(--primary);
   }
-}
-
-.text-highlight {
-  color: var(--primary);
 }
 
 /* ==========================================================================
    BOTONES GLOBALES
    ========================================================================== */
+
 .btn {
   font-family: var(--font-primary);
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 14px 32px;
+  padding: 12px 28px;
   border-radius: var(--border-radius);
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
   cursor: pointer;
   border: 2px solid transparent;
   transition: var(--transition);
@@ -155,38 +170,23 @@ h2 {
 .btn-primary {
   background-color: var(--primary);
   color: var(--white);
-  &:hover {
-    background-color: var(--primary-hover);
-    transform: translateY(-3px);
-  }
-}
-
-.btn-outline {
-  border: 2px solid var(--secondary);
-  color: var(--secondary);
-  background: transparent;
-  &:hover {
-    background-color: var(--secondary);
-    color: var(--white);
-    transform: translateY(-3px);
+  &:hover,
+  &:focus {
+    background-color: var(--black);
+    transform: translateY(-2px);
+    outline: none;
   }
 }
 
 /* ==========================================================================
    MEDIA QUERIES
    ========================================================================== */
-@media (max-width: 768px) {
+
+@media (max-width: 991px) {
   :root {
-    --section-padding: 60px 15px;
-  }
-  h1 {
-    font-size: 2.25rem;
-  }
-  .btn {
-    width: 100%;
+    --section-padding: 60px 20px;
   }
   h2::after {
-    left: 50%;
-    transform: translateX(-50%);
+    left: 0;
   }
 }
