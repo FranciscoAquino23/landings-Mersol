@@ -1,12 +1,12 @@
 /* ==========================================================================
-   NAVBAR COMPONENT LOGIC
+    NAVBAR COMPONENT LOGIC
    ========================================================================== */
 
 import { Component, HostListener, Renderer2 } from '@angular/core';
 import { CommonModule, ViewportScroller } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
-// Importación de componentes compartidos
+// Importar componentes
 import { SocialComponent } from '../../shared/components/social-links/social.component';
 
 @Component({
@@ -16,30 +16,26 @@ import { SocialComponent } from '../../shared/components/social-links/social.com
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss',
 })
+// Lógica de navegación (MEDIA QUERIES)
 export class NavbarComponent {
-  // Controlar estado del menú (Abierto / Cerrado)
   public isMenuOpen = false;
-
-  // Cambiar estilo del menú (Desktop / Mobile)
   public isScrolled = false;
 
-  // Constructor principal
   constructor(
     private renderer: Renderer2,
     private viewportScroller: ViewportScroller,
   ) {}
 
-  // Reconocer y modificar estilos del menú
+  // Detectar movimiento para cambiar el estilo de la barra de navegación
   @HostListener('window:scroll', [])
   onWindowScroll() {
     const offset = window.pageYOffset || document.documentElement.scrollTop || 0;
     this.isScrolled = offset > 50;
   }
 
-  // Alternar estado del menú (Mobile)
+  // Alternar estilo del menú (Desktop / Mobile)
   public toggleMenu(): void {
     this.isMenuOpen = !this.isMenuOpen;
-    // Bloquear o liberar el menú principal
     if (this.isMenuOpen) {
       this.renderer.addClass(document.body, 'no-scroll');
     } else {
@@ -47,21 +43,41 @@ export class NavbarComponent {
     }
   }
 
-  // Cerrar menú directamente
+  // Cerrar menú
   public closeMenu(): void {
     this.isMenuOpen = false;
     this.renderer.removeClass(document.body, 'no-scroll');
   }
 
-  // Direccionar al usuario a la sección seleccionada
+  // Direccionar correctamente al usuario a la sección seleccionada
   public scrollToAnchor(elementId: string): void {
     this.closeMenu();
+
     setTimeout(() => {
-      this.viewportScroller.scrollToAnchor(elementId);
+      // Caso 1: Regresar al inicio
+      if (elementId === 'home' || elementId === 'inicio') {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth',
+        });
+      } else {
+        // Caso 2: Regresar a alguna sección específica
+        const element = document.getElementById(elementId);
+        if (element) {
+          const headerOffset = 90;
+          const elementPosition = element.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth',
+          });
+        }
+      }
     }, 150);
   }
 
-  // Reconocer y modificar estilos del menú
+  // Cerrar menú automáticamente
   @HostListener('window:resize', ['$event'])
   protected onResize(event: any): void {
     if (event.target.innerWidth > 991 && this.isMenuOpen) {

@@ -1,5 +1,5 @@
 /* ==========================================================================
-   CATEGORY COMPONENT LOGIC
+    CATEGORY COMPONENT LOGIC
    ========================================================================== */
 
 import {
@@ -12,8 +12,8 @@ import {
   computed,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
 
+// Interfaz de las categorías de productos
 interface Category {
   title: string;
   image: string;
@@ -32,174 +32,218 @@ export class CategoryCarouselComponent implements AfterViewInit, OnDestroy {
   @ViewChild('carouselTrack') carouselTrack!: ElementRef<HTMLElement>;
 
   private autoPlayInterval: any;
-  private readonly INTERVAL_TIME = 4000;
-  private isAnimating = false;
+  private restartTimeout: any;
 
-  // Lista de categorías
+  // Tiempo entre cada movimiento del carrusel
+  private readonly INTERVAL_TIME = 4000;
+  //Tiempo entre cada movimiento del carrusel (Usuario manual)
+  private readonly RESTART_DELAY = 2500;
+  private isAnimating = false;
+  private readonly GAP = 24;
+  public currentIndex = 0;
+  private readonly CARDS_TO_SHOW = 4;
+
+  // Información de las categorías de productos
   private readonly _baseCategories = signal<Category[]>([
     {
       title: 'ABRASIVOS SÓLIDOS',
       image: 'assets/brand/categories/01.webp',
       color: '#d2242a',
-      link: 'solidos',
+      link: 'https://austromex.com.mx/group/1',
     },
     {
       title: 'PRODUCTOS DE LIJA',
       image: 'assets/brand/categories/02.webp',
       color: '#d2242a',
-      link: 'lija',
+      link: 'https://austromex.com.mx/group/2',
     },
     {
       title: 'PRODUCTOS DE FIBRA',
       image: 'assets/brand/categories/03.webp',
       color: '#d2242a',
-      link: 'fibra',
+      link: 'https://austromex.com.mx/group/3',
     },
     {
       title: 'PULIDO Y LIMPIEZA',
       image: 'assets/brand/categories/04.webp',
       color: '#d2242a',
-      link: 'pulido',
+      link: 'https://austromex.com.mx/group/4',
     },
     {
       title: 'ESTÉTICA AUTOMOTRIZ',
       image: 'assets/brand/categories/05.webp',
       color: '#d2242a',
-      link: 'estetica',
+      link: 'https://austromex.com.mx/group/5',
     },
     {
       title: 'CONSTRUCCIÓN',
       image: 'assets/brand/categories/06.webp',
       color: '#d2242a',
-      link: 'construccion',
+      link: 'https://austromex.com.mx/group/6',
     },
     {
       title: 'SUPERABRASIVOS',
       image: 'assets/brand/categories/07.webp',
       color: '#d2242a',
-      link: 'superabrasivos',
+      link: 'https://austromex.com.mx/group/7',
     },
     {
       title: 'RECTIFICADO AUTOMOTRIZ',
       image: 'assets/brand/categories/08.webp',
       color: '#d2242a',
-      link: 'rectificado',
+      link: 'https://austromex.com.mx/group/8',
     },
     {
       title: 'CEPILLOS DE ALAMBRE',
       image: 'assets/brand/categories/09.webp',
       color: '#d2242a',
-      link: 'cepillos',
+      link: 'https://austromex.com.mx/group/9',
     },
     {
       title: 'HERRAMIENTAS',
       image: 'assets/brand/categories/10.webp',
       color: '#d2242a',
-      link: 'herramientas',
+      link: 'https://austromex.com.mx/group/10',
     },
     {
       title: 'MÁQUINAS',
       image: 'assets/brand/categories/11.webp',
       color: '#d2242a',
-      link: 'maquinas',
+      link: 'https://austromex.com.mx/group/11',
     },
     {
       title: 'ACCESORIOS',
       image: 'assets/brand/categories/12.webp',
       color: '#d2242a',
-      link: 'accesorios',
+      link: 'https://austromex.com.mx/group/12',
     },
   ]);
 
+  // Duplicar categorías (Efecto loop infinito)
   public displayCategories = computed(() => [
     ...this._baseCategories(),
-    ...this._baseCategories().slice(0, 6),
+    ...this._baseCategories().slice(0, 4),
   ]);
 
-  constructor(private router: Router) {}
-
+  // Iniciar movimiento automático
   ngAfterViewInit(): void {
     this.startAutoPlay();
   }
 
+  // Limpiar el componente actual
   ngOnDestroy(): void {
     this.stopAutoPlay();
-  }
-
-  // Manejar interacción con usuario
-  onCategoryClick(category: Category): void {
-    if (category.link.startsWith('#')) {
-      const element = document.querySelector(category.link);
-      element?.scrollIntoView({ behavior: 'smooth' });
-    } else {
-      this.router.navigate(['/productos', category.link]);
+    if (this.restartTimeout) {
+      clearTimeout(this.restartTimeout);
     }
   }
 
-  // Manejar lógica de desplazamiento automático
+  // Botón avanzar
+  public next(): void {
+    this.scroll(1, true);
+  }
+
+  // Botón retroceder
+  public prev(): void {
+    this.scroll(-1, true);
+  }
+
+  // Controlar desplazamiento
   scroll(direction: number, isManual: boolean = true): void {
     if (this.isAnimating || !this.carouselTrack) return;
-
-    if (isManual) this.stopAutoPlay();
 
     const track = this.carouselTrack.nativeElement;
     const card = track.querySelector('.category-card') as HTMLElement;
     if (!card) return;
 
-    const gap = 20;
-    const scrollAmount = card.offsetWidth + gap;
-    const originalWidth = this._baseCategories().length * scrollAmount;
+    if (isManual) {
+      this.stopAutoPlay();
+    }
 
-    let targetScroll = track.scrollLeft + direction * scrollAmount;
-
-    this.animateScrollTo(track, targetScroll, 800, () => {
-      if (track.scrollLeft >= originalWidth - 1) {
-        track.scrollLeft = 0;
-      } else if (track.scrollLeft <= 0 && direction === -1) {
-        track.scrollLeft = originalWidth;
-      }
-
-      if (isManual) this.startAutoPlay();
-    });
-  }
-
-  private animateScrollTo(
-    element: HTMLElement,
-    target: number,
-    duration: number,
-    callback?: () => void,
-  ): void {
+    const maxIndex = this.displayCategories().length - this.CARDS_TO_SHOW;
     this.isAnimating = true;
-    const start = element.scrollLeft;
-    const change = target - start;
-    const startTime = performance.now();
+    this.currentIndex += direction;
 
-    const animate = (currentTime: number) => {
-      const elapsed = currentTime - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-      const ease = 1 - Math.pow(1 - progress, 4);
+    if (this.currentIndex > maxIndex) {
+      track.classList.add('no-transition');
+      this.currentIndex = 0;
+      this.updateCarouselPosition();
+      void track.offsetWidth;
 
-      element.scrollLeft = start + change * ease;
+      track.classList.remove('no-transition');
+      this.currentIndex = 1;
+    } else if (this.currentIndex < 0) {
+      track.classList.add('no-transition');
+      this.currentIndex = maxIndex;
+      this.updateCarouselPosition();
 
-      if (progress < 1) {
-        requestAnimationFrame(animate);
-      } else {
-        this.isAnimating = false;
-        if (callback) callback();
+      void track.offsetWidth;
+
+      track.classList.remove('no-transition');
+      this.currentIndex = maxIndex - 1;
+    }
+
+    // Ejecutar el movimiento fluido
+    this.updateCarouselPosition();
+
+    // Sincronizar estado de animación
+    setTimeout(() => {
+      this.isAnimating = false;
+      if (isManual) {
+        this.restartAutoPlayWithDelay();
       }
-    };
-    requestAnimationFrame(animate);
+    }, 600);
   }
 
-  private startAutoPlay(): void {
-    this.stopAutoPlay();
-    this.autoPlayInterval = setInterval(() => this.scroll(1, false), this.INTERVAL_TIME);
+  // Actualizar posición del carrusel
+  private updateCarouselPosition(): void {
+    const trackElement = this.carouselTrack.nativeElement;
+    const card = trackElement.querySelector('.category-card') as HTMLElement;
+    if (!card) return;
+
+    const cardWidth = card.getBoundingClientRect().width;
+    const amountToMove = this.currentIndex * (cardWidth + this.GAP);
+
+    trackElement.style.transform = `translateX(-${amountToMove}px)`;
   }
 
-  private stopAutoPlay(): void {
+  // Reiniciar movimiento automático (Usuario manual)
+  private restartAutoPlayWithDelay(): void {
+    if (this.restartTimeout) clearTimeout(this.restartTimeout);
+    this.restartTimeout = setTimeout(() => this.startAutoPlay(), this.RESTART_DELAY);
+  }
+
+  // Iniciar movimiento automático
+  public startAutoPlay(): void {
+    if (this.autoPlayInterval) return;
+    this.autoPlayInterval = setInterval(() => {
+      this.scroll(1, false);
+    }, this.INTERVAL_TIME);
+  }
+
+  // Detener movimiento automático
+  public stopAutoPlay(): void {
     if (this.autoPlayInterval) {
       clearInterval(this.autoPlayInterval);
       this.autoPlayInterval = null;
+    }
+  }
+
+  // Interacción (Usuario - Categoría)
+  onCategoryClick(category: Category): void {
+    this.stopAutoPlay();
+    window.open(category.link, '_blank');
+    this.restartAutoPlayWithDelay();
+  }
+
+  // Interacción (Usuario - Carrusel)
+  public onMouseEnter(): void {
+    this.stopAutoPlay();
+  }
+
+  public onMouseLeave(): void {
+    if (!this.isAnimating) {
+      this.startAutoPlay();
     }
   }
 }
