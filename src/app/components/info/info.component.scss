@@ -12,7 +12,7 @@
 }
 
 .nosotros-section {
-  padding: 100px 0;
+  padding: 20px 0;
   background-color: #ffffff;
   font-family: 'Halenoir', sans-serif;
   position: relative;
@@ -25,7 +25,7 @@
   }
 
   /* ==========================================================================
-   HEADER
+   HEADER & LAYOUT PRINCIPAL
    ========================================================================== */
 
   .nosotros-main {
@@ -33,7 +33,7 @@
     grid-template-columns: 1fr 1.3fr;
     gap: 60px;
     align-items: start;
-    margin-bottom: 5rem;
+    margin-bottom: 2rem;
   }
 
   .nosotros-content {
@@ -78,7 +78,7 @@
     .description {
       color: var(--text-muted);
       margin-top: 1.2rem;
-      font-size: 1.05rem;
+      font-size: 1rem;
       line-height: 1.6;
       max-width: 450px;
     }
@@ -144,7 +144,8 @@
    ========================================================================== */
 
   .certifications-detailed-section {
-    margin-top: 4rem;
+    margin-top: 1.5rem;
+    margin-bottom: 2rem;
     padding: 40px;
     background-color: var(--bg-light);
     border-radius: 20px;
@@ -244,7 +245,7 @@
 
   .nosotros-quote-clean {
     text-align: center;
-    margin-top: 6rem;
+    margin-top: 2rem;
     padding: 0;
 
     .quote-text {
@@ -272,9 +273,11 @@
 
 @media (max-width: 991px) {
   .nosotros-section {
+    padding: 20px 0 40px 0;
+
     .nosotros-main {
       grid-template-columns: 1fr;
-      gap: 40px;
+      gap: 20px;
     }
 
     .cert-detailed-grid {
@@ -284,7 +287,7 @@
       gap: 25px;
     }
 
-    .certifications-detailed-section {
+    .certations-detailed-section {
       .cert-section-header .single-line-text {
         white-space: normal;
         max-width: 100%;
@@ -295,16 +298,60 @@
 
 @media (max-width: 768px) {
   .nosotros-section {
-    padding: 60px 0;
+    padding: 15px 0 40px 0;
+
+    .nosotros-main {
+      gap: 20px;
+    }
+
+    .nosotros-content {
+      text-align: left;
+
+      .subtitle-red {
+        text-align: left;
+        font-size: 0.8rem;
+        letter-spacing: 2.5px;
+        margin-bottom: 0.6rem;
+      }
+
+      .main-title-wrapper {
+        h2 {
+          font-size: 2rem;
+          padding-left: 20px;
+          border-left: 6px solid var(--primary-red);
+          border-bottom: none;
+          padding-bottom: 0;
+          text-align: left;
+          display: block;
+
+          &::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: -5px;
+            width: 60px;
+            height: 6px;
+            background-color: var(--primary-red);
+          }
+        }
+      }
+
+      .description {
+        text-align: left;
+        margin: 1rem 0 0;
+        max-width: 100%;
+        line-height: 1.4;
+      }
+    }
 
     .nosotros-stats-grid {
       grid-template-columns: 1fr;
-      gap: 20px;
+      gap: 15px;
       max-width: 450px;
-      margin: 0 auto;
+      margin: 15px auto 0;
 
       .stat-card {
-        padding: 30px 20px;
+        padding: 25px 20px;
         will-change: transform, opacity;
 
         .stat-number {
@@ -315,18 +362,24 @@
     }
 
     .certifications-detailed-section {
-      margin-top: 3rem;
+      margin-top: 1.5rem;
       padding: 30px 20px;
 
       .cert-section-header {
-        margin-bottom: 2.5rem;
+        margin-bottom: 2rem;
+
         h3 {
           font-size: 1.4rem;
           line-height: 1.2;
         }
+
         .single-line-text {
           font-size: 0.95rem;
           line-height: 1.5;
+          white-space: normal !important;
+          text-overflow: clip !important;
+          overflow: visible !important;
+          max-width: 100% !important;
         }
       }
 
@@ -365,30 +418,10 @@
 
 @media (max-width: 600px) {
   .nosotros-section {
-    padding: 50px 0;
-
-    .nosotros-content {
-      .main-title-wrapper h2 {
-        font-size: 1.7rem;
-        padding-left: 0;
-        border-left: none;
-        border-bottom: 4px solid var(--primary-red);
-        padding-bottom: 12px;
-        text-align: center;
-        display: block;
-      }
-      .subtitle-red {
-        text-align: center;
-      }
-      .description {
-        text-align: center;
-        margin: 1.2rem auto 0;
-        max-width: 100%;
-      }
-    }
+    padding: 10px 0 30px 0;
 
     .nosotros-quote-clean {
-      margin-top: 4rem;
+      margin-top: 1.2rem;
       padding: 0 20px;
       .quote-text p {
         font-size: 1.15rem;

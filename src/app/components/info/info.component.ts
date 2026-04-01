@@ -48,15 +48,13 @@ export class InfoComponent implements AfterViewInit, OnDestroy {
   public readonly subtitle = signal('Liderazgo y Respaldo Regional');
   public readonly sectionTitle = signal('Trayectoria de Excelencia');
   public readonly mainDescription = signal(`
-    En Mersol Sureste, integramos casi dos décadas de liderazgo en la
-    distribución de herramientas y máquinas. Nuestra alianza estratégica 
-    con Grupo Austromex nos permite elevar la productividad de tu industria 
+    Nuestra alianza estratégica con Grupo Austromex nos permite elevar la productividad de tu industria 
     mediante soluciones técnicas certificadas y un soporte técnico especializado.
   `);
 
   // KPI'S
   public readonly stats = signal<Stat[]>([
-    { currentValue: 0, endValue: 18, suffix: '+', label: 'Años de Liderazgo', highlight: true },
+    { currentValue: 0, endValue: 60, suffix: '+', label: 'Años de Liderazgo', highlight: true },
     { currentValue: 0, endValue: 17, suffix: '+', label: 'Presencia Mersol', highlight: false },
     {
       currentValue: 0,
@@ -73,17 +71,17 @@ export class InfoComponent implements AfterViewInit, OnDestroy {
     {
       nombre: 'oSa Alemania',
       subtitulo: 'Seguridad Abrasiva',
-      desc: 'Garantiza que cada herramienta es fabricada bajo estándares europeos de seguridad, con trazabilidad total y pruebas de resistencia extremas.',
+      desc: 'Garantiza que cada herramienta es fabricada bajo estándares de seguridad, con trazabilidad total y pruebas de resistencia extremas.',
       icon: 'assets/brand/icons/award.svg',
     },
     {
-      nombre: 'ISO 9001:2015',
+      nombre: 'ISO 9001',
       subtitulo: 'Gestión de Calidad',
       desc: 'Certifica un sistema enfocado en la excelencia operativa y la mejora continua para entregar productos consistentes de alta calidad.',
       icon: 'assets/brand/icons/award.svg',
     },
     {
-      nombre: 'ISO 45001:2018',
+      nombre: 'ISO 45001',
       subtitulo: 'Salud y Seguridad',
       desc: 'Valida un entorno laboral seguro que previene riesgos laborales, protegiendo la integridad de todos nuestros colaboradores.',
       icon: 'assets/brand/icons/award.svg',
