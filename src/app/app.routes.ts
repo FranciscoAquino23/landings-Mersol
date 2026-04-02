@@ -18,6 +18,19 @@ export const routes: Routes = [
     },
   },
 
+  {
+    // Ruta de prueba
+    path: 'landing-demo',
+    loadComponent: () =>
+      import('./pages/landing/landing.component').then((m) => m.LandingComponent),
+
+    data: {
+      title: 'Landing Demo | Mersol Sureste',
+      description: 'Espacio de pruebas para maquetación.',
+      ogImage: 'assets/brand/og-main.jpg',
+    },
+  },
+
   // Redireccionar cualquier ruta no definida a la ruta principal
   {
     path: '**',
