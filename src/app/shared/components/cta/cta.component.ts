@@ -16,7 +16,7 @@ export class CtaComponent {
   // Información de contacto
   contactData = {
     phone: '529939805654',
-    message: 'Hola, me gustaría solicitar una asesoría industrial.',
+    message: 'Hola Mersol! Vengo de su página web. Me interesa obtener una asesoría industrial.',
   };
 
   constructor() {}

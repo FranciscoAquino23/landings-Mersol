@@ -189,12 +189,14 @@
     }
 
     input,
-    textarea {
+    textarea,
+    select {
       padding: 10px 14px;
       border: 1px solid #e0e0e0;
       border-radius: 6px;
       font-family: inherit;
       font-size: 0.85rem;
+      background-color: #ffffff;
       transition: all 0.3s ease;
       &:focus {
         outline: none;

@@ -64,13 +64,15 @@ export class ContactFormComponent implements OnInit {
     // Validar email mediante un Regex (Expresión Regular)
     const emailPattern = '^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$';
 
-    // Validar que el formulario cuente con todos los campos correctamente ingresados
+    // Validar que el formulario cuente con todos los campos
     this.contactForm = this.fb.group({
       nombre: ['', [Validators.required, Validators.minLength(3)]],
       empresa: [''],
       email: ['', [Validators.required, Validators.pattern(emailPattern)]],
       telefono: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
       estado: ['', [Validators.required]],
+      codigoPostal: ['', [Validators.pattern('^[0-9]{5}$')]],
+      esCliente: [''],
       mensaje: ['', [Validators.required, Validators.minLength(10)]],
     });
 

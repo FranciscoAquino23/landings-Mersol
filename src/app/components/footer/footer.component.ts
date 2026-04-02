@@ -61,17 +61,25 @@ export class FooterComponent {
 
   // Información redes sociales
   public socialNetworks: SocialNetwork[] = [
-    { name: 'Facebook', icon: 'fab fa-facebook-f', url: 'https://www.facebook.com/GrupoAustromex' },
-    { name: 'Instagram', icon: 'fab fa-instagram', url: 'https://www.instagram.com/austromex' },
+    {
+      name: 'Facebook',
+      icon: 'fab fa-facebook-f',
+      url: 'https://www.facebook.com/MersolSuresteOficial',
+    },
+    {
+      name: 'Instagram',
+      icon: 'fab fa-instagram',
+      url: 'https://www.instagram.com/mersolsureste/',
+    },
     {
       name: 'YouTube',
       icon: 'fab fa-youtube',
-      url: 'https://www.youtube.com/user/grupoaustromex/videos',
+      url: 'https://www.youtube.com/@mersolsureste4375',
     },
     {
       name: 'LinkedIn',
       icon: 'fab fa-linkedin-in',
-      url: 'https://www.linkedin.com/company/grupo-austromex/?originalSubdomain=mx',
+      url: 'https://www.linkedin.com/company/mersolsureste/posts/?feedView=all',
     },
   ];
 }

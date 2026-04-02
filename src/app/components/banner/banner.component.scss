@@ -108,8 +108,8 @@
   overflow: hidden;
   background-color: #ffffff;
   z-index: 5;
-  max-height: 480px;
   outline: none;
+  max-height: 70vh;
 
   &:focus-within {
     outline: none;
@@ -135,7 +135,7 @@
   height: auto;
 
   &:hover .promo-img {
-    transform: scale(1.01);
+    transform: scale(1.02);
   }
 }
 
@@ -146,10 +146,16 @@
   outline: none;
 }
 
+.promo-img-wrapper {
+  width: 100%;
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+}
+
 .promo-img {
   width: 100%;
-  height: auto;
-  max-height: 480px;
+  height: 100%;
   display: block;
   object-fit: contain;
   object-position: center;
@@ -168,7 +174,7 @@
   justify-content: space-between;
   transform: translateY(-50%);
   pointer-events: none;
-  padding: 0 15px;
+  padding: 0 25px;
   z-index: 10;
 
   .nav-btn {
@@ -176,8 +182,8 @@
     background: rgba(255, 255, 255, 0.9);
     backdrop-filter: blur(4px);
     border: 1px solid rgba(0, 0, 0, 0.05);
-    width: 40px;
-    height: 40px;
+    width: 45px;
+    height: 45px;
     border-radius: 50%;
     color: #333;
     font-size: 1.5rem;
@@ -186,7 +192,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 
     &:hover {
       background: var(--primary);
@@ -202,7 +208,7 @@
 
 .promo-dots {
   position: absolute;
-  bottom: 15px;
+  bottom: 25px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -234,11 +240,15 @@
 
 @media (max-width: 768px) {
   .full-width-banner-container {
-    width: 100%;
-    left: auto;
-    right: auto;
-    margin-left: 0;
-    margin-right: 0;
+    width: 100vw !important;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw !important;
+    margin-right: -50vw !important;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
   }
 
   .promo-bar {
@@ -264,17 +274,25 @@
     }
   }
 
-  .promo-viewport {
-    max-height: 550px;
+  .promo-img-wrapper {
+    width: 100%;
+    height: auto;
+    aspect-ratio: auto;
+    display: block;
   }
+
   .promo-img {
-    max-height: 550px;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
   }
+
   .promo-nav {
     display: none;
   }
+
   .promo-dots {
-    bottom: 10px;
+    bottom: 15px;
     .dot {
       width: 6px;
       height: 6px;

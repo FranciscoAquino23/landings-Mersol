@@ -55,7 +55,7 @@ export class InfoComponent implements AfterViewInit, OnDestroy {
   // KPI'S
   public readonly stats = signal<Stat[]>([
     { currentValue: 0, endValue: 60, suffix: '+', label: 'Años de Liderazgo', highlight: true },
-    { currentValue: 0, endValue: 17, suffix: '+', label: 'Presencia Mersol', highlight: false },
+    { currentValue: 0, endValue: 18, suffix: '+', label: 'Presencia Mersol', highlight: false },
     {
       currentValue: 0,
       endValue: 2800,

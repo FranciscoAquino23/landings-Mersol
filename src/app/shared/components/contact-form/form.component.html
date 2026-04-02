@@ -96,7 +96,37 @@
               }
             </div>
 
-            <!-- REGION -->
+            <!-- ZIP CODE -->
+            <div class="form-group">
+              <label for="codigoPostal">CÓDIGO POSTAL</label>
+              <input
+                type="text"
+                id="codigoPostal"
+                formControlName="codigoPostal"
+                placeholder="Ej. 86000"
+                [class.is-invalid]="
+                  contactForm.get('codigoPostal')?.invalid &&
+                  contactForm.get('codigoPostal')?.touched
+                "
+              />
+              @if (
+                contactForm.get('codigoPostal')?.invalid && contactForm.get('codigoPostal')?.touched
+              ) {
+                <small class="error-msg">Ingresa un código postal válido de 5 dígitos.</small>
+              }
+            </div>
+
+            <!-- CLIENT STATUS -->
+            <div class="form-group">
+              <label for="esCliente">¿YA ERES CLIENTE DE MERSOL?</label>
+              <select id="esCliente" formControlName="esCliente">
+                <option value="" disabled selected hidden>Selecciona una opción...</option>
+                <option value="si">Sí, ya soy cliente</option>
+                <option value="no">No, soy cliente nuevo</option>
+              </select>
+            </div>
+
+            <!-- STATE -->
             <div class="form-group full-width autocomplete-container">
               <label for="estado">ESTADO DE LA REPÚBLICA *</label>
               <input

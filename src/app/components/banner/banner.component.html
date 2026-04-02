@@ -70,17 +70,19 @@
               rel="noopener noreferrer"
               [attr.tabindex]="i === currentIndex() ? '0' : '-1'"
             >
-              <picture>
-                <source media="(max-width: 768px)" [srcset]="promo.imgMobile" />
-                <source media="(min-width: 769px)" [srcset]="promo.imgDesktop" />
-                <img
-                  [src]="promo.imgDesktop"
-                  [alt]="promo.alt"
-                  class="promo-img"
-                  [attr.fetchpriority]="i === 0 ? 'high' : 'auto'"
-                  [attr.loading]="i === 0 ? 'eager' : 'lazy'"
-                />
-              </picture>
+              <div class="promo-img-wrapper">
+                <picture>
+                  <source media="(max-width: 768px)" [srcset]="promo.imgMobile" />
+                  <source media="(min-width: 769px)" [srcset]="promo.imgDesktop" />
+                  <img
+                    [src]="promo.imgDesktop"
+                    [alt]="promo.alt"
+                    class="promo-img"
+                    [attr.fetchpriority]="i === 0 ? 'high' : 'auto'"
+                    [attr.loading]="i === 0 ? 'eager' : 'lazy'"
+                  />
+                </picture>
+              </div>
             </a>
           </div>
         }
