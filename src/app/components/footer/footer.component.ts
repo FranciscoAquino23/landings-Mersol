@@ -47,7 +47,7 @@ export class FooterComponent {
   ];
   public productsCol2: FooterLink[] = [
     { label: 'Superabrasivos', url: 'superabrasivos' },
-    { label: 'Rectificado Automotriz', url: 'rectificado' },
+    { label: 'Industria Automotriz', url: 'rectificado' },
     { label: 'Cepillos de Alambre', url: 'cepillos' },
     { label: 'Herramientas', url: 'herramientas' },
     { label: 'Máquinas', url: 'maquinas' },

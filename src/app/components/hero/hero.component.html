@@ -19,7 +19,7 @@
             <span class="tag-text">MERSOL SURESTE</span>
           </div>
           <h1 class="hero-title" [innerHTML]="title"></h1>
-          <p class="hero-subtitle">Expertos en soldadura y abrasivos para el sureste mexicano.</p>
+          <p class="hero-subtitle">{{ subtitle }}</p>
 
           <!-- BUTTONS -->
           <div class="hero-actions">
@@ -30,18 +30,18 @@
               type="button"
               aria-label="Descargar catálogo de productos PDF"
             >
-              <span class="btn-text">DESCARGAR CATÁLOGO</span>
+              <span class="btn-text">{{ primaryCtaText }}</span>
             </button>
 
             <!-- WHATSAPP -->
-            <a
-              href="https://wa.me/529939805654?text=Hola%20Mersol!%20Vengo%20de%20su%20página%20web.%20Me%20interesa%20obtener%20información%20acerca%20de%20los%20productos%20de%20Austromex."
-              target="_blank"
+            <button
+              (click)="onSecondaryAction()"
               class="btn-hero secondary"
+              type="button"
               aria-label="Contactar por WhatsApp"
             >
-              CONTACTO
-            </a>
+              <span class="btn-text">{{ secondaryCtaText }}</span>
+            </button>
           </div>
 
           <!-- EXPERIENCE -->
