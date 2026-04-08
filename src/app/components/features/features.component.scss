@@ -2,16 +2,14 @@
    FEATURES COMPONENT STYLES
    ========================================================================== */
 
-@use 'sass:color';
-
 .features-container {
   padding: 20px 0 100px;
-  background-color: #ffffff;
-  font-family: 'Halenoir', sans-serif;
+  background-color: var(--bg-white);
+  font-family: var(--font-primary);
   overflow: hidden;
 
   .container {
-    max-width: 1400px;
+    max-width: var(--container-width);
     margin: 0 auto;
     padding: 0 40px;
   }
@@ -28,7 +26,7 @@
 
   .subtitle-red {
     display: block;
-    color: #d2242a;
+    color: var(--primary);
     text-transform: uppercase;
     font-weight: 700;
     letter-spacing: 2.5px;
@@ -41,16 +39,16 @@
     display: inline-block;
 
     h2 {
-      font-family: 'Halenoir', sans-serif;
+      font-family: var(--font-primary);
       font-size: clamp(2.2rem, 4vw, 3rem);
-      color: #403b33;
+      color: var(--secondary);
       text-transform: uppercase;
       font-weight: 900;
       line-height: 1.1;
       margin: 0;
       padding-left: 20px;
       padding-bottom: 10px;
-      border-left: 6px solid #d2242a;
+      border-left: 6px solid var(--primary);
       position: relative;
 
       &::after {
@@ -60,7 +58,7 @@
         left: -5px;
         width: 70px;
         height: 6px;
-        background-color: #d2242a;
+        background-color: var(--primary);
         z-index: 1;
       }
     }
@@ -68,7 +66,7 @@
 
   .header-description {
     margin-top: 1.5rem;
-    color: #a3a19e;
+    color: var(--text-muted);
     font-size: 1rem;
     line-height: 1.6;
     max-width: 700px;
@@ -100,7 +98,7 @@
    ========================================================================== */
 
 .feature-card {
-  background: #ffffff;
+  background: var(--bg-white);
   padding: 45px 30px;
   border-radius: 20px;
   text-align: center;
@@ -108,24 +106,24 @@
   flex-direction: column;
   align-items: center;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.04);
-  border: 1px solid #eeeeee;
+  border: 1px solid var(--border-color);
   transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 
   &.pillar-variant {
-    background-color: #ffffff;
+    background-color: var(--bg-white);
 
     &:hover {
-      border-color: #d2242a;
+      border-color: var(--primary);
     }
   }
 
   &:hover {
     transform: translateY(-10px);
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
-    border-color: #d2242a;
+    border-color: var(--primary);
 
     .icon-wrapper {
-      background: #d2242a;
+      background: var(--primary);
       .feature-icon {
         filter: brightness(0) invert(1);
       }
@@ -141,23 +139,23 @@
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    transition: all 0.3s ease;
+    transition: var(--transition);
 
     .feature-icon {
       width: 32px;
       height: 32px;
       filter: invert(18%) sepia(88%) saturate(3753%) hue-rotate(349deg) brightness(88%)
         contrast(97%);
-      transition: all 0.3s ease;
+      transition: var(--transition);
     }
   }
 
   .feature-content {
     h3 {
-      font-family: 'Halenoir', sans-serif;
+      font-family: var(--font-primary);
       font-size: 1.1rem;
       font-weight: 800;
-      color: #403b33;
+      color: var(--secondary);
       margin-bottom: 12px;
       text-transform: uppercase;
       line-height: 1.3;
@@ -165,7 +163,7 @@
 
     p {
       font-size: 0.95rem;
-      color: #a3a19e;
+      color: var(--text-muted);
       line-height: 1.5;
       margin: 0;
     }
@@ -203,7 +201,7 @@
       .main-title-wrapper h2 {
         font-size: 1.8rem;
         padding-left: 15px;
-        border-left: 5px solid #d2242a;
+        border-left: 5px solid var(--primary);
 
         &::after {
           bottom: -5px;
