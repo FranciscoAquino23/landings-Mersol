@@ -1,5 +1,5 @@
 /* ==========================================================================
-    CATEGORY COMPONENT STYLES
+   CATEGORY COMPONENT STYLES
    ========================================================================== */
 
 :host {
@@ -11,72 +11,34 @@
   --card-gap: 24px;
   --card-height: 380px;
   --nav-btn-size: 48px;
-  --primary-red: #d2242a;
-  --text-dark: #403b33;
-  --text-muted: #a3a19e;
-  --white: #ffffff;
-  --bg-industrial: #f2f2f2;
-  --font-official: 'Halenoir', sans-serif;
   --transition-carousel: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 /* ==========================================================================
-    STRUCTURE
+   STRUCTURE
    ========================================================================== */
 
 .category-section-wrapper {
   width: 100%;
-  background-color: var(--white);
+  background-color: var(--bg-white);
   padding: 20px 0;
   overflow: hidden;
 }
 
 .carousel-section-header {
   width: 100%;
-  max-width: 1400px;
+  max-width: var(--container-width);
   margin: 0 auto 1rem;
   padding: 0 80px;
   box-sizing: border-box;
 
   .overline {
-    display: block;
-    color: var(--primary-red);
-    text-transform: uppercase;
-    font-weight: 700;
-    letter-spacing: 2.5px;
-    margin-bottom: 0.8rem;
     font-size: 0.85rem;
   }
 
-  .title-with-l-shape {
-    .main-title {
-      font-size: clamp(2rem, 4vw, 3rem);
-      line-height: 1.1;
-      font-weight: 900;
-      color: var(--text-dark);
-      margin: 0;
-      text-transform: uppercase;
-      padding-left: 20px;
-      border-left: 6px solid var(--primary-red);
-      position: relative;
-
-      &::after {
-        content: '';
-        position: absolute;
-        bottom: -6px;
-        left: -5px;
-        width: 60px;
-        height: 6px;
-        background-color: var(--primary-red);
-      }
-    }
-  }
-
   .description-text {
-    color: var(--text-muted);
-    margin-top: 1rem;
-    font-size: 1rem;
-    font-family: var(--font-official);
+    margin-top: 1.5rem;
+    font-family: var(--font-primary);
     width: 100%;
     white-space: nowrap;
   }
@@ -85,13 +47,13 @@
 .carousel-container {
   position: relative;
   width: 100%;
-  max-width: 1400px;
+  max-width: var(--container-width);
   margin: 0 auto;
   padding: 0 80px;
   box-sizing: border-box;
 
   /* ==========================================================================
-    CAROUSEL
+   CAROUSEL
    ========================================================================== */
 
   .nav-btn {
@@ -99,7 +61,7 @@
     top: calc(50% - (var(--nav-btn-size) / 2));
     width: var(--nav-btn-size);
     height: var(--nav-btn-size);
-    background: var(--white);
+    background: var(--bg-white);
     border: 1px solid #ddd;
     border-radius: 50%;
     display: flex;
@@ -109,12 +71,12 @@
     z-index: 10;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    color: var(--text-dark);
+    color: var(--secondary);
 
     &:hover {
-      background: var(--primary-red);
+      background: var(--primary);
       color: var(--white);
-      border-color: var(--primary-red);
+      border-color: var(--primary);
       transform: translateY(-5px);
     }
 
@@ -153,7 +115,7 @@
 }
 
 /* ==========================================================================
-    CATEGORY CARDS
+   CATEGORY CARDS
    ========================================================================== */
 
 .category-card {
@@ -163,7 +125,7 @@
         (var(--card-gap) * (var(--cards-to-show) - 1) / var(--cards-to-show))
     );
   height: var(--card-height);
-  background: var(--white);
+  background: var(--bg-white);
   border-radius: 4px;
   overflow: hidden;
   display: flex;
@@ -171,7 +133,7 @@
   cursor: pointer;
 
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-  border: 1px solid var(--primary-red);
+  border: 1px solid var(--primary);
 
   transition:
     transform 0.4s cubic-bezier(0.25, 1, 0.5, 1),
@@ -179,7 +141,7 @@
     border-color 0.4s ease;
 
   &:hover {
-    border-color: var(--primary-red);
+    border-color: var(--primary);
     transform: translateY(-8px);
     box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
 
@@ -202,7 +164,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--white);
+    background: var(--bg-white);
     overflow: hidden;
 
     .category-img {
@@ -220,7 +182,7 @@
 
   .card-footer {
     padding: 15px 20px;
-    background: var(--primary-red);
+    background: var(--primary);
     flex-grow: 1;
     display: flex;
     flex-direction: column;
@@ -236,7 +198,7 @@
       font-weight: 800;
       margin: 0;
       text-transform: uppercase;
-      font-family: var(--font-official);
+      font-family: var(--font-primary);
       width: 100%;
     }
 
@@ -247,7 +209,7 @@
       display: flex;
       align-items: center;
       gap: 8px;
-      font-family: var(--font-official);
+      font-family: var(--font-primary);
       opacity: 0;
       visibility: hidden;
       transform: translateY(10px);
@@ -269,7 +231,7 @@
 }
 
 /* ==========================================================================
-    CATEGORY COMPONENT STYLES (MEDIA QUERIES)
+   CATEGORY COMPONENT STYLES (MEDIA QUERIES)
    ========================================================================== */
 
 @media (max-width: 550px) {

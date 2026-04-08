@@ -88,7 +88,7 @@ export class CategoryCarouselComponent implements AfterViewInit, OnDestroy {
       link: 'https://mersolsureste.com.mx/tienda?search=AUSTROMEX',
     },
     {
-      title: 'RECTIFICADO AUTOMOTRIZ',
+      title: 'INDUSTRIA AUTOMOTRIZ',
       image: 'assets/brand/categories/08.webp',
       color: '#d2242a',
       link: 'https://mersolsureste.com.mx/tienda?search=AUSTROMEX',
@@ -149,7 +149,7 @@ export class CategoryCarouselComponent implements AfterViewInit, OnDestroy {
   }
 
   // Controlar desplazamiento
-  scroll(direction: number, isManual: boolean = true): void {
+  scroll(direction: number, isManual = true): void {
     if (this.isAnimating || !this.carouselTrack) return;
 
     const track = this.carouselTrack.nativeElement;
