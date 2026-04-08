@@ -1,21 +1,13 @@
 /* ==========================================================================
-    NAVBAR COMPONENT STYLES
+   NAVBAR COMPONENT STYLES
    ========================================================================== */
 
-@use 'sass:color';
-
-/* ==========================================================================
-    DESIGN TOKENS
-   ========================================================================== */
+@use '../../../styles.scss' as master;
 
 :host {
   --nav-height: 85px;
   --top-bar-height: 45px;
-  --primary-red: #d2242a;
-  --primary-red-hover: #b51f24;
-  --text-dark: #333333;
   --text-light: rgba(255, 255, 255, 0.9);
-  --font-primary: 'Halenoir', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   display: block;
 }
 
@@ -25,16 +17,16 @@
   left: 0;
   width: 100%;
   z-index: 1000;
-  background-color: #ffffff;
+  background-color: var(--bg-white);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
 
 /* ==========================================================================
-    TOPBAR
+   TOPBAR
    ========================================================================== */
 
 .top-bar {
-  background-color: #1a1a1a;
+  background-color: var(--text-main);
   height: var(--top-bar-height);
   display: flex;
   align-items: center;
@@ -63,17 +55,13 @@
       color: var(--text-light);
       font-size: 0.85rem;
       font-weight: 500;
-      transition: all 0.3s ease;
+      transition: var(--transition);
 
       .contact-icon-svg {
+        @include master.icon-mask-base;
         width: 16px;
         height: 16px;
-        background-color: var(--primary-red);
-        display: inline-block;
-        -webkit-mask-size: contain;
-        mask-size: contain;
-        -webkit-mask-repeat: no-repeat;
-        mask-repeat: no-repeat;
+        background-color: var(--primary);
 
         &.icon-phone {
           mask-image: url('../../../assets/brand/socials/phone.svg');
@@ -86,10 +74,10 @@
       }
 
       &:hover {
-        color: #ffffff;
+        color: var(--white);
         transform: translateY(-1px);
         .contact-icon-svg {
-          background-color: var(--primary-red);
+          background-color: var(--primary);
         }
       }
     }
@@ -102,15 +90,15 @@
 }
 
 /* ==========================================================================
-    PRINCIPAL NAVBAR
+   PRINCIPAL NAVBAR
    ========================================================================== */
 
 .navbar {
   height: var(--nav-height);
   display: flex;
   align-items: center;
-  background: #ffffff;
-  border-bottom: 1px solid #eeeeee;
+  background: var(--bg-white);
+  border-bottom: 1px solid var(--border-color);
 
   .navbar-content {
     display: flex;
@@ -164,13 +152,13 @@
     font-family: var(--font-primary);
     font-weight: 700;
     font-size: 0.85rem;
-    color: var(--text-dark);
+    color: #000000;
     text-decoration: none;
     text-transform: uppercase;
     letter-spacing: 0.8px;
     position: relative;
     padding: 8px 0;
-    transition: all 0.3s ease;
+    transition: var(--transition);
     cursor: pointer;
 
     &::after {
@@ -180,12 +168,14 @@
       left: 0;
       width: 0;
       height: 2px;
-      background-color: var(--primary-red);
+      background-color: var(--primary);
       transition: width 0.3s ease;
     }
 
-    &:hover {
-      color: var(--primary-red);
+    &:hover,
+    &:focus-visible {
+      color: #b71c1c;
+      outline: none;
       &::after {
         width: 100%;
       }
@@ -203,8 +193,8 @@
 }
 
 .btn-primary {
-  background-color: var(--primary-red);
-  color: #ffffff !important;
+  background-color: var(--primary);
+  color: var(--white) !important;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -218,10 +208,10 @@
   text-decoration: none;
   border: none;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: var(--transition);
 
   &:hover {
-    background-color: var(--primary-red-hover);
+    background-color: var(--primary-hover);
     transform: translateY(-3px);
     box-shadow: 0 8px 20px rgba(210, 36, 42, 0.3);
   }
@@ -232,7 +222,7 @@
 }
 
 /* ==========================================================================
-    NAVBAR COMPONENT STYLES (MEDIA QUERIES)
+   NAVBAR COMPONENT STYLES (MEDIA QUERIES)
    ========================================================================== */
 
 @media (max-width: 991px) {
@@ -269,7 +259,7 @@
     span {
       width: 100%;
       height: 3px;
-      background-color: var(--text-dark);
+      background-color: var(--secondary);
       border-radius: 3px;
       transition: 0.3s ease;
     }
@@ -301,7 +291,7 @@
     right: 0;
     width: 100%;
     height: calc(100vh - var(--nav-height));
-    background-color: #ffffff;
+    background-color: var(--bg-white);
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
@@ -323,6 +313,7 @@
         font-size: 1.1rem;
         padding: 18px 0;
         display: block;
+        color: #000000;
         &::after {
           display: none;
         }
@@ -358,7 +349,7 @@
 
     p {
       font-size: 0.65rem;
-      color: #bbbbbb;
+      color: #555555;
       text-transform: uppercase;
       letter-spacing: 2px;
       margin-bottom: 5px;
@@ -375,7 +366,7 @@
 
       span {
         font-size: 0.85rem;
-        color: #555555;
+        color: #000000;
         font-weight: 500;
         white-space: nowrap;
       }
@@ -388,7 +379,7 @@
       .icon-circle {
         width: 26px;
         height: 26px;
-        background-color: var(--primary-red);
+        background-color: var(--primary);
         border-radius: 50%;
         display: flex;
         align-items: center;
@@ -396,14 +387,10 @@
         flex-shrink: 0;
 
         .contact-icon-svg {
+          @include master.icon-mask-base;
           width: 12px;
           height: 12px;
-          background-color: #ffffff;
-          display: block;
-          -webkit-mask-size: contain;
-          mask-size: contain;
-          -webkit-mask-repeat: no-repeat;
-          mask-repeat: no-repeat;
+          background-color: var(--white);
 
           &.icon-phone {
             mask-image: url('../../../assets/brand/socials/phone.svg');

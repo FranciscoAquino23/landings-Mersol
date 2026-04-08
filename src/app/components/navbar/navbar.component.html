@@ -39,26 +39,63 @@
 
       <!-- LOGOS -->
       <div class="brand-group">
-        <a (click)="scrollToAnchor('inicio')" class="logo-link" title="Mersol Sureste">
+        <a
+          href="#inicio"
+          (click)="scrollToAnchor('inicio'); $event.preventDefault()"
+          class="logo-link"
+          title="Mersol Sureste"
+        >
           <img src="assets/brand/MERSOL.svg" alt="Logo Mersol Sureste" class="logo-mersol" />
         </a>
         <div class="brand-divider" aria-hidden="true"></div>
-        <a (click)="scrollToAnchor('inicio')" class="logo-link" title="Ir a Inicio">
+        <a
+          href="#inicio"
+          (click)="scrollToAnchor('inicio'); $event.preventDefault()"
+          class="logo-link"
+          title="Ir a Inicio"
+        >
           <img src="assets/brand/AUSTROMEX.svg" alt="Logo Austromex" class="logo-partner-img" />
         </a>
       </div>
 
       <!-- COMPONENTS -->
       <ul class="nav-links" [class.active]="isMenuOpen">
-        <li><a (click)="scrollToAnchor('inicio')">Inicio</a></li>
-        <li><a (click)="scrollToAnchor('productos')">Productos</a></li>
-        <li><a (click)="scrollToAnchor('nosotros')">Nosotros</a></li>
-        <li><a (click)="scrollToAnchor('testimonios')">Opiniones</a></li>
-        <li><a (click)="scrollToAnchor('faq')">Preguntas</a></li>
-        <li><a (click)="scrollToAnchor('sucursales')">Sucursales</a></li>
+        <li>
+          <a href="#inicio" (click)="scrollToAnchor('inicio'); $event.preventDefault()">Inicio</a>
+        </li>
+        <li>
+          <a href="#productos" (click)="scrollToAnchor('productos'); $event.preventDefault()"
+            >Productos</a
+          >
+        </li>
+        <li>
+          <a href="#nosotros" (click)="scrollToAnchor('nosotros'); $event.preventDefault()"
+            >Nosotros</a
+          >
+        </li>
+        <li>
+          <a href="#testimonios" (click)="scrollToAnchor('testimonios'); $event.preventDefault()"
+            >Opiniones</a
+          >
+        </li>
+        <li>
+          <a href="#faq" (click)="scrollToAnchor('faq'); $event.preventDefault()">Preguntas</a>
+        </li>
+        <li>
+          <a href="#sucursales" (click)="scrollToAnchor('sucursales'); $event.preventDefault()"
+            >Sucursales</a
+          >
+        </li>
+
         <li class="mobile-only-content">
           <div class="mobile-only-cta">
-            <a (click)="scrollToAnchor('contacto')" class="btn-primary"> Cotizar Ahora </a>
+            <a
+              href="#contacto"
+              (click)="scrollToAnchor('contacto'); $event.preventDefault()"
+              class="btn-primary"
+            >
+              Cotizar Ahora
+            </a>
           </div>
 
           <div class="mobile-contact-info">
@@ -78,7 +115,13 @@
 
       <!-- CTA -->
       <div class="nav-cta-desktop">
-        <a (click)="scrollToAnchor('contacto')" class="btn-primary"> Cotizar Ahora </a>
+        <a
+          href="#contacto"
+          (click)="scrollToAnchor('contacto'); $event.preventDefault()"
+          class="btn-primary"
+        >
+          Cotizar Ahora
+        </a>
       </div>
     </div>
   </nav>
