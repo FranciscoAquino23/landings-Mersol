@@ -3,30 +3,26 @@
    ========================================================================== */
 
 :host {
-  --primary-red: #d2242a;
-  --text-dark: #403b33;
-  --text-muted: #a3a19e;
-  --bg-light: #f4f4f4;
   display: block;
   scroll-margin-top: 80px;
 }
 
 .nosotros-section {
   padding: 20px 0;
-  background-color: #ffffff;
-  font-family: 'Halenoir', sans-serif;
+  background-color: var(--bg-white);
+  font-family: var(--font-primary);
   position: relative;
   overflow: hidden;
 
   .container {
-    max-width: 1200px;
+    max-width: var(--container-width);
     margin: 0 auto;
-    padding: 0 30px;
+    padding: 0 80px;
   }
 
   /* ==========================================================================
-   HEADER & LAYOUT PRINCIPAL
-   ========================================================================== */
+     HEADER & LAYOUT PRINCIPAL
+     ========================================================================== */
 
   .nosotros-main {
     display: grid;
@@ -39,54 +35,57 @@
   .nosotros-content {
     .subtitle-red {
       display: block;
-      color: var(--primary-red);
+      color: var(--primary);
       text-transform: uppercase;
       font-weight: 700;
       letter-spacing: 2.5px;
       margin-bottom: 0.8rem;
-      font-size: 0.8rem;
+      font-size: 0.85rem;
     }
 
     .main-title-wrapper {
       position: relative;
       display: inline-block;
-      margin-bottom: 2rem;
+      margin-bottom: 0.5rem;
 
       h2 {
         font-size: clamp(2.2rem, 4vw, 3.2rem);
         line-height: 1.1;
         font-weight: 900;
-        color: var(--text-dark);
+        color: var(--secondary);
         margin: 0;
         text-transform: uppercase;
         padding-left: 20px;
-        border-left: 6px solid var(--primary-red);
+        border-left: 6px solid var(--primary);
         position: relative;
 
         &::after {
           content: '';
           position: absolute;
           bottom: -6px;
-          left: -6px;
+          left: -5px;
           width: 80px;
           height: 6px;
-          background-color: var(--primary-red);
+          background-color: var(--primary);
         }
       }
     }
 
     .description {
       color: var(--text-muted);
-      margin-top: 1rem;
+      margin-top: 0.8rem;
       font-size: 1rem;
-      line-height: 1.6;
-      max-width: 450px;
+      line-height: 1.5;
+      max-width: 500px;
+      white-space: normal;
+      word-wrap: break-word;
+      display: block;
     }
   }
 
   /* ==========================================================================
-   KPI'S
-   ========================================================================== */
+     KPI'S
+     ========================================================================== */
 
   .nosotros-stats-grid {
     display: grid;
@@ -94,11 +93,11 @@
     gap: 1.5rem;
 
     .stat-card {
-      background: #ffffff;
+      background: var(--bg-white);
       padding: 40px 20px;
       border-radius: 12px;
       text-align: center;
-      border: 1px solid #eee;
+      border: 1px solid var(--border-color);
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.02);
       transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       will-change: contents;
@@ -110,11 +109,11 @@
       }
 
       &.highlight-red {
-        background-color: var(--primary-red);
-        border-color: var(--primary-red);
+        background-color: var(--primary);
+        border-color: var(--primary);
         .stat-number,
         .stat-label {
-          color: #ffffff;
+          color: var(--white);
         }
       }
 
@@ -122,7 +121,7 @@
         display: block;
         font-size: 3.2rem;
         font-weight: 900;
-        color: var(--primary-red);
+        color: var(--primary);
         line-height: 1;
         margin-bottom: 8px;
         font-variant-numeric: tabular-nums;
@@ -133,15 +132,15 @@
         font-size: 0.75rem;
         text-transform: uppercase;
         font-weight: 700;
-        color: var(--text-dark);
+        color: var(--secondary);
         letter-spacing: 1px;
       }
     }
   }
 
   /* ==========================================================================
-   CERTIFICATIONS
-   ========================================================================== */
+     CERTIFICATIONS
+     ========================================================================== */
 
   .certifications-detailed-section {
     margin-top: 1.5rem;
@@ -153,15 +152,13 @@
     .cert-section-header {
       text-align: center;
       margin-bottom: 2.5rem;
-
       h3 {
         font-size: 1.5rem;
         font-weight: 900;
-        color: var(--text-dark);
+        color: var(--secondary);
         text-transform: uppercase;
         margin-bottom: 5px;
       }
-
       .single-line-text {
         color: var(--text-muted);
         font-size: 0.95rem;
@@ -179,18 +176,18 @@
       gap: 25px;
 
       .cert-detail-card {
-        background: #ffffff;
+        background: var(--bg-white);
         padding: 30px;
         border-radius: 15px;
         display: flex;
         flex-direction: column;
         align-items: flex-start;
         border: 2px solid transparent;
-        transition: all 0.3s ease;
+        transition: var(--transition);
 
         &:hover {
           transform: translateY(-5px);
-          border-color: var(--primary-red);
+          border-color: var(--primary);
           box-shadow: 0 10px 25px rgba(210, 36, 42, 0.05);
         }
 
@@ -205,29 +202,25 @@
 
         .cert-text-content {
           width: 100%;
-
           h4 {
             font-size: 1.1rem;
             font-weight: 800;
-            color: var(--text-dark);
+            color: var(--secondary);
             margin-bottom: 4px;
           }
           .cert-tag {
-            display: inline-block;
             font-size: 0.75rem;
             font-weight: 700;
-            color: var(--primary-red);
+            color: var(--primary);
             text-transform: uppercase;
             letter-spacing: 0.5px;
           }
-
           .cert-divider {
             border: 0;
-            border-top: 1px solid #eeeeee;
+            border-top: 1px solid var(--border-color);
             margin: 15px 0;
             width: 100%;
           }
-
           p {
             font-size: 0.9rem;
             line-height: 1.5;
@@ -240,26 +233,25 @@
   }
 
   /* ==========================================================================
-   QUOTE
-   ========================================================================== */
+     QUOTE
+     ========================================================================== */
 
   .nosotros-quote-clean {
     text-align: center;
     margin-top: 2rem;
     padding: 0;
-
     .quote-text {
       margin: 0;
       p {
         font-size: clamp(1.5rem, 3vw, 2.2rem);
         font-weight: 900;
-        color: var(--text-dark);
+        color: var(--secondary);
         text-transform: uppercase;
         margin-bottom: 10px;
       }
       cite {
         font-size: 1rem;
-        color: var(--primary-red);
+        color: var(--primary);
         font-weight: 700;
         font-style: normal;
       }
@@ -274,24 +266,22 @@
 @media (max-width: 991px) {
   .nosotros-section {
     padding: 20px 0 40px 0;
-
+    .container {
+      padding: 0 30px;
+    }
     .nosotros-main {
       grid-template-columns: 1fr;
       gap: 20px;
     }
-
     .cert-detailed-grid {
       grid-template-columns: 1fr !important;
       max-width: 600px;
       margin: 0 auto;
       gap: 25px;
     }
-
-    .certations-detailed-section {
-      .cert-section-header .single-line-text {
-        white-space: normal;
-        max-width: 100%;
-      }
+    .certations-detailed-section .cert-section-header .single-line-text {
+      white-space: normal;
+      max-width: 100%;
     }
   }
 }
@@ -299,119 +289,29 @@
 @media (max-width: 768px) {
   .nosotros-section {
     padding: 15px 0 40px 0;
-
-    .nosotros-main {
-      gap: 20px;
-    }
-
     .nosotros-content {
-      text-align: left;
-
-      .subtitle-red {
-        text-align: left;
-        font-size: 0.8rem;
-        letter-spacing: 2.5px;
-        margin-bottom: 0.6rem;
-      }
-
-      .main-title-wrapper {
-        h2 {
-          font-size: 2rem;
-          padding-left: 20px;
-          border-left: 6px solid var(--primary-red);
-          border-bottom: none;
-          padding-bottom: 0;
-          text-align: left;
-          display: block;
-
-          &::after {
-            content: '';
-            position: absolute;
-            bottom: -6px;
-            left: -5px;
-            width: 60px;
-            height: 6px;
-            background-color: var(--primary-red);
-          }
+      .main-title-wrapper h2 {
+        font-size: 2rem;
+        &::after {
+          left: -5px;
+          width: 60px;
         }
       }
-
       .description {
-        text-align: left;
-        margin: 1rem 0 0;
+        margin-top: 1rem;
         max-width: 100%;
         line-height: 1.4;
+        color: var(--text-muted);
       }
     }
-
     .nosotros-stats-grid {
       grid-template-columns: 1fr;
       gap: 15px;
       max-width: 450px;
       margin: 15px auto 0;
-
-      .stat-card {
-        padding: 25px 20px;
-        will-change: transform, opacity;
-
-        .stat-number {
-          font-size: 2.8rem;
-          min-height: 1.1em;
-        }
-      }
     }
-
     .certifications-detailed-section {
-      margin-top: 1.5rem;
       padding: 30px 20px;
-
-      .cert-section-header {
-        margin-bottom: 2rem;
-
-        h3 {
-          font-size: 1.4rem;
-          line-height: 1.2;
-        }
-
-        .single-line-text {
-          font-size: 0.95rem;
-          line-height: 1.5;
-          white-space: normal !important;
-          text-overflow: clip !important;
-          overflow: visible !important;
-          max-width: 100% !important;
-        }
-      }
-
-      .cert-detailed-grid {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-
-        .cert-detail-card {
-          width: 100%;
-          padding: 30px 25px;
-          align-items: center;
-          text-align: center;
-          box-sizing: border-box;
-
-          .cert-icon-wrapper {
-            margin-bottom: 15px;
-          }
-
-          .cert-text-content {
-            .cert-divider {
-              margin: 15px auto;
-              width: 60px;
-            }
-
-            p {
-              font-size: 0.95rem;
-              line-height: 1.6;
-            }
-          }
-        }
-      }
     }
   }
 }
@@ -419,13 +319,11 @@
 @media (max-width: 600px) {
   .nosotros-section {
     padding: 10px 0 30px 0;
-
     .nosotros-quote-clean {
       margin-top: 1.2rem;
       padding: 0 20px;
       .quote-text p {
         font-size: 1.15rem;
-        line-height: 1.5;
       }
     }
   }
