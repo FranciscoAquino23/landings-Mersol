@@ -30,12 +30,12 @@ interface Testimonial {
   styleUrl: './testimonials.component.scss',
 })
 export class TestimonialsComponent implements OnInit, OnDestroy, AfterViewInit {
-  currentIndex: number = 2;
-  isTransitioning: boolean = true;
-  private isAnimating: boolean = false;
+  currentIndex = 2;
+  isTransitioning = true;
+  private isAnimating = false;
   private autoPlayInterval: any;
   private isBrowser: boolean;
-  isMobile: boolean = false;
+  isMobile = false;
 
   // Lista de testimonios
   readonly testimonials: Testimonial[] = [
@@ -87,7 +87,7 @@ export class TestimonialsComponent implements OnInit, OnDestroy, AfterViewInit {
   displayTestimonials: Testimonial[] = [];
 
   constructor(
-    @Inject(PLATFORM_ID) private platformId: Object,
+    @Inject(PLATFORM_ID) private platformId: object,
     private cdr: ChangeDetectorRef,
   ) {
     this.isBrowser = isPlatformBrowser(this.platformId);
@@ -189,6 +189,7 @@ export class TestimonialsComponent implements OnInit, OnDestroy, AfterViewInit {
     this.startAutoPlay();
   }
 
+  // Manejar animación de movimiento
   private handleJump(targetIndex: number): void {
     this.isTransitioning = false;
     this.currentIndex = targetIndex;
