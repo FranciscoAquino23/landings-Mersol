@@ -19,11 +19,11 @@
           Déjanos tus datos y un experto se pondrá en contacto contigo a la brevedad.
         </p>
 
-        <!-- SUCCESS MESSAGE -->
-        @if (showSuccessModal) {
-          <div class="success-message-desktop">
-            <span class="success-icon">✓</span>
-            <p>¡Solicitud enviada con éxito! Nos comunicaremos contigo brevemente.</p>
+        <!-- ERROR MESSAGE -->
+        @if (errorMessage) {
+          <div class="error-message-alert" role="alert">
+            <span class="error-icon">!</span>
+            <p>{{ errorMessage }}</p>
           </div>
         }
       </aside>
@@ -33,6 +33,16 @@
         <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="contact-form" novalidate>
           <p class="form-legend">Los campos marcados con un asterisco (*) son obligatorios.</p>
 
+          <div style="display: none" aria-hidden="true">
+            <input
+              type="text"
+              id="website_url"
+              formControlName="website_url"
+              tabindex="-1"
+              autocomplete="off"
+            />
+          </div>
+
           <div class="form-grid">
             <!-- NAME -->
             <div class="form-group">
@@ -41,6 +51,7 @@
                 type="text"
                 id="nombre"
                 formControlName="nombre"
+                autocomplete="name"
                 placeholder="Ej. Juan Pérez"
                 [class.is-invalid]="
                   contactForm.get('nombre')?.invalid && contactForm.get('nombre')?.touched
@@ -58,6 +69,7 @@
                 type="text"
                 id="empresa"
                 formControlName="empresa"
+                autocomplete="organization"
                 placeholder="Nombre de tu empresa"
               />
             </div>
@@ -69,6 +81,7 @@
                 type="email"
                 id="email"
                 formControlName="email"
+                autocomplete="email"
                 placeholder="ejemplo@correo.com"
                 [class.is-invalid]="
                   contactForm.get('email')?.invalid && contactForm.get('email')?.touched
@@ -86,6 +99,7 @@
                 type="tel"
                 id="telefono"
                 formControlName="telefono"
+                autocomplete="tel"
                 placeholder="10 dígitos"
                 [class.is-invalid]="
                   contactForm.get('telefono')?.invalid && contactForm.get('telefono')?.touched
@@ -103,6 +117,7 @@
                 type="text"
                 id="codigoPostal"
                 formControlName="codigoPostal"
+                autocomplete="postal-code"
                 placeholder="Ej. 86000"
                 [class.is-invalid]="
                   contactForm.get('codigoPostal')?.invalid &&
@@ -143,9 +158,16 @@
 
               <!-- LIST OF REGIONS -->
               @if (showDropdown) {
-                <ul class="autocomplete-results">
+                <ul class="autocomplete-results" role="listbox">
                   @for (estado of filteredEstados; track estado) {
-                    <li (click)="selectEstado(estado)">{{ estado }}</li>
+                    <li
+                      (click)="selectEstado(estado)"
+                      (keydown.enter)="selectEstado(estado)"
+                      tabindex="0"
+                      role="option"
+                    >
+                      {{ estado }}
+                    </li>
                   }
                 </ul>
               }
@@ -174,7 +196,14 @@
           </div>
 
           <div class="form-actions">
-            <button type="submit" class="btn-submit">ENVIAR SOLICITUD</button>
+            <button
+              type="submit"
+              class="btn-submit"
+              [disabled]="isSubmitting"
+              [class.loading]="isSubmitting"
+            >
+              {{ isSubmitting ? 'ENVIANDO...' : 'ENVIAR SOLICITUD' }}
+            </button>
           </div>
         </form>
       </main>
@@ -182,24 +211,24 @@
   </div>
 </section>
 
-<!-- SUCCESS MESSAGE MOBILE -->
+<!-- SUCCESS MESSAGE -->
 @if (showSuccessModal) {
-  <div
-    class="success-modal-overlay mobile-only"
-    (click)="closeSuccessModal()"
-    role="dialog"
-    aria-modal="true"
-  >
-    <div class="success-modal-content" (click)="$event.stopPropagation()">
-      <div class="modal-icon">
-        <span>✓</span>
+  <div class="thank-you-overlay" role="dialog" aria-modal="true">
+    <div class="thank-you-content">
+      <div class="success-icon-container">
+        <span class="check-icon">✓</span>
       </div>
 
-      <h3>¡SOLICITUD ENVIADA!</h3>
-      <p>{{ successMessage }}</p>
+      <h2 class="thank-you-title">¡SOLICITUD ENVIADA!</h2>
+      <p class="thank-you-text">
+        Gracias por contactarnos. Tu información ha sido recibida con éxito y un experto de
+        <strong>Mersol</strong> se comunicará contigo a la brevedad.
+      </p>
 
       <!-- SUCCESS BUTTON -->
-      <button class="btn-submit modal-confirm-btn" (click)="closeSuccessModal()">ENTENDIDO</button>
+      <div class="thank-you-actions">
+        <button class="btn-submit btn-confirm" (click)="closeSuccessModal()">ENTENDIDO</button>
+      </div>
     </div>
   </div>
 }
