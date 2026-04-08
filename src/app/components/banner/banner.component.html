@@ -87,44 +87,6 @@
           </div>
         }
       </div>
-
-      <!-- NAVIGATION BUTTONS -->
-      @if (promociones.length > 1) {
-        <div class="promo-nav">
-          <button
-            class="nav-btn prev"
-            (click)="prevSlide()"
-            aria-label="Ver promoción anterior"
-            type="button"
-          >
-            <span aria-hidden="true">&lsaquo;</span>
-          </button>
-
-          <button
-            class="nav-btn next"
-            (click)="nextSlide()"
-            aria-label="Ver siguiente promoción"
-            type="button"
-          >
-            <span aria-hidden="true">&rsaquo;</span>
-          </button>
-        </div>
-
-        <div class="promo-dots" role="tablist">
-          @for (p of promociones; track p.id; let i = $index) {
-            <button
-              class="dot"
-              [class.active]="i === currentIndex()"
-              (click)="goToSlide(i)"
-              role="tab"
-              [attr.aria-label]="'Ir a promoción ' + (i + 1)"
-              [attr.aria-selected]="i === currentIndex()"
-              [attr.aria-current]="i === currentIndex() ? 'true' : 'false'"
-              type="button"
-            ></button>
-          }
-        </div>
-      }
     </div>
   </div>
 

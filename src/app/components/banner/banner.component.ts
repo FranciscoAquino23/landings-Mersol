@@ -19,7 +19,6 @@ export class BannerComponent implements OnInit, OnDestroy {
   private readonly SLIDE_DURATION = 7000;
   // Detectar dispositivo (Desktop / Mobile)
   public isMobile = signal(false);
-
   // Obtener mes actual
   public currentMonth = computed(() => {
     const date = new Date();
@@ -99,7 +98,7 @@ export class BannerComponent implements OnInit, OnDestroy {
     return this.isMobile() ? promo.imgMobile : promo.imgDesktop;
   }
 
-  // Recorrer automáticamente lita de banners
+  // Recorrer automáticamente lista de banners
   public startAutoPlay(): void {
     this.stopAutoPlay();
 
@@ -118,23 +117,9 @@ export class BannerComponent implements OnInit, OnDestroy {
     }
   }
 
-  // Navegar con botones (UI / UX)
+  // Lógica de transición automática
   public nextSlide(): void {
     const next = (this.currentIndex() + 1) % this.promociones.length;
     this.currentIndex.set(next);
-    this.startAutoPlay();
-  }
-
-  // Movimiento botón anterior
-  public prevSlide(): void {
-    const prev = (this.currentIndex() - 1 + this.promociones.length) % this.promociones.length;
-    this.currentIndex.set(prev);
-    this.startAutoPlay();
-  }
-
-  // Movimiento botón siguiente
-  public goToSlide(index: number): void {
-    this.currentIndex.set(index);
-    this.startAutoPlay();
   }
 }
