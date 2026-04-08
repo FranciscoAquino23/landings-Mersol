@@ -5,6 +5,9 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+// Importar servicio
+import { SeoService } from '../../services/seo.service';
+
 @Component({
   selector: 'app-cta',
   standalone: true,
@@ -19,7 +22,7 @@ export class CtaComponent {
     message: 'Hola Mersol! Vengo de su página web. Me interesa obtener una asesoría industrial.',
   };
 
-  constructor() {}
+  constructor(private seoService: SeoService) {}
 
   // Generar enlace directo a contacto dentro de WhatsApp
   get whatsappUrl(): string {
@@ -27,8 +30,13 @@ export class CtaComponent {
     return `https://wa.me/${this.contactData.phone}?text=${encodedMsg}`;
   }
 
-  // Abrir chat de WhatsApp
+  // Registrar evento de conversión (CTA)
   onContactClick(): void {
+    this.seoService.trackEvent('conversion_whatsapp', {
+      source: 'cta_component',
+      label: 'Asesoría Industrial',
+      value: 1,
+    });
     window.open(this.whatsappUrl, '_blank');
   }
 }

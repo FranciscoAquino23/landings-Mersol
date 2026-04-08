@@ -2,12 +2,8 @@
    CTA (CALL TO ACTION) STYLES
    ========================================================================== */
 
-$primary-red: #d2242a;
-$text-white: #ffffff;
-$font-primary: 'Halenoir', sans-serif;
-
 .cta-banner {
-  background-color: $primary-red;
+  background-color: var(--primary);
   padding: 30px 0;
   width: 100%;
   display: flex;
@@ -15,15 +11,15 @@ $font-primary: 'Halenoir', sans-serif;
   justify-content: center;
 
   .container {
-    max-width: 1600px;
+    max-width: var(--container-width);
     margin: 0 auto;
-    padding: 0 60px;
+    padding: 0 40px;
     width: 100%;
   }
 
   .cta-wrapper {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     gap: 60px;
   }
@@ -36,13 +32,14 @@ $font-primary: 'Halenoir', sans-serif;
 .cta-content {
   display: flex;
   align-items: center;
+  flex: 0 1 auto;
 
   .cta-title {
-    color: $text-white;
-    font-family: $font-primary;
+    color: var(--white);
+    font-family: var(--font-primary);
     font-size: 1.25rem;
     font-weight: 700;
-    line-height: 1;
+    line-height: 1.2;
     display: inline-block;
     margin: 0;
     padding: 0;
@@ -60,23 +57,25 @@ $font-primary: 'Halenoir', sans-serif;
 .cta-action {
   display: flex;
   align-items: center;
+  flex-shrink: 0;
 
   .cta-button {
-    background-color: $text-white;
-    color: $primary-red;
+    background-color: var(--white);
+    color: var(--primary);
     padding: 20px 45px;
     border-radius: 12px;
     display: flex;
     align-items: center;
     gap: 15px;
     text-decoration: none;
-    font-family: $font-primary;
+    font-family: var(--font-primary);
     font-weight: 800;
     font-size: 1.05rem;
     text-transform: uppercase;
     line-height: 1;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-    transition: all 0.3s ease;
+    transition: var(--transition);
+    white-space: nowrap;
 
     .cta-icon img {
       width: 24px;
