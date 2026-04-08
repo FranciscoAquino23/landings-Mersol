@@ -1,5 +1,5 @@
 /* ==========================================================================
-    FOOTER COMPONENT STYLES
+   FOOTER COMPONENT STYLES
    ========================================================================== */
 
 :host {
@@ -9,14 +9,14 @@
 
 .main-footer {
   background-color: #2b2921;
-  color: #b0b0b0;
-  font-family: 'Halenoir', sans-serif;
+  color: #d1d1d1;
+  font-family: var(--font-primary);
   position: relative;
   padding: 35px 0 15px 0;
   contain: content;
 
   .container {
-    max-width: 1200px;
+    max-width: var(--container-width);
     margin: 0 auto;
     padding: 0 20px;
   }
@@ -30,8 +30,8 @@
   }
 
   /* ==========================================================================
-    BRANDING (LOGOS)
-   ========================================================================== */
+     BRANDING (LOGOS)
+     ========================================================================== */
 
   .branding {
     .brand-partnership {
@@ -66,19 +66,19 @@
 
     .brand-tagline {
       font-size: 0.85rem;
-      color: #999;
+      color: #cccccc;
       letter-spacing: 0.3px;
     }
   }
 
   /* ==========================================================================
-    CONTACT
-   ========================================================================== */
+     CONTACT
+     ========================================================================== */
 
   .footer-col {
-    h4 {
+    h3 {
       font-size: 1rem;
-      color: #ffffff;
+      color: var(--white);
       margin-bottom: 1.1rem;
       text-transform: uppercase;
       letter-spacing: 1.2px;
@@ -92,7 +92,7 @@
         left: 0;
         width: 30px;
         height: 2px;
-        background-color: #d2242a;
+        background-color: var(--primary);
       }
     }
 
@@ -108,7 +108,7 @@
         &.schedule-item {
           margin-bottom: 0;
           strong {
-            color: #ffffff;
+            color: var(--white);
             display: block;
             font-size: 0.8rem;
             margin-bottom: 0.6rem;
@@ -129,14 +129,16 @@
             width: 16px;
             height: 16px;
             filter: brightness(0) saturate(100%) invert(20%) sepia(85%) saturate(4500%)
-              hue-rotate(345deg) brightness(90%) contrast(95%);
+              hue-rotate(345deg) brightness(100%) contrast(105%);
           }
           a {
             text-decoration: none;
             color: inherit;
             transition: color 0.3s ease;
-            &:hover {
-              color: #ffffff;
+            &:hover,
+            &:focus-visible {
+              color: var(--white);
+              outline: none;
             }
           }
         }
@@ -145,8 +147,8 @@
   }
 
   /* ==========================================================================
-    PRODUCTS
-   ========================================================================== */
+     PRODUCTS
+     ========================================================================== */
 
   .products-grid {
     display: grid;
@@ -154,26 +156,28 @@
     gap: 6px 25px;
 
     li a {
-      color: #b0b0b0;
+      color: #d1d1d1;
       text-decoration: none;
       font-size: 0.88rem;
       display: inline-block;
-      transition: all 0.3s ease;
-      &:hover {
-        color: #d2242a !important;
+      transition: var(--transition);
+      &:hover,
+      &:focus-visible {
+        color: var(--primary) !important;
         transform: translateX(5px);
+        outline: none;
       }
     }
   }
 
   /* ==========================================================================
-    SOCIAL MEDIA
-   ========================================================================== */
+     SOCIAL MEDIA
+     ========================================================================== */
 
   .social-wrapper {
     margin-top: 2rem;
     .social-label {
-      color: #ffffff;
+      color: var(--white);
       font-size: 0.75rem;
       font-weight: 700;
       margin-bottom: 12px;
@@ -187,21 +191,23 @@
         justify-content: center;
         width: 36px;
         height: 36px;
-        background: rgba(255, 255, 255, 0.05);
+        background: rgba(255, 255, 255, 0.1);
         border-radius: 4px;
         transition:
           background 0.3s ease,
           transform 0.3s ease;
-        &:hover {
-          background: #d2242a;
+        &:hover,
+        &:focus-visible {
+          background: var(--primary);
           transform: translateY(-2px);
+          outline: none;
           img {
             filter: brightness(0) invert(1);
           }
         }
         img {
           width: 16px;
-          filter: brightness(0) invert(0.6);
+          filter: brightness(0) invert(0.8);
           transition: filter 0.3s ease;
         }
       }
@@ -209,22 +215,22 @@
   }
 
   /* ==========================================================================
-    COPYRIGHT
-   ========================================================================== */
+     COPYRIGHT
+     ========================================================================== */
 
   .footer-bottom {
     padding: 15px 0;
     border-top: 1px solid rgba(255, 255, 255, 0.08);
     margin-top: 10px;
     p {
-      font-size: 0.6rem;
-      color: #666;
+      font-size: 0.65rem;
+      color: #a0a0a0;
     }
   }
 
   /* ==========================================================================
-    FOOTER COMPONENT STYLES (MEDIA QUERIES)
-   ========================================================================== */
+     FOOTER COMPONENT STYLES (MEDIA QUERIES)
+     ========================================================================== */
 
   @media (max-width: 992px) {
     .footer-main-grid {
@@ -262,7 +268,7 @@
       }
 
       .footer-col {
-        h4 {
+        h3 {
           margin-bottom: 0.8rem;
           &::after {
             left: 0;
