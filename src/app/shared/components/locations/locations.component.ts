@@ -23,7 +23,7 @@ interface Branch {
 })
 export class LocationsComponent implements OnInit {
   public safeMapUrl!: SafeResourceUrl;
-  public activeIndex: number = 0;
+  public activeIndex = 0;
 
   // Lista de sucursales
   public branches: Branch[] = [
