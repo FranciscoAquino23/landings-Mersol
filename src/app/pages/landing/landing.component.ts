@@ -2,10 +2,14 @@
       LANDING PAGE LOGIC 
    ========================================================================== */
 
-import { Component, AfterViewInit, OnDestroy, OnInit } from '@angular/core';
+import { Component, AfterViewInit, OnDestroy, OnInit, inject } from '@angular/core';
 import { CommonModule, ViewportScroller } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Subscription, map } from 'rxjs';
+
+// Importar utilidades
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 // Importar servicios
 import { SeoService } from '../../shared/services/seo.service';
@@ -44,7 +48,14 @@ import { LocationsComponent } from '../../shared/components/locations/locations.
 export class LandingComponent implements OnInit, AfterViewInit, OnDestroy {
   private fragmentSub: Subscription | undefined;
 
-  // Constructor principal
+  private breakpointObserver = inject(BreakpointObserver);
+
+  // Detectar dispositivo actual (Desktop / Mobile)
+  public isMobile = toSignal(
+    this.breakpointObserver.observe([Breakpoints.Handset]).pipe(map((result) => result.matches)),
+    { initialValue: false },
+  );
+
   constructor(
     private route: ActivatedRoute,
     private viewportScroller: ViewportScroller,
@@ -76,8 +87,7 @@ export class LandingComponent implements OnInit, AfterViewInit, OnDestroy {
     // Esquema SEO
     this.seoService.setMetaTags({
       title: 'Austromex | Soluciones en abrasivos',
-      description:
-        'Expertos en equipos de oxicorte, soldadura y gases industriales. Conoce nuestras soluciones industriales en el Sureste de México.',
+      description: 'Expertos en equipos de oxicorte, soldadura y gases industriales.',
       image: 'assets/landing/mersol-preview.webp',
       url: 'https://mersolsureste.com.mx',
       schema: organizationSchema,

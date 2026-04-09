@@ -7,51 +7,63 @@
   <app-hero></app-hero>
 </header>
 
-<main>
-  <!-- PRODUCTS -->
-  <section id="productos" class="section-padding" aria-label="Nuestros Productos">
-    <div class="container">
-      <app-category-carousel></app-category-carousel>
-    </div>
-  </section>
+@defer (on viewport; on idle) {
+  <main>
+    <!-- PRODUCTS -->
+    <section id="productos" class="section-padding" aria-label="Nuestros Productos">
+      <div class="container">
+        <app-category-carousel></app-category-carousel>
+      </div>
+    </section>
 
-  <!-- BANNERS -->
-  <section class="promo-wrapper" aria-label="Promociones destacadas">
-    <div class="container">
-      <app-banner></app-banner>
-    </div>
-  </section>
+    <!-- BANNERS -->
+    <section class="promo-wrapper" aria-label="Promociones destacadas">
+      <div class="container">
+        <app-banner></app-banner>
+      </div>
+    </section>
 
-  <!-- INFO -->
-  <section id="nosotros" class="section-padding" aria-labelledby="nosotros-title">
-    <app-info></app-info>
-  </section>
+    <!-- INFO -->
+    @defer (on viewport) {
+      <section id="nosotros" class="section-padding" aria-labelledby="nosotros-title">
+        <app-info></app-info>
+      </section>
 
-  <!-- FEATURES -->
-  <section id="beneficios" class="section-padding" aria-label="Nuestros Beneficios">
-    <app-features></app-features>
-  </section>
+      <!-- FEATURES -->
+      <section id="beneficios" class="section-padding" aria-label="Nuestros Beneficios">
+        <app-features></app-features>
+      </section>
+    } @placeholder {
+      <div style="min-height: 400px"></div>
+    }
 
-  <!-- TESTIMONIALS -->
-  <section id="testimonios" class="section-padding" aria-label="Testimonios de Clientes">
-    <app-testimonials></app-testimonials>
-  </section>
+    <!-- TESTIMONIALS -->
+    @defer (on viewport; on timer(1s)) {
+      <section id="testimonios" class="section-padding" aria-label="Testimonios de Clientes">
+        <app-testimonials></app-testimonials>
+      </section>
 
-  <!-- FAQ -->
-  <section id="faq" class="section-padding" aria-label="Preguntas Frecuentes">
-    <app-faq></app-faq>
-  </section>
+      <!-- FAQ -->
+      <section id="faq" class="section-padding" aria-label="Preguntas Frecuentes">
+        <app-faq></app-faq>
+      </section>
 
-  <!-- LOCATIONS -->
-  <section id="sucursales" class="section-padding" aria-label="Nuestras Sucursales y Cobertura">
-    <app-locations></app-locations>
-  </section>
+      <!-- LOCATIONS -->
+      <section id="sucursales" class="section-padding" aria-label="Nuestras Sucursales y Cobertura">
+        <app-locations></app-locations>
+      </section>
 
-  <!-- CONTACT -->
-  <section id="contacto" class="section-padding" aria-label="Formulario de Contacto">
-    <app-contact-form></app-contact-form>
-  </section>
+      <!-- CONTACT -->
+      <section id="contacto" class="section-padding" aria-label="Formulario de Contacto">
+        <app-contact-form></app-contact-form>
+      </section>
 
-  <!-- CTA -->
-  <app-cta></app-cta>
-</main>
+      <!-- CTA -->
+      <app-cta></app-cta>
+    } @placeholder {
+      <div style="min-height: 500px"></div>
+    }
+  </main>
+} @placeholder {
+  <div style="min-height: 50vh; background-color: transparent"></div>
+}

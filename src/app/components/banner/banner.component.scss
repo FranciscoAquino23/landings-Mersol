@@ -40,6 +40,7 @@
   .marquee-track {
     display: flex;
     width: max-content;
+    will-change: transform;
   }
 
   &.top .marquee-track {
@@ -106,7 +107,7 @@
   background-color: #ffffff;
   z-index: 5;
   outline: none;
-  max-height: 70vh;
+  max-height: 120vh;
 
   &:focus-within {
     outline: none;
@@ -152,7 +153,7 @@
 
 .promo-img {
   width: 100%;
-  height: 100%;
+  height: auto;
   display: block;
   object-fit: contain;
   object-position: center;
@@ -166,23 +167,40 @@
 @media (max-width: 768px) {
   .full-width-banner-container {
     width: 100vw !important;
-    position: relative;
-    left: 50%;
-    right: 50%;
     margin-left: -50vw !important;
     margin-right: -50vw !important;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
   }
 
   .promo-bar {
     padding: 8px 0;
+    justify-content: center;
+
+    .marquee-track {
+      animation: none !important;
+      width: 100%;
+      justify-content: center;
+      transform: none !important;
+    }
+
+    .marquee-content {
+      width: 100%;
+      justify-content: center;
+      padding: 0;
+
+      .promo-text:not(:first-child) {
+        display: none;
+      }
+
+      &.duplicate {
+        display: none !important;
+      }
+    }
 
     .promo-text {
-      font-size: 0.95rem;
+      font-size: 0.7rem;
       letter-spacing: 2px;
-      padding: 0 30px;
+      padding: 0;
+      text-align: center;
     }
 
     .promo-icon {
@@ -190,19 +208,11 @@
       height: 18px;
       margin-right: 8px;
     }
-
-    &.top .marquee-track {
-      animation: marquee-top 12s linear infinite;
-    }
-    &.bottom .marquee-track {
-      animation: marquee-bottom 18s linear infinite;
-    }
   }
 
   .promo-img-wrapper {
     width: 100%;
     height: auto;
-    aspect-ratio: auto;
     display: block;
   }
 

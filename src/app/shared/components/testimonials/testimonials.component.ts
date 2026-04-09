@@ -11,6 +11,8 @@ import {
   Inject,
   ChangeDetectorRef,
   HostListener,
+  ChangeDetectionStrategy,
+  inject,
 } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 
@@ -28,8 +30,12 @@ interface Testimonial {
   imports: [CommonModule],
   templateUrl: './testimonials.component.html',
   styleUrl: './testimonials.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TestimonialsComponent implements OnInit, OnDestroy, AfterViewInit {
+  private cdr = inject(ChangeDetectorRef);
+  private platformId = inject(PLATFORM_ID);
+
   currentIndex = 2;
   isTransitioning = true;
   private isAnimating = false;
@@ -86,10 +92,7 @@ export class TestimonialsComponent implements OnInit, OnDestroy, AfterViewInit {
 
   displayTestimonials: Testimonial[] = [];
 
-  constructor(
-    @Inject(PLATFORM_ID) private platformId: object,
-    private cdr: ChangeDetectorRef,
-  ) {
+  constructor() {
     this.isBrowser = isPlatformBrowser(this.platformId);
   }
 
@@ -125,7 +128,7 @@ export class TestimonialsComponent implements OnInit, OnDestroy, AfterViewInit {
       // Actualizar estado
       if (this.isMobile !== isMobileNow) {
         this.isMobile = isMobileNow;
-        this.cdr.detectChanges();
+        this.cdr.markForCheck();
       }
     }
   }
@@ -147,7 +150,6 @@ export class TestimonialsComponent implements OnInit, OnDestroy, AfterViewInit {
     if (len === 0) return;
     const firstTwo = this.testimonials.slice(0, 2);
     const lastTwo = this.testimonials.slice(len - 2);
-
     this.displayTestimonials = [...lastTwo, ...this.testimonials, ...firstTwo];
   }
 
@@ -169,10 +171,11 @@ export class TestimonialsComponent implements OnInit, OnDestroy, AfterViewInit {
     this.isAnimating = true;
     this.isTransitioning = true;
     this.currentIndex = target;
-    this.cdr.detectChanges();
+    this.cdr.markForCheck();
 
     setTimeout(() => {
       if (this.isAnimating) this.onTransitionEnd();
+      this.cdr.markForCheck();
     }, 750);
   }
 
@@ -185,19 +188,19 @@ export class TestimonialsComponent implements OnInit, OnDestroy, AfterViewInit {
     } else if (this.currentIndex <= 1) {
       this.handleJump(total - 3);
     }
-
     this.startAutoPlay();
+    this.cdr.markForCheck();
   }
 
   // Manejar animación de movimiento
   private handleJump(targetIndex: number): void {
     this.isTransitioning = false;
     this.currentIndex = targetIndex;
-    this.cdr.detectChanges();
+    this.cdr.markForCheck();
 
     setTimeout(() => {
       this.isTransitioning = true;
-      this.cdr.detectChanges();
+      this.cdr.markForCheck();
     }, 50);
   }
 
@@ -213,6 +216,7 @@ export class TestimonialsComponent implements OnInit, OnDestroy, AfterViewInit {
       this.stopAutoPlay();
       this.autoPlayInterval = setInterval(() => {
         this.next();
+        this.cdr.markForCheck();
       }, 5000);
     }
   }

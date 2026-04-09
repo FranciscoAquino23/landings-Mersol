@@ -2,8 +2,8 @@
    HERO COMPONENT LOGIC
    ========================================================================== */
 
-import { Component, Input, OnInit, signal } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, Input, OnInit, signal, ChangeDetectionStrategy } from '@angular/core';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 
 // Importar SeoService para tracking de eventos
 import { SeoService } from '../../shared/services/seo.service';
@@ -11,15 +11,18 @@ import { SeoService } from '../../shared/services/seo.service';
 @Component({
   selector: 'app-hero',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, NgOptimizedImage],
   templateUrl: './hero.component.html',
   styleUrl: './hero.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeroComponent implements OnInit {
   @Input() title =
     'SOLUCIONES <br> <span class="text-outline">INDUSTRIALES</span> <br> <span class="text-red">ALTA CALIDAD</span>';
   @Input() subtitle = 'Expertos en soldadura y abrasivos para el sureste mexicano.';
-  @Input() backgroundImage = 'assets/brand/banner.svg';
+
+  @Input() desktopImage = 'assets/brand/banner-desktop.webp';
+  @Input() mobileImage = 'assets/brand/banner-mobile.webp';
 
   @Input() primaryCtaText = 'VER CATÁLOGO';
   @Input() secondaryCtaText = 'CONTACTO';
@@ -68,10 +71,5 @@ export class HeroComponent implements OnInit {
       'https://wa.me/529939805654?text=Hola%20Mersol!%20Vengo%20de%20su%20página%20web.%20Me%20interesa%20obtener%20información%20acerca%20de%20los%20productos%20de%20Austromex.';
 
     window.open(whatsappUrl, '_blank');
-  }
-
-  // Permitir banner dinámico
-  get heroBgStyle(): string {
-    return `url('${this.backgroundImage}')`;
   }
 }

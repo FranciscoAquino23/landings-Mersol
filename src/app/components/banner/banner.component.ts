@@ -1,8 +1,18 @@
 /* ==========================================================================
       BANNER COMPONENT LOGIC
-      ========================================================================== */
+   ========================================================================== */
 
-import { Component, OnInit, OnDestroy, signal, HostListener, computed } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  signal,
+  HostListener,
+  computed,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  inject,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -11,8 +21,11 @@ import { CommonModule } from '@angular/common';
   imports: [CommonModule],
   templateUrl: './banner.component.html',
   styleUrl: './banner.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BannerComponent implements OnInit, OnDestroy {
+  private cdr = inject(ChangeDetectorRef);
+
   public currentIndex = signal(0);
   private autoPlayInterval: any;
   // Duración 7 segundos para cada banner
@@ -42,13 +55,13 @@ export class BannerComponent implements OnInit, OnDestroy {
   // Lista de texto de promoción (TOP)
   public promoTextsList = computed(() => {
     const baseText = `Promociones de ${this.currentMonth()}`;
-    return Array(3).fill(baseText);
+    return Array(6).fill(baseText);
   });
 
   // Lista de texto promoción (BOTTOM)
   public brandTextsList = computed(() => {
     const baseText = `DISTRIBUIDOR AUTORIZADO AUSTROMEX`;
-    return Array(3).fill(baseText);
+    return Array(6).fill(baseText);
   });
 
   // Información de los banners
@@ -90,18 +103,16 @@ export class BannerComponent implements OnInit, OnDestroy {
 
   // Verificar tamaño de la pantalla actual (Desktop / Mobile)
   private checkBreakpoint(): void {
-    this.isMobile.set(window.innerWidth <= 768);
-  }
-
-  // Obtener banner correcto de acuerdo al dispositivo (Desktop / Mobile)
-  public getActiveImage(promo: any): string {
-    return this.isMobile() ? promo.imgMobile : promo.imgDesktop;
+    const mobileState = window.innerWidth <= 768;
+    if (this.isMobile() !== mobileState) {
+      this.isMobile.set(mobileState);
+      this.cdr.markForCheck();
+    }
   }
 
   // Recorrer automáticamente lista de banners
   public startAutoPlay(): void {
     this.stopAutoPlay();
-
     if (this.promociones.length > 1) {
       this.autoPlayInterval = setInterval(() => {
         this.nextSlide();
@@ -121,5 +132,6 @@ export class BannerComponent implements OnInit, OnDestroy {
   public nextSlide(): void {
     const next = (this.currentIndex() + 1) % this.promociones.length;
     this.currentIndex.set(next);
+    this.cdr.markForCheck();
   }
 }

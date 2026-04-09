@@ -10,6 +10,9 @@ import {
   OnDestroy,
   signal,
   computed,
+  ChangeDetectorRef,
+  inject,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -27,9 +30,11 @@ interface Category {
   imports: [CommonModule],
   templateUrl: './category.component.html',
   styleUrl: './category.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CategoryCarouselComponent implements AfterViewInit, OnDestroy {
   @ViewChild('carouselTrack') carouselTrack!: ElementRef<HTMLElement>;
+  private cdr = inject(ChangeDetectorRef);
 
   private autoPlayInterval: any;
   private restartTimeout: any;
@@ -133,9 +138,7 @@ export class CategoryCarouselComponent implements AfterViewInit, OnDestroy {
   // Limpiar el componente actual
   ngOnDestroy(): void {
     this.stopAutoPlay();
-    if (this.restartTimeout) {
-      clearTimeout(this.restartTimeout);
-    }
+    if (this.restartTimeout) clearTimeout(this.restartTimeout);
   }
 
   // Botón avanzar
@@ -156,9 +159,7 @@ export class CategoryCarouselComponent implements AfterViewInit, OnDestroy {
     const card = track.querySelector('.category-card') as HTMLElement;
     if (!card) return;
 
-    if (isManual) {
-      this.stopAutoPlay();
-    }
+    if (isManual) this.stopAutoPlay();
 
     const maxIndex = this.displayCategories().length - this.CARDS_TO_SHOW;
     this.isAnimating = true;
@@ -169,16 +170,13 @@ export class CategoryCarouselComponent implements AfterViewInit, OnDestroy {
       this.currentIndex = 0;
       this.updateCarouselPosition();
       void track.offsetWidth;
-
       track.classList.remove('no-transition');
       this.currentIndex = 1;
     } else if (this.currentIndex < 0) {
       track.classList.add('no-transition');
       this.currentIndex = maxIndex;
       this.updateCarouselPosition();
-
       void track.offsetWidth;
-
       track.classList.remove('no-transition');
       this.currentIndex = maxIndex - 1;
     }
@@ -186,12 +184,16 @@ export class CategoryCarouselComponent implements AfterViewInit, OnDestroy {
     // Ejecutar el movimiento fluido
     this.updateCarouselPosition();
 
-    // Sincronizar estado de animación
+    // Notificar cambio en la animación
+    this.cdr.markForCheck();
+
     setTimeout(() => {
       this.isAnimating = false;
       if (isManual) {
         this.restartAutoPlayWithDelay();
       }
+      // Volvemos a notificar cuando termina la animación
+      this.cdr.markForCheck();
     }, 600);
   }
 
@@ -203,14 +205,16 @@ export class CategoryCarouselComponent implements AfterViewInit, OnDestroy {
 
     const cardWidth = card.getBoundingClientRect().width;
     const amountToMove = this.currentIndex * (cardWidth + this.GAP);
-
     trackElement.style.transform = `translateX(-${amountToMove}px)`;
   }
 
   // Reiniciar movimiento automático (Usuario manual)
   private restartAutoPlayWithDelay(): void {
     if (this.restartTimeout) clearTimeout(this.restartTimeout);
-    this.restartTimeout = setTimeout(() => this.startAutoPlay(), this.RESTART_DELAY);
+    this.restartTimeout = setTimeout(() => {
+      this.startAutoPlay();
+      this.cdr.markForCheck();
+    }, this.RESTART_DELAY);
   }
 
   // Iniciar movimiento automático

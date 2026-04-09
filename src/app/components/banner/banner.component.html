@@ -5,31 +5,20 @@
 <section class="full-width-banner-container">
   @if (currentMonth()) {
     <!-- TOP PROMO BAR -->
-    <div class="promo-bar top" role="marquee" aria-live="off">
+    <div class="promo-bar top" role="marquee">
       <div class="marquee-track">
         <div class="marquee-content">
           @for (text of promoTextsList(); track $index) {
             <span class="promo-text">
-              <img
-                src="assets/brand/icons/tag.svg"
-                alt="icon"
-                class="promo-icon"
-                aria-hidden="true"
-              />
+              <img src="assets/brand/icons/tag.svg" alt="" class="promo-icon" aria-hidden="true" />
               {{ text }}
             </span>
           }
         </div>
-
-        <div class="marquee-content" aria-hidden="true">
+        <div class="marquee-content duplicate" aria-hidden="true">
           @for (text of promoTextsList(); track $index) {
             <span class="promo-text">
-              <img
-                src="assets/brand/icons/tag.svg"
-                alt="icon"
-                class="promo-icon"
-                aria-hidden="true"
-              />
+              <img src="assets/brand/icons/tag.svg" alt="" class="promo-icon" aria-hidden="true" />
               {{ text }}
             </span>
           }
@@ -44,32 +33,19 @@
       class="promo-viewport"
       role="region"
       aria-roledescription="carousel"
-      aria-label="Promociones destacadas de Mersol Sureste"
+      aria-label="Promociones destacadas"
       (mouseenter)="stopAutoPlay()"
       (mouseleave)="startAutoPlay()"
-      (focusin)="stopAutoPlay()"
-      (focusout)="startAutoPlay()"
     >
-      <div
-        class="promo-track"
-        [style.transform]="'translateX(-' + currentIndex() * 100 + '%)'"
-        aria-live="polite"
-      >
+      <div class="promo-track" [style.transform]="'translateX(-' + currentIndex() * 100 + '%)'">
         @for (promo of promociones; track promo.id; let i = $index) {
           <div
             class="promo-slide"
             role="group"
             aria-roledescription="slide"
-            [aria-label]="i + 1 + ' de ' + promociones.length"
             [attr.aria-hidden]="i !== currentIndex()"
           >
-            <a
-              [href]="promo.link"
-              class="promo-link"
-              [target]="promo.link.startsWith('http') ? '_blank' : '_self'"
-              rel="noopener noreferrer"
-              [attr.tabindex]="i === currentIndex() ? '0' : '-1'"
-            >
+            <a [href]="promo.link" class="promo-link" rel="noopener noreferrer">
               <div class="promo-img-wrapper">
                 <picture>
                   <source media="(max-width: 768px)" [srcset]="promo.imgMobile" />
@@ -92,31 +68,20 @@
 
   <!-- BOTTOM PROMO BAR -->
   @if (currentMonth()) {
-    <div class="promo-bar bottom" role="marquee" aria-live="off">
+    <div class="promo-bar bottom" role="marquee">
       <div class="marquee-track">
         <div class="marquee-content">
           @for (text of brandTextsList(); track $index) {
             <span class="promo-text">
-              <img
-                src="assets/brand/icons/star.svg"
-                alt="icon"
-                class="promo-icon"
-                aria-hidden="true"
-              />
+              <img src="assets/brand/icons/star.svg" alt="" class="promo-icon" aria-hidden="true" />
               {{ text }}
             </span>
           }
         </div>
-
-        <div class="marquee-content" aria-hidden="true">
+        <div class="marquee-content duplicate" aria-hidden="true">
           @for (text of brandTextsList(); track $index) {
             <span class="promo-text">
-              <img
-                src="assets/brand/icons/star.svg"
-                alt="icon"
-                class="promo-icon"
-                aria-hidden="true"
-              />
+              <img src="assets/brand/icons/star.svg" alt="" class="promo-icon" aria-hidden="true" />
               {{ text }}
             </span>
           }

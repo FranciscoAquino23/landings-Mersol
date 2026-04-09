@@ -1,5 +1,5 @@
 /* ==========================================================================
-     INFO COMPONENT LOGIC
+      INFO COMPONENT LOGIC
    ========================================================================== */
 
 import {
@@ -11,6 +11,7 @@ import {
   ViewChild,
   OnDestroy,
   ChangeDetectorRef,
+  inject,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -42,9 +43,12 @@ interface Certificacion {
 export class InfoComponent implements AfterViewInit, OnDestroy {
   @ViewChild('statsSection') statsSection!: ElementRef;
 
+  private cdr = inject(ChangeDetectorRef);
+
   private observer: IntersectionObserver | null = null;
   private animationInterval: any;
   private hasAnimated = false;
+
   public readonly subtitle = signal('Liderazgo y Respaldo Regional');
   public readonly sectionTitle = signal('Trayectoria de Excelencia');
   public readonly mainDescription = signal(`
@@ -88,8 +92,6 @@ export class InfoComponent implements AfterViewInit, OnDestroy {
     },
   ]);
 
-  constructor(private cdr: ChangeDetectorRef) {}
-
   // Iniciar observador para reconocer cuando el usuario accede a la sección
   ngAfterViewInit(): void {
     this.setupIntersectionObserver();
@@ -115,13 +117,11 @@ export class InfoComponent implements AfterViewInit, OnDestroy {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           this.animateStats();
-        } else {
-          // Reiniciar KPI'S si el usuario hace scroll
-          if (entry.boundingClientRect.top > 0) {
-            this.resetStats();
-          }
+        } else if (entry.boundingClientRect.top > 0) {
+          this.resetStats();
         }
       });
+      this.cdr.markForCheck();
     }, options);
 
     if (this.statsSection) {
