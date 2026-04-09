@@ -20,7 +20,7 @@ interface FeatureItem {
   styleUrl: './features.component.scss',
 })
 export class FeaturesComponent {
-  readonly ICON_PATH = 'assets/brand/icons/';
+  readonly ICON_PATH = 'assets/brand/shared/icons/';
 
   // Información de las primeras features
   readonly mainFeatures: FeatureItem[] = [

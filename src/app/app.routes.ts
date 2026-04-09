@@ -9,7 +9,7 @@ export const routes: Routes = [
     // Ruta principal (Landing Page)
     path: '',
     loadComponent: () =>
-      import('./pages/landing/landing.component').then((m) => m.LandingComponent),
+      import('./pages/landing/landing-austromex.component').then((m) => m.LandingComponent),
 
     data: {
       title: 'Austromex | Soluciones en Soldadura y Abrasivos',
@@ -22,7 +22,7 @@ export const routes: Routes = [
     // Ruta de prueba
     path: 'landing-demo',
     loadComponent: () =>
-      import('./pages/landing/landing.component').then((m) => m.LandingComponent),
+      import('./pages/landing/landing-austromex.component').then((m) => m.LandingComponent),
 
     data: {
       title: 'Landing Demo | Mersol Sureste',

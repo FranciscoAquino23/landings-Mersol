@@ -10,7 +10,7 @@
         <div class="brand-partnership">
           <a [routerLink]="['/']" class="logo-link" aria-label="Ir al inicio - Mersol Sureste">
             <img
-              src="assets/brand/MERSOL-white.svg"
+              src="assets/brand/shared/logos/MERSOL-white.svg"
               alt="Mersol Sureste"
               class="mersol-logo"
               width="120"
@@ -18,7 +18,12 @@
           </a>
           <div class="brand-separator" aria-hidden="true"></div>
           <a [routerLink]="['/']" class="logo-link" aria-label="Ir al inicio - Austromex">
-            <img src="assets/brand/AUSTROMEX.svg" alt="Austromex" class="main-logo" width="140" />
+            <img
+              src="assets/brand/austromex/logos-austromex/AUSTROMEX.svg"
+              alt="Austromex"
+              class="main-logo"
+              width="140"
+            />
           </a>
         </div>
         <p class="brand-tagline">Tu socio experto en herramientas industriales</p>
@@ -37,11 +42,11 @@
             </div>
           </li>
           <li class="icon-inline">
-            <img src="assets/brand/socials/phone.svg" alt="" width="18" class="icon-red" />
+            <img src="assets/brand/shared/socials/phone.svg" alt="" width="18" class="icon-red" />
             <a [href]="'tel:' + contactInfo.phone">{{ contactInfo.phone }}</a>
           </li>
           <li class="icon-inline">
-            <img src="assets/brand/socials/mail.svg" alt="" width="18" class="icon-red" />
+            <img src="assets/brand/shared/socials/mail.svg" alt="" width="18" class="icon-red" />
             <a [href]="'mailto:' + contactInfo.email">{{ contactInfo.email }}</a>
           </li>
         </ul>
@@ -51,7 +56,7 @@
             @for (social of socialNetworks; track social.name) {
               <a [href]="social.url" target="_blank" rel="noopener" [aria-label]="social.name">
                 <img
-                  [src]="'assets/brand/socials/' + social.name.toLowerCase() + '.svg'"
+                  [src]="'assets/brand/shared/socials/' + social.name.toLowerCase() + '.svg'"
                   [alt]="social.name"
                   width="24"
                 />

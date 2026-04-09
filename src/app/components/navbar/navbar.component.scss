@@ -64,12 +64,12 @@
         background-color: var(--primary);
 
         &.icon-phone {
-          mask-image: url('../../../assets/brand/socials/phone.svg');
-          -webkit-mask-image: url('../../../assets/brand/socials/phone.svg');
+          mask-image: url('../../../assets/brand/shared/socials/phone.svg');
+          -webkit-mask-image: url('../../../assets/brand/shared/socials/phone.svg');
         }
         &.icon-mail {
-          mask-image: url('../../../assets/brand/socials/mail.svg');
-          -webkit-mask-image: url('../../../assets/brand/socials/mail.svg');
+          mask-image: url('../../../assets/brand/shared/socials/mail.svg');
+          -webkit-mask-image: url('../../../assets/brand/shared/socials/mail.svg');
         }
       }
 
@@ -393,12 +393,12 @@
           background-color: var(--white);
 
           &.icon-phone {
-            mask-image: url('../../../assets/brand/socials/phone.svg');
-            -webkit-mask-image: url('../../../assets/brand/socials/phone.svg');
+            mask-image: url('../../../assets/brand/shared/socials/phone.svg');
+            -webkit-mask-image: url('../../../assets/brand/shared/socials/phone.svg');
           }
           &.icon-mail {
-            mask-image: url('../../../assets/brand/socials/mail.svg');
-            -webkit-mask-image: url('../../../assets/brand/socials/mail.svg');
+            mask-image: url('../../../assets/brand/shared/socials/mail.svg');
+            -webkit-mask-image: url('../../../assets/brand/shared/socials/mail.svg');
           }
         }
       }

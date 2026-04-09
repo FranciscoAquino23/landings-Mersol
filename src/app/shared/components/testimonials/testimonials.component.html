@@ -61,14 +61,22 @@
                   <!-- ICON & RATING -->
                   <div class="card-header-info">
                     <div class="profile-mark">
-                      <img src="assets/brand/icons/profile.svg" alt="Profile" class="profile-svg" />
+                      <img
+                        src="assets/brand/shared/icons/profile.svg"
+                        alt="Profile"
+                        class="profile-svg"
+                      />
                     </div>
                     <div
                       class="rating-stars"
                       [attr.aria-label]="'Calificación de ' + item.rating + ' estrellas'"
                     >
                       @for (star of getStars(item.rating); track $index) {
-                        <img src="assets/brand/icons/star.svg" alt="Estrella" class="star-svg" />
+                        <img
+                          src="assets/brand/shared/icons/star.svg"
+                          alt="Estrella"
+                          class="star-svg"
+                        />
                       }
                     </div>
                   </div>

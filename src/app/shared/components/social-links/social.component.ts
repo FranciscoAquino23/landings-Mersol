@@ -18,32 +18,32 @@ export class SocialComponent {
     {
       name: 'WhatsApp',
       url: 'https://wa.me/529939805654',
-      icon: 'assets/brand/socials/whatsapp.svg',
+      icon: 'assets/brand/shared/socials/whatsapp.svg',
     },
     {
       name: 'Facebook',
       url: 'https://www.facebook.com/MersolSuresteOficial',
-      icon: 'assets/brand/socials/facebook.svg',
+      icon: 'assets/brand/shared/socials/facebook.svg',
     },
     {
       name: 'Instagram',
       url: 'https://www.instagram.com/mersolsureste/',
-      icon: 'assets/brand/socials/instagram.svg',
+      icon: 'assets/brand/shared/socials/instagram.svg',
     },
     {
       name: 'TikTok',
       url: 'https://www.tiktok.com/@mersol.sureste',
-      icon: 'assets/brand/socials/tiktok.svg',
+      icon: 'assets/brand/shared/socials/tiktok.svg',
     },
     {
       name: 'YouTube',
       url: 'https://www.youtube.com/@mersolsureste4375',
-      icon: 'assets/brand/socials/youtube.svg',
+      icon: 'assets/brand/shared/socials/youtube.svg',
     },
     {
       name: 'LinkedIn',
       url: 'https://www.linkedin.com/company/mersolsureste/posts/?feedView=all',
-      icon: 'assets/brand/socials/linkedin.svg',
+      icon: 'assets/brand/shared/socials/linkedin.svg',
     },
   ]);
 

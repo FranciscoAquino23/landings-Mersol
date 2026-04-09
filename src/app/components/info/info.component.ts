@@ -76,19 +76,19 @@ export class InfoComponent implements AfterViewInit, OnDestroy {
       nombre: 'oSa Alemania',
       subtitulo: 'Seguridad Abrasiva',
       desc: 'Garantiza que cada herramienta es fabricada bajo estándares de seguridad, con trazabilidad total y pruebas de resistencia extremas.',
-      icon: 'assets/brand/icons/award.svg',
+      icon: 'assets/brand/shared/icons/award.svg',
     },
     {
       nombre: 'ISO 9001',
       subtitulo: 'Gestión de Calidad',
       desc: 'Certifica un sistema enfocado en la excelencia operativa y la mejora continua para entregar productos consistentes de alta calidad.',
-      icon: 'assets/brand/icons/award.svg',
+      icon: 'assets/brand/shared/icons/award.svg',
     },
     {
       nombre: 'ISO 45001',
       subtitulo: 'Salud y Seguridad',
       desc: 'Valida un entorno laboral seguro que previene riesgos laborales, protegiendo la integridad de todos nuestros colaboradores.',
-      icon: 'assets/brand/icons/award.svg',
+      icon: 'assets/brand/shared/icons/award.svg',
     },
   ]);
 

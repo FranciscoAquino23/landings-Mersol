@@ -21,8 +21,8 @@ export class HeroComponent implements OnInit {
     'SOLUCIONES <br> <span class="text-outline">INDUSTRIALES</span> <br> <span class="text-red">ALTA CALIDAD</span>';
   @Input() subtitle = 'Expertos en soldadura y abrasivos para el sureste mexicano.';
 
-  @Input() desktopImage = 'assets/brand/banner-desktop.webp';
-  @Input() mobileImage = 'assets/brand/banner-mobile.webp';
+  @Input() desktopImage = 'assets/brand/austromex/logos-austromex/banner-desktop.webp';
+  @Input() mobileImage = 'assets/brand/austromex/logos-austromex/banner-mobile.webp';
 
   @Input() primaryCtaText = 'VER CATÁLOGO';
   @Input() secondaryCtaText = 'CONTACTO';

@@ -19,7 +19,7 @@ import { HeroComponent } from '../../components/hero/hero.component';
 import { BannerComponent } from '../../components/banner/banner.component';
 import { InfoComponent } from '../../components/info/info.component';
 import { CategoryCarouselComponent } from '../../components/categories/category.component';
-import { FeaturesComponent } from '../../components/features/features.component';
+import { FeaturesComponent } from '../../shared/components/features/features.component';
 import { ContactFormComponent } from '../../shared/components/contact-form/form.component';
 import { FaqComponent } from '../../shared/components/faq/faq.component';
 import { TestimonialsComponent } from '../../shared/components/testimonials/testimonials.component';
@@ -42,8 +42,8 @@ import { LocationsComponent } from '../../shared/components/locations/locations.
     CtaComponent,
     LocationsComponent,
   ],
-  templateUrl: './landing.component.html',
-  styleUrl: './landing.component.scss',
+  templateUrl: './landing-austromex.component.html',
+  styleUrl: './landing-austromex.component.scss',
 })
 export class LandingComponent implements OnInit, AfterViewInit, OnDestroy {
   private fragmentSub: Subscription | undefined;
