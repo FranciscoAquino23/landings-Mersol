@@ -8,17 +8,18 @@ import {
   withInMemoryScrolling,
   withEnabledBlockingInitialNavigation,
 } from '@angular/router';
+// 1. Importar proveedor de HTTP
+import { provideHttpClient } from '@angular/common/http';
 import { routes } from './app.routes';
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    // 2. Registrar proveedor de HTTP
+    provideHttpClient(),
     provideRouter(
       routes,
-      // Configurar desplazamiento para manejar anclas dinámicas
       withInMemoryScrolling({
-        // Permitir desplazamiento dentro de la pagina
         anchorScrolling: 'enabled',
-        // permitir restaurar la posición de desplazamiento al volver a una ruta anterior
         scrollPositionRestoration: 'top',
       }),
       withEnabledBlockingInitialNavigation(),
