@@ -33,11 +33,8 @@
     <!-- CERTIFICATIONS -->
     <div class="certifications-detailed-section">
       <div class="cert-section-header">
-        <h3>Seguridad y Calidad Avalada Internacionalmente</h3>
-        <p class="single-line-text">
-          Nuestras operaciones y productos cumplen con las normativas globales más exigentes del
-          sector industrial.
-        </p>
+        <h3>{{ certSectionTitle() }}</h3>
+        <p class="single-line-text">{{ certSectionDesc() }}</p>
       </div>
 
       <div class="cert-detailed-grid">
@@ -45,7 +42,7 @@
           <article class="cert-detail-card">
             <div class="cert-icon-wrapper">
               <img
-                src="assets/brand/shared/icons/award.svg"
+                [src]="cert.icon"
                 [alt]="cert.nombre"
                 class="cert-icon-red"
                 loading="lazy"
@@ -67,8 +64,8 @@
     <!-- QUOTE -->
     <div class="nosotros-quote-clean">
       <blockquote class="quote-text">
-        <p>"Tu éxito es el nuestro"</p>
-        <cite>— Grupo Austromex & Mersol Sureste</cite>
+        <p>{{ quote() }}</p>
+        <cite>{{ quoteAuthor() }}</cite>
       </blockquote>
     </div>
   </div>

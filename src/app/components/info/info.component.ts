@@ -12,10 +12,11 @@ import {
   OnDestroy,
   ChangeDetectorRef,
   inject,
+  Input,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { LandingInfoConfig } from '../../shared/models/landing-config.interface';
 
-// Interfaz para la estructura de cada KPI
+// Estructura de los KPI'S
 interface Stat {
   currentValue: number;
   endValue: number;
@@ -24,7 +25,7 @@ interface Stat {
   highlight: boolean;
 }
 
-// Interfaz para la estructura de cada certificación
+// Estructura de las certificaciones
 interface Certificacion {
   nombre: string;
   subtitulo: string;
@@ -35,7 +36,7 @@ interface Certificacion {
 @Component({
   selector: 'app-info',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './info.component.html',
   styleUrl: './info.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -43,20 +44,26 @@ interface Certificacion {
 export class InfoComponent implements AfterViewInit, OnDestroy {
   @ViewChild('statsSection') statsSection!: ElementRef;
 
+  // Registrar ubicación del usuario y mostrar animaciones
   private cdr = inject(ChangeDetectorRef);
-
   private observer: IntersectionObserver | null = null;
   private animationInterval: any;
   private hasAnimated = false;
 
+  // Configurar valores por defecto (Austromex)
+  // (header / descripción / KPI'S)
   public readonly subtitle = signal('Liderazgo y Respaldo Regional');
   public readonly sectionTitle = signal('Trayectoria de Excelencia');
-  public readonly mainDescription = signal(`
-    Nuestra alianza estratégica con Grupo Austromex nos permite elevar la productividad de tu industria 
-    mediante soluciones técnicas certificadas y un soporte técnico especializado.
-  `);
+  public readonly mainDescription = signal(
+    'Nuestra alianza estratégica con Grupo Austromex nos permite elevar la productividad de tu industria mediante soluciones técnicas certificadas y un soporte técnico especializado.',
+  );
+  public readonly certSectionTitle = signal('Seguridad y Calidad Avalada Internacionalmente');
+  public readonly certSectionDesc = signal(
+    'Nuestras operaciones y productos cumplen con las normativas globales más exigentes del sector industrial.',
+  );
+  public readonly quote = signal('"Tu éxito es el nuestro"');
+  public readonly quoteAuthor = signal('— Grupo Austromex & Mersol Sureste');
 
-  // KPI'S
   public readonly stats = signal<Stat[]>([
     { currentValue: 0, endValue: 60, suffix: '+', label: 'Años de Liderazgo', highlight: true },
     { currentValue: 0, endValue: 18, suffix: '+', label: 'Presencia Mersol', highlight: false },
@@ -70,7 +77,7 @@ export class InfoComponent implements AfterViewInit, OnDestroy {
     { currentValue: 0, endValue: 7, suffix: '', label: 'Sucursales Regionales', highlight: true },
   ]);
 
-  // Certificaciones
+  // Información de las certificaciones
   public readonly certificaciones = signal<Certificacion[]>([
     {
       nombre: 'oSa Alemania',
@@ -92,7 +99,23 @@ export class InfoComponent implements AfterViewInit, OnDestroy {
     },
   ]);
 
-  // Iniciar observador para reconocer cuando el usuario accede a la sección
+  // Recibir información sobre la sección de "Nosotros" para cada landing
+  @Input() set infoConfig(config: LandingInfoConfig | undefined) {
+    if (config == null) return;
+
+    this.subtitle.set(config.subtitle);
+    this.sectionTitle.set(config.sectionTitle);
+    this.mainDescription.set(config.mainDescription);
+    this.stats.set(config.stats.map((s) => ({ ...s, currentValue: 0 })));
+    this.certificaciones.set(config.certificaciones);
+
+    if (config.certSectionTitle) this.certSectionTitle.set(config.certSectionTitle);
+    if (config.certSectionDesc) this.certSectionDesc.set(config.certSectionDesc);
+    if (config.quote) this.quote.set(config.quote);
+    if (config.quoteAuthor) this.quoteAuthor.set(config.quoteAuthor);
+  }
+
+  // Iniciar animaciones (UI/UX)
   ngAfterViewInit(): void {
     this.setupIntersectionObserver();
   }
@@ -106,23 +129,23 @@ export class InfoComponent implements AfterViewInit, OnDestroy {
   // Configurar lógica de observación (Desktop / Mobile)
   private setupIntersectionObserver() {
     const isMobile = window.innerWidth <= 768;
-
-    const options = {
-      root: null,
-      rootMargin: isMobile ? '0px 0px -50px 0px' : '0px',
-      threshold: isMobile ? 0.1 : [0.01, 0.1],
-    };
-
-    this.observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          this.animateStats();
-        } else if (entry.boundingClientRect.top > 0) {
-          this.resetStats();
-        }
-      });
-      this.cdr.markForCheck();
-    }, options);
+    this.observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            this.animateStats();
+          } else if (entry.boundingClientRect.top > 0) {
+            this.resetStats();
+          }
+        });
+        this.cdr.markForCheck();
+      },
+      {
+        root: null,
+        rootMargin: isMobile ? '0px 0px -50px 0px' : '0px',
+        threshold: isMobile ? 0.1 : [0.01, 0.1],
+      },
+    );
 
     if (this.statsSection) {
       this.observer.observe(this.statsSection.nativeElement);
@@ -144,38 +167,27 @@ export class InfoComponent implements AfterViewInit, OnDestroy {
     this.hasAnimated = true;
     this.clearAnimation();
 
-    const duration = 2000;
-    const fps = 60;
-    const totalFrames = (duration / 1000) * fps;
+    const totalFrames = (2000 / 1000) * 60;
     let frame = 0;
 
     this.animationInterval = setInterval(() => {
       frame++;
       const progress = this.easeOutQuad(frame / totalFrames);
-
-      const nextStats = this.stats().map((stat) => ({
-        ...stat,
-        currentValue: Math.floor(stat.endValue * progress),
-      }));
-
-      this.stats.set(nextStats);
+      this.stats.set(
+        this.stats().map((s) => ({ ...s, currentValue: Math.floor(s.endValue * progress) })),
+      );
       this.cdr.markForCheck();
 
       if (frame >= totalFrames) {
         this.finishAnimation();
       }
-    }, 1000 / fps);
+    }, 1000 / 60);
   }
 
   // Finalizar animación con valores exactos
   private finishAnimation() {
     this.clearAnimation();
-    this.stats.set(
-      this.stats().map((stat) => ({
-        ...stat,
-        currentValue: stat.endValue,
-      })),
-    );
+    this.stats.set(this.stats().map((s) => ({ ...s, currentValue: s.endValue })));
     this.cdr.markForCheck();
   }
 
