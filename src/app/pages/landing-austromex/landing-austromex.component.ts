@@ -98,7 +98,7 @@ export class LandingComponent implements OnInit, AfterViewInit, OnDestroy {
       description: 'Expertos en equipos de oxicorte, soldadura y gases industriales.',
       ogImage: 'assets/brand/austromex/mersol-preview.webp',
       canonicalUrl: 'https://mersolsureste.com.mx',
-      pageTitle: 'Mersol | Abrasivos Austromex',
+      pageTitle: 'Mersol | Austromex',
       faviconPath: 'assets/brand/austromex/logos-austromex/favicon.png',
     },
 

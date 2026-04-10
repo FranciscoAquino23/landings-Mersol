@@ -99,7 +99,7 @@ export class LandingDeWALTComponent implements OnInit, AfterViewInit, OnDestroy 
         'Distribuidor autorizado DeWALT en el sureste mexicano. Taladros, sierras, herramientas eléctricas y accesorios profesionales con respaldo técnico.',
       ogImage: 'assets/landing/landing-dewalt/dewalt-preview.webp',
       canonicalUrl: 'https://mersolsureste.com.mx/dewalt',
-      pageTitle: 'Mersol | Herramientas DeWALT',
+      pageTitle: 'Mersol | DeWALT',
       faviconPath: 'assets/brand/dewalt/logos-dewalt/DEWALT.ico',
     },
 
