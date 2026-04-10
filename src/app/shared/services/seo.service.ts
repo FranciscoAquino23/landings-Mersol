@@ -5,13 +5,15 @@
 import { Injectable, inject, Inject } from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser';
 import { DOCUMENT } from '@angular/common';
+import { LandingBusiness } from '../models/landing-config.interface';
 
 export interface SeoConfig {
   title: string;
   description: string;
   image?: string;
   url?: string;
-  schema?: any;
+  schema?: Record<string, unknown>;
+  pageTitle?: string;
 }
 
 @Injectable({
@@ -26,7 +28,7 @@ export class SeoService {
   // COnfigurar SEO - OpenGraph y  Twitter Cards
   setMetaTags(config: SeoConfig): void {
     // Título de la página
-    this.titleService.setTitle(config.title);
+    this.titleService.setTitle(config.pageTitle ?? config.title);
     // Descripción (Meta)
     this.metaService.updateTag({ name: 'description', content: config.description });
     // OpenGraph
@@ -37,8 +39,8 @@ export class SeoService {
     // Validar url de las redes sociales
     if (config.url) {
       this.metaService.updateTag({ property: 'og:url', content: config.url });
+      this.updateCanonicalUrl(config.url);
     }
-
     if (config.image) {
       this.metaService.updateTag({ property: 'og:image', content: config.image });
     }
@@ -48,18 +50,99 @@ export class SeoService {
     this.metaService.updateTag({ name: 'twitter:title', content: config.title });
     this.metaService.updateTag({ name: 'twitter:description', content: config.description });
 
-    // URL canónico
-    if (config.url) {
-      this.updateCanonicalUrl(config.url);
-    }
-
-    // Esquema de datos (JSON-LD)
     if (config.schema) {
       this.setJsonLd(config.schema);
     }
   }
 
-  // Actualizar o generar link
+  // Generar objeto (JSON_LD) para cada landing
+  buildOrganizationSchema(business: LandingBusiness): Record<string, unknown> {
+    const schema: Record<string, unknown> = {
+      '@context': 'https://schema.org',
+      '@type': 'Organization',
+      name: business.name,
+      url: business.website,
+      logo: business.logo,
+      contactPoint: {
+        '@type': 'ContactPoint',
+        telephone: business.phone,
+        contactType: 'sales',
+        areaServed: 'MX',
+        availableLanguage: 'Spanish',
+      },
+    };
+
+    if (business.alternateName) {
+      schema['alternateName'] = business.alternateName;
+    }
+    if (business.sameAs?.length) {
+      schema['sameAs'] = business.sameAs;
+    }
+
+    return schema;
+  }
+
+  // Capturar parámetros UTM de la URL
+  captureUtms(): Record<string, string> | null {
+    if (typeof window === 'undefined') return null;
+
+    const urlParams = new URLSearchParams(window.location.search);
+    if (!urlParams.has('utm_source')) return this.getStoredUtms();
+
+    const utms: Record<string, string> = {
+      source: urlParams.get('utm_source') ?? '',
+      medium: urlParams.get('utm_medium') ?? '',
+      campaign: urlParams.get('utm_campaign') ?? '',
+      term: urlParams.get('utm_term') ?? '',
+      content: urlParams.get('utm_content') ?? '',
+      timestamp: new Date().toISOString(),
+    };
+
+    sessionStorage.setItem('user_utms', JSON.stringify(utms));
+    return utms;
+  }
+
+  // Recuperar UTMs almacenados
+  getStoredUtms(): Record<string, string> | null {
+    if (typeof window === 'undefined') return null;
+    const stored = sessionStorage.getItem('user_utms');
+    return stored ? JSON.parse(stored) : null;
+  }
+
+  // Registrar eventos
+  trackEvent(eventName: string, data?: Record<string, unknown>): void {
+    if (typeof window !== 'undefined' && (window as any).gtag) {
+      (window as any).gtag('event', eventName, data);
+    }
+  }
+
+  // Actualizar favicon
+  setFavicon(path: string): void {
+    this.setLinkTag({ rel: 'icon', href: path, type: this.resolveFaviconType(path) });
+    this.setLinkTag({ rel: 'apple-touch-icon', href: path, sizes: '180x180' });
+  }
+
+  // Actualizar link de cada landing
+  private setLinkTag(attrs: { rel: string; href: string; type?: string; sizes?: string }): void {
+    let link = this.dom.querySelector<HTMLLinkElement>(`link[rel='${attrs.rel}']`);
+    if (!link) {
+      link = this.dom.createElement('link');
+      link.setAttribute('rel', attrs.rel);
+      this.dom.head.appendChild(link);
+    }
+    link.setAttribute('href', attrs.href);
+    if (attrs.type) link.setAttribute('type', attrs.type);
+    if (attrs.sizes) link.setAttribute('sizes', attrs.sizes);
+  }
+
+  // Modificar el formato del archivo del favicon
+  private resolveFaviconType(path: string): string {
+    if (path.endsWith('.svg')) return 'image/svg+xml';
+    if (path.endsWith('.png')) return 'image/png';
+    return 'image/x-icon';
+  }
+
+  // Actualizar link canónico de cada landing
   private updateCanonicalUrl(url: string): void {
     let link: HTMLLinkElement | null = this.dom.querySelector("link[rel='canonical']");
     if (!link) {
@@ -70,54 +153,15 @@ export class SeoService {
     link.setAttribute('href', url);
   }
 
-  // Proporcionar datos estructurados JSON-LD)
-  private setJsonLd(schema: any): void {
+  // Gestionar estructura de datos (JSON-LD)
+  private setJsonLd(schema: Record<string, unknown>): void {
     let script = this.dom.getElementById('schema-jsonld') as HTMLScriptElement;
-    if (script) {
-      script.text = JSON.stringify(schema);
-    } else {
+    if (!script) {
       script = this.dom.createElement('script');
       script.id = 'schema-jsonld';
       script.type = 'application/ld+json';
-      script.text = JSON.stringify(schema);
       this.dom.head.appendChild(script);
     }
-  }
-
-  // Capturar parámetros de UTM
-  captureUtms(): any {
-    if (typeof window === 'undefined') return null;
-
-    const urlParams = new URLSearchParams(window.location.search);
-
-    // Guardar parámetros actuales
-    if (urlParams.has('utm_source')) {
-      const utms = {
-        source: urlParams.get('utm_source'),
-        medium: urlParams.get('utm_medium') || '',
-        campaign: urlParams.get('utm_campaign') || '',
-        term: urlParams.get('utm_term') || '',
-        content: urlParams.get('utm_content') || '',
-        timestamp: new Date().toISOString(),
-      };
-
-      sessionStorage.setItem('user_utms', JSON.stringify(utms));
-      return utms;
-    }
-
-    return this.getStoredUtms();
-  }
-
-  // Recuperar UTM almacenados
-  getStoredUtms(): any {
-    if (typeof window === 'undefined') return null;
-
-    const stored = sessionStorage.getItem('user_utms');
-    return stored ? JSON.parse(stored) : null;
-  }
-
-  // Mapa de eventos
-  trackEvent(eventName: string, data?: any): void {
-    console.log(`[Tracking Event]: ${eventName}`, data);
+    script.text = JSON.stringify(schema);
   }
 }
