@@ -13,10 +13,11 @@ import {
   ChangeDetectorRef,
   inject,
   ChangeDetectionStrategy,
+  Input,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { LandingCategory } from '../../shared/models/landing-config.interface';
 
-// Interfaz de las categorías de productos
+// Estructura de las categorías
 interface Category {
   title: string;
   image: string;
@@ -24,10 +25,86 @@ interface Category {
   link: string;
 }
 
+// Información de las categorías
+const DEFAULT_CATEGORIES: Category[] = [
+  {
+    title: 'ABRASIVOS SÓLIDOS',
+    image: 'assets/brand/austromex/categories-austromex/01.webp',
+    color: '#d2242a',
+    link: 'https://mersolsureste.com.mx/tienda?search=AUSTROMEX',
+  },
+  {
+    title: 'PRODUCTOS DE LIJA',
+    image: 'assets/brand/austromex/categories-austromex/02.webp',
+    color: '#d2242a',
+    link: 'https://mersolsureste.com.mx/tienda?search=AUSTROMEX',
+  },
+  {
+    title: 'PRODUCTOS DE FIBRA',
+    image: 'assets/brand/austromex/categories-austromex/03.webp',
+    color: '#d2242a',
+    link: 'https://mersolsureste.com.mx/tienda?search=AUSTROMEX',
+  },
+  {
+    title: 'PULIDO Y LIMPIEZA',
+    image: 'assets/brand/austromex/categories-austromex/04.webp',
+    color: '#d2242a',
+    link: 'https://mersolsureste.com.mx/tienda?search=AUSTROMEX',
+  },
+  {
+    title: 'ESTÉTICA AUTOMOTRIZ',
+    image: 'assets/brand/austromex/categories-austromex/05.webp',
+    color: '#d2242a',
+    link: 'https://mersolsureste.com.mx/tienda?search=AUSTROMEX',
+  },
+  {
+    title: 'CONSTRUCCIÓN',
+    image: 'assets/brand/austromex/categories-austromex/06.webp',
+    color: '#d2242a',
+    link: 'https://mersolsureste.com.mx/tienda?search=AUSTROMEX',
+  },
+  {
+    title: 'SUPERABRASIVOS',
+    image: 'assets/brand/austromex/categories-austromex/07.webp',
+    color: '#d2242a',
+    link: 'https://mersolsureste.com.mx/tienda?search=AUSTROMEX',
+  },
+  {
+    title: 'INDUSTRIA AUTOMOTRIZ',
+    image: 'assets/brand/austromex/categories-austromex/08.webp',
+    color: '#d2242a',
+    link: 'https://mersolsureste.com.mx/tienda?search=AUSTROMEX',
+  },
+  {
+    title: 'CEPILLOS DE ALAMBRE',
+    image: 'assets/brand/austromex/categories-austromex/09.webp',
+    color: '#d2242a',
+    link: 'https://mersolsureste.com.mx/tienda?search=AUSTROMEX',
+  },
+  {
+    title: 'HERRAMIENTAS',
+    image: 'assets/brand/austromex/categories-austromex/10.webp',
+    color: '#d2242a',
+    link: 'https://mersolsureste.com.mx/tienda?search=AUSTROMEX',
+  },
+  {
+    title: 'MÁQUINAS',
+    image: 'assets/brand/austromex/categories-austromex/11.webp',
+    color: '#d2242a',
+    link: 'https://mersolsureste.com.mx/tienda?search=AUSTROMEX',
+  },
+  {
+    title: 'ACCESORIOS',
+    image: 'assets/brand/austromex/categories-austromex/12.webp',
+    color: '#d2242a',
+    link: 'https://mersolsureste.com.mx/tienda?search=AUSTROMEX',
+  },
+];
+
 @Component({
   selector: 'app-category-carousel',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './category.component.html',
   styleUrl: './category.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -38,93 +115,31 @@ export class CategoryCarouselComponent implements AfterViewInit, OnDestroy {
 
   private autoPlayInterval: any;
   private restartTimeout: any;
-
-  // Tiempo entre cada movimiento del carrusel
+  // Controlar el tiempo del movimiento del carrusel
   private readonly INTERVAL_TIME = 4000;
-  //Tiempo entre cada movimiento del carrusel (Usuario manual)
   private readonly RESTART_DELAY = 2500;
   private isAnimating = false;
   private readonly GAP = 24;
   public currentIndex = 0;
+  // Controlar la cantidad de categorías mostradas en pantalla
   private readonly CARDS_TO_SHOW = 4;
 
-  // Información de las categorías de productos
-  private readonly _baseCategories = signal<Category[]>([
-    {
-      title: 'ABRASIVOS SÓLIDOS',
-      image: 'assets/brand/austromex/categories-austromex/01.webp',
-      color: '#d2242a',
-      link: 'https://mersolsureste.com.mx/tienda?search=AUSTROMEX',
-    },
-    {
-      title: 'PRODUCTOS DE LIJA',
-      image: 'assets/brand/austromex/categories-austromex/02.webp',
-      color: '#d2242a',
-      link: 'https://mersolsureste.com.mx/tienda?search=AUSTROMEX',
-    },
-    {
-      title: 'PRODUCTOS DE FIBRA',
-      image: 'assets/brand/austromex/categories-austromex/03.webp',
-      color: '#d2242a',
-      link: 'https://mersolsureste.com.mx/tienda?search=AUSTROMEX',
-    },
-    {
-      title: 'PULIDO Y LIMPIEZA',
-      image: 'assets/brand/austromex/categories-austromex/04.webp',
-      color: '#d2242a',
-      link: 'https://mersolsureste.com.mx/tienda?search=AUSTROMEX',
-    },
-    {
-      title: 'ESTÉTICA AUTOMOTRIZ',
-      image: 'assets/brand/austromex/categories-austromex/05.webp',
-      color: '#d2242a',
-      link: 'https://mersolsureste.com.mx/tienda?search=AUSTROMEX',
-    },
-    {
-      title: 'CONSTRUCCIÓN',
-      image: 'assets/brand/austromex/categories-austromex/06.webp',
-      color: '#d2242a',
-      link: 'https://mersolsureste.com.mx/tienda?search=AUSTROMEX',
-    },
-    {
-      title: 'SUPERABRASIVOS',
-      image: 'assets/brand/austromex/categories-austromex/07.webp',
-      color: '#d2242a',
-      link: 'https://mersolsureste.com.mx/tienda?search=AUSTROMEX',
-    },
-    {
-      title: 'INDUSTRIA AUTOMOTRIZ',
-      image: 'assets/brand/austromex/categories-austromex/08.webp',
-      color: '#d2242a',
-      link: 'https://mersolsureste.com.mx/tienda?search=AUSTROMEX',
-    },
-    {
-      title: 'CEPILLOS DE ALAMBRE',
-      image: 'assets/brand/austromex/categories-austromex/09.webp',
-      color: '#d2242a',
-      link: 'https://mersolsureste.com.mx/tienda?search=AUSTROMEX',
-    },
-    {
-      title: 'HERRAMIENTAS',
-      image: 'assets/brand/austromex/categories-austromex/10.webp',
-      color: '#d2242a',
-      link: 'https://mersolsureste.com.mx/tienda?search=AUSTROMEX',
-    },
-    {
-      title: 'MÁQUINAS',
-      image: 'assets/brand/austromex/categories-austromex/11.webp',
-      color: '#d2242a',
-      link: 'https://mersolsureste.com.mx/tienda?search=AUSTROMEX',
-    },
-    {
-      title: 'ACCESORIOS',
-      image: 'assets/brand/austromex/categories-austromex/12.webp',
-      color: '#d2242a',
-      link: 'https://mersolsureste.com.mx/tienda?search=AUSTROMEX',
-    },
-  ]);
+  private readonly _baseCategories = signal<Category[]>(DEFAULT_CATEGORIES);
 
-  // Duplicar categorías (Efecto loop infinito)
+  // Recibir la información de las categorías para cada landing
+  @Input() set categories(items: LandingCategory[] | undefined) {
+    if (items == null) return;
+    this._baseCategories.set(
+      items.map((c) => ({
+        title: c.title,
+        image: c.image,
+        link: c.link,
+        color: c.color ?? 'var(--primary)',
+      })),
+    );
+  }
+
+  // Mostrar las categorías
   public displayCategories = computed(() => [
     ...this._baseCategories(),
     ...this._baseCategories().slice(0, 4),
@@ -189,10 +204,7 @@ export class CategoryCarouselComponent implements AfterViewInit, OnDestroy {
 
     setTimeout(() => {
       this.isAnimating = false;
-      if (isManual) {
-        this.restartAutoPlayWithDelay();
-      }
-      // Volvemos a notificar cuando termina la animación
+      if (isManual) this.restartAutoPlayWithDelay();
       this.cdr.markForCheck();
     }, 600);
   }
@@ -202,10 +214,8 @@ export class CategoryCarouselComponent implements AfterViewInit, OnDestroy {
     const trackElement = this.carouselTrack.nativeElement;
     const card = trackElement.querySelector('.category-card') as HTMLElement;
     if (!card) return;
-
     const cardWidth = card.getBoundingClientRect().width;
-    const amountToMove = this.currentIndex * (cardWidth + this.GAP);
-    trackElement.style.transform = `translateX(-${amountToMove}px)`;
+    trackElement.style.transform = `translateX(-${this.currentIndex * (cardWidth + this.GAP)}px)`;
   }
 
   // Reiniciar movimiento automático (Usuario manual)
@@ -220,9 +230,7 @@ export class CategoryCarouselComponent implements AfterViewInit, OnDestroy {
   // Iniciar movimiento automático
   public startAutoPlay(): void {
     if (this.autoPlayInterval) return;
-    this.autoPlayInterval = setInterval(() => {
-      this.scroll(1, false);
-    }, this.INTERVAL_TIME);
+    this.autoPlayInterval = setInterval(() => this.scroll(1, false), this.INTERVAL_TIME);
   }
 
   // Detener movimiento automático
@@ -244,10 +252,7 @@ export class CategoryCarouselComponent implements AfterViewInit, OnDestroy {
   public onMouseEnter(): void {
     this.stopAutoPlay();
   }
-
   public onMouseLeave(): void {
-    if (!this.isAnimating) {
-      this.startAutoPlay();
-    }
+    if (!this.isAnimating) this.startAutoPlay();
   }
 }
