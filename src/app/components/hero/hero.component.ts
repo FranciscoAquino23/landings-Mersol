@@ -3,20 +3,22 @@
    ========================================================================== */
 
 import { Component, Input, OnInit, signal, ChangeDetectionStrategy } from '@angular/core';
-import { CommonModule, NgOptimizedImage } from '@angular/common';
+import { NgOptimizedImage } from '@angular/common';
 
 // Importar SeoService para tracking de eventos
 import { SeoService } from '../../shared/services/seo.service';
+import { LandingHeroStats } from '../../shared/models/landing-config.interface';
 
 @Component({
   selector: 'app-hero',
   standalone: true,
-  imports: [CommonModule, NgOptimizedImage],
+  imports: [NgOptimizedImage],
   templateUrl: './hero.component.html',
   styleUrl: './hero.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeroComponent implements OnInit {
+  // Recibir información de cada landing (header / banner / botones)
   @Input() title =
     'SOLUCIONES <br> <span class="text-outline">INDUSTRIALES</span> <br> <span class="text-red">ALTA CALIDAD</span>';
   @Input() subtitle = 'Expertos en soldadura y abrasivos para el sureste mexicano.';
@@ -27,23 +29,29 @@ export class HeroComponent implements OnInit {
   @Input() primaryCtaText = 'VER CATÁLOGO';
   @Input() secondaryCtaText = 'CONTACTO';
 
-  public isVisible = signal(false);
+  // Recibir información del catálogo (URL)
+  @Input() catalogUrl =
+    'https://austromex.com.mx/download/v/catalogos/CatalogoAustromex_2026_low.pdf';
 
-  // Información de la tarjeta de confianza
-  public stats = {
+  // Recibir información del mensaje (Whatsapp)
+  @Input() whatsappUrl =
+    'https://wa.me/529939805654?text=Hola%20Mersol!%20Vengo%20de%20su%20p%C3%A1gina%20web.%20Me%20interesa%20informaci%C3%B3n%20sobre%20sus%20productos.';
+
+  /** Tarjeta de confianza — cifra destacada en el Hero. */
+  @Input() stats: LandingHeroStats = {
     value: '+18',
     label: 'AÑOS DE EXPERIENCIA',
     description: 'Liderando el mercado industrial en el sureste.',
   };
+
+  public isVisible = signal(false);
 
   constructor(private seoService: SeoService) {}
 
   // Inicializar animación de entrada
   ngOnInit(): void {
     requestAnimationFrame(() => {
-      setTimeout(() => {
-        this.isVisible.set(true);
-      }, 100);
+      setTimeout(() => this.isVisible.set(true), 100);
     });
   }
 
@@ -53,10 +61,7 @@ export class HeroComponent implements OnInit {
       action: 'view_catalog',
       label: this.primaryCtaText,
     });
-
-    const catalogUrl =
-      'https://austromex.com.mx/download/v/catalogos/CatalogoAustromex_2026_low.pdf';
-    window.open(catalogUrl, '_blank');
+    window.open(this.catalogUrl, '_blank');
   }
 
   // Abrir WhatsApp y registrar evento
@@ -65,11 +70,6 @@ export class HeroComponent implements OnInit {
       action: 'contact_whatsapp',
       label: this.secondaryCtaText,
     });
-
-    // Mensaje personalizado
-    const whatsappUrl =
-      'https://wa.me/529939805654?text=Hola%20Mersol!%20Vengo%20de%20su%20página%20web.%20Me%20interesa%20obtener%20información%20acerca%20de%20los%20productos%20de%20Austromex.';
-
-    window.open(whatsappUrl, '_blank');
+    window.open(this.whatsappUrl, '_blank');
   }
 }
