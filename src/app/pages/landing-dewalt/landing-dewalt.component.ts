@@ -1,5 +1,5 @@
 /* ==========================================================================
-   LANDING AUSTROMEX STRUCTURE
+   LANDING DEWALT STRUCTURE
    ========================================================================== */
 
 import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
@@ -26,7 +26,7 @@ import { CtaComponent } from '../../shared/components/cta/cta.component';
 import { LocationsComponent } from '../../shared/components/locations/locations.component';
 
 @Component({
-  selector: 'app-landing',
+  selector: 'app-landing-dewalt',
   standalone: true,
   imports: [
     NavbarComponent,
@@ -42,40 +42,40 @@ import { LocationsComponent } from '../../shared/components/locations/locations.
     CtaComponent,
     LocationsComponent,
   ],
-  templateUrl: './landing-austromex.component.html',
-  styleUrl: './landing-austromex.component.scss',
+  templateUrl: './landing-dewalt.component.html',
+  styleUrl: './landing-dewalt.component.scss',
 })
-export class LandingComponent implements OnInit, AfterViewInit, OnDestroy {
+export class LandingDeWALTComponent implements OnInit, AfterViewInit, OnDestroy {
   private fragmentSub: Subscription | undefined;
 
   /* =========================================================================
-     CONFIGURACIÓN DE MARCA AUSTROMEX 
+     CONFIGURACIÓN DE MARCA DEWALT 
      ========================================================================= */
   protected config: LandingConfig = {
-    basePath: '/austromex',
+    basePath: '/dewalt',
 
     // Información Styles
     colors: {
-      primary: '#d2242a',
-      primaryHover: '#b11d22',
-      secondary: '#403b33',
+      primary: '#FFCD00',
+      primaryHover: '#E6B800',
+      secondary: '#272525',
     },
 
     // Información componente Hero
     hero: {
       title:
-        'SOLUCIONES <br> <span class="text-outline">INDUSTRIALES</span> <br> <span class="text-red">ALTA CALIDAD</span>',
-      subtitle: 'Expertos en soldadura y abrasivos para el sureste mexicano.',
-      desktopImage: 'assets/brand/austromex/logos-austromex/banner-desktop.webp',
-      mobileImage: 'assets/brand/austromex/logos-austromex/banner-mobile.webp',
+        'HERRAMIENTAS <br> <span class="text-outline">PROFESIONALES</span> <br> <span class="text-red">DEWALT</span>',
+      subtitle: 'Potencia y durabilidad para los profesionales del sureste mexicano.',
+      desktopImage: 'assets/landing/landing-dewalt/banner-desktop.webp',
+      mobileImage: 'assets/landing/landing-dewalt/banner-mobile.webp',
       primaryCtaText: 'VER CATÁLOGO',
       secondaryCtaText: 'CONTACTO',
-      catalogUrl: 'https://austromex.com.mx/download/v/catalogos/CatalogoAustromex_2026_low.pdf',
+      catalogUrl: 'https://latam.dewalt.global/catalogo',
       whatsappUrl:
-        'https://wa.me/529939805654?text=Hola%20Mersol!%20Vengo%20de%20su%20p%C3%A1gina%20web.%20Me%20interesa%20informaci%C3%B3n%20sobre%20sus%20productos.',
+        'https://wa.me/529939805654?text=Hola%20Mersol!%20Me%20interesa%20informaci%C3%B3n%20sobre%20productos%20DeWALT.',
       stats: {
         value: '+18',
-        label: 'AÑOS DE EXPERIENCIA',
+        label: 'AÑOS DE LIDERAZGO',
         description: 'Liderando el mercado industrial en el sureste.',
       },
     },
@@ -88,39 +88,32 @@ export class LandingComponent implements OnInit, AfterViewInit, OnDestroy {
       email: 'ventas@mersolsureste.com.mx',
       website: 'https://mersolsureste.com.mx',
       logo: 'https://mersolsureste.com.mx/assets/brand/MERSOL.svg',
-      brandLogoNavbar: 'assets/brand/austromex/logos-austromex/AUSTROMEX.svg',
+      brandLogoNavbar: 'assets/brand/dewalt/logos-dewalt/DEWALT.svg',
       sameAs: ['https://www.facebook.com/mersolsureste', 'https://www.instagram.com/mersolsureste'],
     },
 
     // Información servicio SEO
     seo: {
-      title: 'Austromex | Soluciones en Soldadura y Abrasivos',
-      description: 'Expertos en equipos de oxicorte, soldadura y gases industriales.',
-      ogImage: 'assets/brand/austromex/mersol-preview.webp',
-      canonicalUrl: 'https://mersolsureste.com.mx',
-      pageTitle: 'Mersol | Abrasivos Austromex',
-      faviconPath: 'assets/brand/austromex/logos-austromex/favicon.png',
+      title: 'DeWALT en Mersol Sureste | Herramientas Profesionales',
+      description:
+        'Distribuidor autorizado DeWALT en el sureste mexicano. Taladros, sierras, herramientas eléctricas y accesorios profesionales con respaldo técnico.',
+      ogImage: 'assets/landing/landing-dewalt/dewalt-preview.webp',
+      canonicalUrl: 'https://mersolsureste.com.mx/dewalt',
+      pageTitle: 'Mersol | Herramientas DeWALT',
+      faviconPath: 'assets/brand/dewalt/logos-dewalt/DEWALT.ico',
     },
 
     // Información componente Banner
     banner: {
-      tagline: 'DISTRIBUIDOR AUTORIZADO AUSTROMEX',
+      tagline: 'DISTRIBUIDOR AUTORIZADO DEWALT',
       promos: [
         {
           id: 1,
-          titulo: 'Promo Austromex - Envío Gratis',
-          imgDesktop: 'assets/brand/austromex/promo-austromex/promoH1.webp',
-          imgMobile: 'assets/brand/austromex/promo-austromex/promoV1.webp',
-          link: 'https://mersolsureste.com.mx/tienda',
-          alt: 'Promoción envío gratis Austromex',
-        },
-        {
-          id: 2,
-          titulo: 'Nueva Colección Industrial',
-          imgDesktop: 'assets/brand/austromex/promo-austromex/promoH2.webp',
-          imgMobile: 'assets/brand/austromex/promo-austromex/promoV2.webp',
-          link: 'https://mersolsureste.com.mx/tienda',
-          alt: 'Nuevos productos industriales Mersol',
+          titulo: 'Herramientas DeWALT — Envío Gratis',
+          imgDesktop: 'assets/brand/dewalt/promo-dewalt/promoH1.webp',
+          imgMobile: 'assets/brand/dewalt/promo-dewalt/promoV1.webp',
+          link: 'https://www.dewalt.com.mx/es-mx',
+          alt: 'Herramientas DeWALT disponibles en Mersol Sureste',
         },
       ],
     },
@@ -128,84 +121,59 @@ export class LandingComponent implements OnInit, AfterViewInit, OnDestroy {
     // Información componente Category (Productos)
     categories: [
       {
-        title: 'ABRASIVOS SÓLIDOS',
-        image: 'assets/brand/austromex/categories-austromex/01.webp',
-        link: 'https://mersolsureste.com.mx/tienda?search=AUSTROMEX',
+        title: 'HERRAMIENTAS ELÉCTRICAS',
+        image: 'assets/brand/dewalt/categories-dewalt/01.webp',
+        link: 'https://www.dewalt.com.mx/es-mx/productos/herramientas-electricas',
       },
       {
-        title: 'PRODUCTOS DE LIJA',
-        image: 'assets/brand/austromex/categories-austromex/02.webp',
-        link: 'https://mersolsureste.com.mx/tienda?search=AUSTROMEX',
+        title: 'HERRAMIENTAS MANUALES',
+        image: 'assets/brand/dewalt/categories-dewalt/02.webp',
+        link: 'https://www.dewalt.com.mx/es-mx/productos/herramientas-manuales',
       },
       {
-        title: 'PRODUCTOS DE FIBRA',
-        image: 'assets/brand/austromex/categories-austromex/03.webp',
-        link: 'https://mersolsureste.com.mx/tienda?search=AUSTROMEX',
+        title: 'JARDINERÍA',
+        image: 'assets/brand/dewalt/categories-dewalt/03.webp',
+        link: 'https://www.dewalt.com.mx/es-mx/productos/jardineria',
       },
       {
-        title: 'PULIDO Y LIMPIEZA',
-        image: 'assets/brand/austromex/categories-austromex/04.webp',
-        link: 'https://mersolsureste.com.mx/tienda?search=AUSTROMEX',
+        title: 'ALMACENAMIENTO Y ORGANIZACIÓN',
+        image: 'assets/brand/dewalt/categories-dewalt/04.webp',
+        link: 'https://www.dewalt.com.mx/es-mx/productos/almacenamiento-y-organizacion',
       },
       {
-        title: 'ESTÉTICA AUTOMOTRIZ',
-        image: 'assets/brand/austromex/categories-austromex/05.webp',
-        link: 'https://mersolsureste.com.mx/tienda?search=AUSTROMEX',
+        title: 'ANCLAJES Y FIJACIONES',
+        image: 'assets/brand/dewalt/categories-dewalt/05.webp',
+        link: 'https://www.dewalt.com.mx/es-mx/productos/anclajes-y-fijaciones',
       },
       {
-        title: 'CONSTRUCCIÓN',
-        image: 'assets/brand/austromex/categories-austromex/06.webp',
-        link: 'https://mersolsureste.com.mx/tienda?search=AUSTROMEX',
+        title: 'EQUIPO DE SEGURIDAD PERSONAL',
+        image: 'assets/brand/dewalt/categories-dewalt/06.webp',
+        link: 'https://www.dewalt.com.mx/es-mx/productos/equipo-de-seguridad-personal',
       },
       {
-        title: 'SUPERABRASIVOS',
-        image: 'assets/brand/austromex/categories-austromex/07.webp',
-        link: 'https://mersolsureste.com.mx/tienda?search=AUSTROMEX',
-      },
-      {
-        title: 'INDUSTRIA AUTOMOTRIZ',
-        image: 'assets/brand/austromex/categories-austromex/08.webp',
-        link: 'https://mersolsureste.com.mx/tienda?search=AUSTROMEX',
-      },
-      {
-        title: 'CEPILLOS DE ALAMBRE',
-        image: 'assets/brand/austromex/categories-austromex/09.webp',
-        link: 'https://mersolsureste.com.mx/tienda?search=AUSTROMEX',
-      },
-      {
-        title: 'HERRAMIENTAS',
-        image: 'assets/brand/austromex/categories-austromex/10.webp',
-        link: 'https://mersolsureste.com.mx/tienda?search=AUSTROMEX',
-      },
-      {
-        title: 'MÁQUINAS',
-        image: 'assets/brand/austromex/categories-austromex/11.webp',
-        link: 'https://mersolsureste.com.mx/tienda?search=AUSTROMEX',
-      },
-      {
-        title: 'ACCESORIOS',
-        image: 'assets/brand/austromex/categories-austromex/12.webp',
-        link: 'https://mersolsureste.com.mx/tienda?search=AUSTROMEX',
+        title: 'SISTEMAS',
+        image: 'assets/brand/dewalt/categories-dewalt/07.webp',
+        link: 'https://www.dewalt.com.mx/es-mx/sistemas/herramientas-inalambricas',
       },
     ],
 
     // Información componente Info (Nosotros)
     info: {
-      subtitle: 'Liderazgo y Respaldo Regional',
-      sectionTitle: 'Trayectoria de Excelencia',
+      subtitle: 'Liderazgo y Confianza Global',
+      sectionTitle: 'Más de 70 Años de Innovación',
       mainDescription:
-        'Nuestra alianza estratégica con Grupo Austromex nos permite elevar la productividad de tu industria mediante soluciones técnicas certificadas y un soporte técnico especializado.',
+        'Nuestra alianza estratégica con DeWALT nos permite elevar la productividad de tu industria mediante soluciones técnicas certificadas y un soporte técnico especializado.',
       stats: [
-        { endValue: 60, suffix: '+', label: 'Años de Liderazgo', highlight: true },
+        { endValue: 100, suffix: '+', label: 'Años de Liderazgo', highlight: true },
         { endValue: 18, suffix: '+', label: 'Presencia Mersol', highlight: false },
-        { endValue: 2800, suffix: '+', label: 'Productos en Catálogo', highlight: false },
+        { endValue: 1000, suffix: '+', label: 'Productos en Catálogo', highlight: false },
         { endValue: 7, suffix: '', label: 'Sucursales Regionales', highlight: true },
       ],
       certificaciones: [
         {
-          nombre: 'oSa Alemania',
-          subtitulo: 'Seguridad Abrasiva',
-          desc: 'Garantiza que cada herramienta es fabricada bajo estándares de seguridad, con trazabilidad total y pruebas de resistencia extremas.',
+          nombre: 'Perfom & Protect',
+          subtitulo: 'Seguridad y Control',
+          desc: 'Certifica el diseño de todas las herramientas ofreciendo el máximo nivel de protección, sin sacrificar la potencia del equipo.',
           icon: 'assets/brand/shared/icons/award.svg',
         },
         {
@@ -215,62 +183,62 @@ export class LandingComponent implements OnInit, AfterViewInit, OnDestroy {
           icon: 'assets/brand/shared/icons/award.svg',
         },
         {
-          nombre: 'ISO 45001',
-          subtitulo: 'Salud y Seguridad',
-          desc: 'Valida un entorno laboral seguro que previene riesgos laborales, protegiendo la integridad de todos nuestros colaboradores.',
+          nombre: 'DEWALT Guarantee',
+          subtitulo: 'Garantía de 3 Años',
+          desc: 'Respaldo directo con garantía extendida en servicios y herramientas.',
           icon: 'assets/brand/shared/icons/award.svg',
         },
       ],
-      certSectionTitle: 'Seguridad y Calidad Avalada Internacionalmente',
+      certSectionTitle: 'Calidad y Seguridad Garantizada',
       certSectionDesc:
-        'Nuestras operaciones y productos cumplen con las normativas globales más exigentes del sector industrial.',
-      quote: '"Tu éxito es el nuestro"',
-      quoteAuthor: '— Grupo Austromex & Mersol Sureste',
+        'Cada herramienta DeWALT ha sido diseñada y probada bajo los estándares más exigentes de la industria global.',
+      quote: '"Diseñadas por y para profesionales"',
+      quoteAuthor: '— DeWALT & Mersol Sureste',
     },
 
     // Información componente Features
     features: {
       overline: 'VALOR AGREGADO',
-      title: '¿POR QUÉ ELEGIR<br />MERSOL SURESTE?',
+      title: '¿POR QUÉ ELEGIR<br />DEWALT EN MERSOL?',
       description:
-        'Soluciones integrales con el respaldo de las mejores marcas del mercado industrial.',
+        'Herramientas profesionales respaldadas por el distribuidor autorizado con mayor presencia en el sureste mexicano.',
       mainFeatures: [
         {
           icon: 'crosshairs.svg',
-          title: 'Tecnología de Punta',
-          desc: 'Herramientas y máquinas de calidad.',
+          title: 'Precisión Industrial',
+          desc: 'Equipos calibrados para exigencias de obra y taller profesional.',
         },
         {
           icon: 'cart.svg',
-          title: 'Logística Eficiente',
-          desc: 'Entregas garantizadas en todo el país.',
+          title: 'Envío Garantizado',
+          desc: 'Distribución express a toda la república con rastreo en tiempo real.',
         },
         {
           icon: 'user.svg',
-          title: 'Respaldo Total',
-          desc: 'Garantía y soporte técnico especializado.',
+          title: 'Servicio Técnico',
+          desc: 'Garantía directa DeWALT y soporte especializado en sitio.',
         },
         {
           icon: 'hammer.svg',
-          title: 'Asesoría Experta',
-          desc: 'Certificados para optimizar tus procesos.',
+          title: 'Asesoría Certificada',
+          desc: 'Especialistas certificados para seleccionar la herramienta correcta.',
         },
       ],
       pillarFeatures: [
         {
           icon: 'truck.svg',
-          title: 'Logística de Respuesta',
-          desc: 'Garantizamos stock y entregas eficientes.',
+          title: 'Logística Express',
+          desc: 'Stock disponible para entregas inmediatas en todo México.',
         },
         {
           icon: 'shield.svg',
-          title: 'Confianza Certificada',
-          desc: 'Nuestros procesos y productos están certificados.',
+          title: 'Garantía DeWALT',
+          desc: '3 años de garantía directa del fabricante en todas las herramientas.',
         },
         {
           icon: 'globe.svg',
-          title: 'Innovación Sustentable',
-          desc: 'Reducimos el impacto ambiental.',
+          title: 'Innovación Constante',
+          desc: 'Acceso a los últimos modelos y tecnologías DeWALT del mercado.',
         },
       ],
     },
@@ -279,51 +247,54 @@ export class LandingComponent implements OnInit, AfterViewInit, OnDestroy {
     faq: {
       items: [
         {
-          pregunta: '¿Qué es Mersol Sureste y qué tipo de soluciones ofrece?',
+          pregunta: '¿Mersol Sureste es distribuidor autorizado DeWALT?',
           respuesta:
-            'Empresa especializada en soluciones industriales, enfocada en soldadura, corte, herramientas, abrasivos y equipo de protección personal.',
+            'Sí, somos distribuidores autorizados DeWALT con más de 18 años de presencia en el sureste mexicano, garantizando productos 100% originales.',
         },
         {
-          pregunta: '¿En qué sectores industriales tiene experiencia Mersol Sureste?',
+          pregunta: '¿Qué líneas de productos DeWALT manejan?',
           respuesta:
-            'Atendemos sectores como metalmecánico, construcción, manufactura, mantenimiento industrial y energía.',
+            'Manejamos herramientas eléctricas, manuales, inalámbricas, equipo de seguridad personal, almacenamiento, anclajes, sistemas FLEXVOLT y accesorios.',
         },
         {
-          pregunta: '¿Los productos son originales y cuentan con garantía de fábrica?',
+          pregunta: '¿Los productos DeWALT tienen garantía de fábrica?',
           respuesta:
-            'Sí, todos nuestros productos son 100% originales y cuentan con garantía directa del fabricante.',
-        },
-        {
-          pregunta: '¿Manejan productos especializados o bajo pedido?',
-          respuesta:
-            'Sí, podemos conseguir equipos y consumibles especializados bajo pedido según tus necesidades.',
+            'Sí, todas las herramientas DeWALT cuentan con garantía directa de 3 años del fabricante. Aplicamos el programa "DeWALT Guarantee".',
         },
         {
           pregunta: '¿Realizan envíos a toda la República Mexicana?',
-          respuesta: 'Sí, realizamos envíos a todo México con opciones rápidas y seguras.',
-        },
-        {
-          pregunta: '¿Puedo recoger mi pedido en sucursal?',
-          respuesta: 'Sí, puedes recoger directamente en cualquiera de nuestras sucursales.',
-        },
-        {
-          pregunta: '¿Manejan precios especiales por volumen o mayoreo?',
           respuesta:
-            'Sí, ofrecemos precios preferenciales para compras por volumen y clientes recurrentes.',
+            'Sí, realizamos envíos a todo México. Contamos con 7 sucursales estratégicas para garantizar tiempos de entrega eficientes.',
         },
         {
-          pregunta: '¿Ofrecen crédito a empresas?',
-          respuesta: 'Sí, contamos con opciones de crédito sujetas a evaluación.',
-        },
-        {
-          pregunta: '¿Venden refacciones originales?',
+          pregunta: '¿Puedo recoger mi pedido en alguna sucursal?',
           respuesta:
-            'Sí, manejamos refacciones originales para asegurar el correcto funcionamiento de tus equipos.',
+            'Sí, puedes recoger en cualquiera de nuestras sucursales en Villahermosa, Veracruz, Mérida, Apodaca, Campeche, Paraíso y Tula.',
         },
         {
-          pregunta: '¿Atienden proyectos industriales o compras a gran escala?',
+          pregunta: '¿Manejan precios especiales para compras por volumen?',
           respuesta:
-            'Sí, brindamos atención especializada para proyectos industriales y compras de alto volumen.',
+            'Sí, ofrecemos precios preferenciales para contratistas, empresas y compras de alto volumen. Contáctanos para cotización personalizada.',
+        },
+        {
+          pregunta: '¿Ofrecen servicio técnico y reparación de herramientas DeWALT?',
+          respuesta:
+            'Sí, contamos con técnicos certificados por DeWALT para diagnóstico, mantenimiento y reparación de herramientas.',
+        },
+        {
+          pregunta: '¿Tienen disponibilidad de refacciones originales DeWALT?',
+          respuesta:
+            'Sí, manejamos refacciones originales DeWALT para asegurar el máximo rendimiento y durabilidad de tus herramientas.',
+        },
+        {
+          pregunta: '¿Ofrecen crédito o financiamiento para empresas?',
+          respuesta:
+            'Sí, contamos con opciones de crédito empresarial sujetas a evaluación. Contáctanos para conocer los requisitos.',
+        },
+        {
+          pregunta: '¿Atienden proyectos industriales o licitaciones?',
+          respuesta:
+            'Sí, brindamos atención especializada para proyectos industriales, licitaciones públicas y compras de alto volumen con soporte técnico incluido.',
         },
       ],
     },
@@ -331,56 +302,61 @@ export class LandingComponent implements OnInit, AfterViewInit, OnDestroy {
     // Información componente Testimonials
     testimonials: [
       {
-        quote: 'Excelente precios en gases y equipos de oxicorte, aquí encontré lo que buscaba',
-        author: 'Moises Santamaria',
+        quote:
+          'Excelente atención y productos originales DeWALT, encontré exactamente lo que necesitaba para mi obra',
+        author: 'Roberto Hernández',
+        location: 'Sucursal - Villahermosa',
+        rating: 5,
+      },
+      {
+        quote:
+          'Gran variedad de herramientas DeWALT y el mejor precio de la región, muy recomendable',
+        author: 'Ingeniería Constructora del Sureste',
+        location: 'Sucursal - Mérida',
+        rating: 5,
+      },
+      {
+        quote:
+          'El servicio técnico es de primera, resolvieron el problema de mi taladro el mismo día',
+        author: 'Luis Domínguez',
+        location: 'Sucursal - Veracruz',
+        rating: 5,
+      },
+      {
+        quote:
+          'Compro mis herramientas DeWALT aquí desde hace años, siempre con garantía y respaldo',
+        author: 'Contratista Independiente',
         location: 'Sucursal - Campeche',
-        rating: 5,
-      },
-      {
-        quote: 'Gran variedad tanto de marcas y productos, siempre encuentras lo que buscas',
-        author: 'Claudia Caraveo',
-        location: 'Sucursal - CEDIS Mérida',
-        rating: 5,
-      },
-      {
-        quote: 'Exelente para encontrar las refacciones y equipos',
-        author: 'Jose Reyes Lopez Jimenez',
-        location: 'Sucursal - Villahermosa',
-        rating: 4,
-      },
-      {
-        quote: 'Todo en materia de herramientas y seguridad industrial',
-        author: 'FREDY SPARX (SPARX)',
-        location: 'Sucursal - Villahermosa',
-        rating: 5,
-      },
-      {
-        quote: 'Una tienda grande especializada en herramientas industriales a un precio justo',
-        author: 'Carlos Arias',
-        location: 'Sucursal - Villahermosa',
         rating: 4,
       },
       {
         quote:
-          'Es una tienda especializada en insumos y herramientas para la industria, una excelente opción para las medianas y grandes empresas',
-        author: 'Carlos Cisneros',
-        location: 'Sucursal - Villahermosa',
+          'Envío rápido y producto bien empacado, el taladro percutor llegó en perfectas condiciones',
+        author: 'Maestro Carpintero',
+        location: 'Envío - Tabasco',
         rating: 5,
       },
       {
-        quote: 'Muy bien surtidos en materiales, herramientas y refacciones',
-        author: 'Jose Grethel Ramirez Alcazar',
-        location: 'Sucursal - Villahermosa',
+        quote: 'Asesoría profesional para elegir la sierra correcta para mi taller, muy satisfecho',
+        author: 'Taller Metalmecánico Garza',
+        location: 'Sucursal - Apodaca',
         rating: 5,
+      },
+      {
+        quote:
+          'Refacciones originales disponibles de inmediato, evitaron que mi equipo estuviera parado días',
+        author: 'Empresa Manufacturera',
+        location: 'Sucursal - Tula',
+        rating: 4,
       },
     ],
 
     // Información componente CTA (Call To Action)
     cta: {
-      title: '¿BUSCAS CALIDAD Y SEGURIDAD PARA LLEVAR TU PRODUCTIVIDAD AL SIGUIENTE NIVEL?',
+      title: '¿BUSCAS HERRAMIENTAS PROFESIONALES DEWALT PARA TU PROYECTO?',
       whatsappPhone: '529939805654',
       whatsappMessage:
-        'Hola Mersol! Vengo de su página Austromex. Me interesa obtener una asesoría industrial.',
+        'Hola Mersol! Vengo de su página DeWALT. Me interesa obtener una asesoría industrial.',
     },
 
     // Información componente Locations (Sucursales)
@@ -440,33 +416,27 @@ export class LandingComponent implements OnInit, AfterViewInit, OnDestroy {
     // Información componente ContactForm (Formulario)
     contactForm: {
       email: 'ventas@mersolsureste.com.mx',
-      id: 'landing-austromex',
+      id: 'landing-dewalt',
     },
 
     // Información componente Footer
     footer: {
-      brandLogoWhite: 'assets/brand/austromex/logos-austromex/AUSTROMEX.svg',
+      brandLogoWhite: 'assets/brand/dewalt/logos-dewalt/DEWALT.svg',
       contactInfo: {
         phone: '+52 993 980 5654',
         email: 'ventas@mersolsureste.com.mx',
         schedules: ['Lun a Vie 8:00 AM - 5:30 PM', 'Sáb 8:00 AM - 1:30 PM'],
       },
       productsCol1: [
-        { label: 'Abrasivos Sólidos', url: 'solidos' },
-        { label: 'Productos de Lija', url: 'lija' },
-        { label: 'Productos de Fibra', url: 'fibra' },
-        { label: 'Pulido y Limpieza', url: 'pulido' },
-        { label: 'Estética Automotriz', url: 'estetica' },
-        { label: 'Construcción', url: 'construccion' },
+        { label: 'Herramientas Eléctricas', url: 'electricas' },
+        { label: 'Herramientas Manuales', url: 'manuales' },
+        { label: 'Jardinería', url: 'jardineria' },
+        { label: 'Almacenamiento y Organización', url: 'organizacion' },
+        { label: 'Anclajes y Fijaciones', url: 'anclajes' },
+        { label: 'Equipo de Seguridad Personal', url: 'seguridad' },
+        { label: 'Sistemas', url: 'sistemas' },
       ],
-      productsCol2: [
-        { label: 'Superabrasivos', url: 'superabrasivos' },
-        { label: 'Industria Automotriz', url: 'rectificado' },
-        { label: 'Cepillos de Alambre', url: 'cepillos' },
-        { label: 'Herramientas', url: 'herramientas' },
-        { label: 'Máquinas', url: 'maquinas' },
-        { label: 'Accesorios', url: 'accesorios' },
-      ],
+      productsCol2: [],
       socialNetworks: [
         { name: 'Facebook', url: 'https://www.facebook.com/MersolSuresteOficial' },
         { name: 'Instagram', url: 'https://www.instagram.com/mersolsureste/' },
