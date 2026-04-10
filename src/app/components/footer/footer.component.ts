@@ -22,6 +22,9 @@ export class FooterComponent {
   public currentYear = new Date().getFullYear();
   public brandLogoWhite: string | undefined;
 
+  // Recibir información de la ruta base de la landing actual
+  @Input() basePath = '/';
+
   // Información contactos
   public contactInfo: LandingFooterContactInfo = {
     phone: '+52 993 980 5654',

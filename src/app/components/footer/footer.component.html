@@ -8,7 +8,7 @@
       <!-- LOGOS -->
       <div class="footer-col branding">
         <div class="brand-partnership">
-          <a [routerLink]="['/']" class="logo-link" aria-label="Ir al inicio - Mersol Sureste">
+          <a [routerLink]="[basePath]" class="logo-link" aria-label="Ir al inicio - Mersol Sureste">
             <img
               src="assets/brand/shared/logos/MERSOL-white.svg"
               alt="Mersol Sureste"
@@ -18,7 +18,7 @@
           </a>
           @if (brandLogoWhite) {
             <div class="brand-separator" aria-hidden="true"></div>
-            <a [routerLink]="['/']" class="logo-link" aria-label="Ir al inicio - Marca aliada">
+            <a [routerLink]="[basePath]" class="logo-link" aria-label="Ir al inicio - Marca aliada">
               <img
                 [src]="brandLogoWhite"
                 alt="Marca aliada"
@@ -75,7 +75,7 @@
         <ul class="products-grid">
           @for (item of allProducts; track item.label) {
             <li>
-              <a [routerLink]="['/']" [fragment]="'nuestros-productos'">
+              <a [routerLink]="[basePath]" [fragment]="'productos'">
                 {{ item.label }}
               </a>
             </li>
