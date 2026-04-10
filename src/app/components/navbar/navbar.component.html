@@ -11,13 +11,11 @@
           <div class="contact-icon-svg icon-phone"></div>
           <span>+52 993 980 5654</span>
         </a>
-
         <a href="mailto:ventas@mersolsureste.com.mx" class="contact-item">
           <div class="contact-icon-svg icon-mail"></div>
           <span>ventas@mersolsureste.com.mx</span>
         </a>
       </div>
-
       <div class="social-links-wrapper">
         <app-social-links></app-social-links>
       </div>
@@ -51,22 +49,21 @@
             class="logo-mersol"
           />
         </a>
-        <div class="brand-divider" aria-hidden="true"></div>
-        <a
-          href="#inicio"
-          (click)="scrollToAnchor('inicio'); $event.preventDefault()"
-          class="logo-link"
-          title="Ir a Inicio"
-        >
-          <img
-            src="assets/brand/austromex/logos-austromex/AUSTROMEX.svg"
-            alt="Logo Austromex"
-            class="logo-partner-img"
-          />
-        </a>
+
+        @if (brandLogo) {
+          <div class="brand-divider" aria-hidden="true"></div>
+          <a
+            href="#inicio"
+            (click)="scrollToAnchor('inicio'); $event.preventDefault()"
+            class="logo-link"
+            [title]="brandLogoAlt"
+          >
+            <img [src]="brandLogo" [alt]="brandLogoAlt" class="logo-partner-img" />
+          </a>
+        }
       </div>
 
-      <!-- COMPONENTS -->
+      <!-- NAV LINKS -->
       <ul class="nav-links" [class.active]="isMenuOpen">
         <li>
           <a href="#inicio" (click)="scrollToAnchor('inicio'); $event.preventDefault()">Inicio</a>
@@ -105,7 +102,7 @@
               Cotizar Ahora
             </a>
           </div>
-
+          <!-- CONTACT -->
           <div class="mobile-contact-info">
             <div class="divider"></div>
             <p>CONTÁCTANOS</p>
