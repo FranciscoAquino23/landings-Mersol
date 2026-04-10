@@ -12,13 +12,33 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   inject,
+  Input,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { LandingPromo } from '../../shared/models/landing-config.interface';
+
+const DEFAULT_PROMOS: LandingPromo[] = [
+  {
+    id: 1,
+    titulo: 'Promo Austromex - Envío Gratis',
+    imgDesktop: 'assets/brand/austromex/promo-austromex/promoH1.webp',
+    imgMobile: 'assets/brand/austromex/promo-austromex/promoV1.webp',
+    link: 'https://mersolsureste.com.mx/tienda',
+    alt: 'Promoción envío gratis Austromex',
+  },
+  {
+    id: 2,
+    titulo: 'Nueva Colección Industrial',
+    imgDesktop: 'assets/brand/austromex/promo-austromex/promoH2.webp',
+    imgMobile: 'assets/brand/austromex/promo-austromex/promoV2.webp',
+    link: 'https://mersolsureste.com.mx/tienda',
+    alt: 'Nuevos productos industriales Mersol',
+  },
+];
 
 @Component({
   selector: 'app-banner',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './banner.component.html',
   styleUrl: './banner.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -28,14 +48,33 @@ export class BannerComponent implements OnInit, OnDestroy {
 
   public currentIndex = signal(0);
   private autoPlayInterval: any;
-  // Duración 7 segundos para cada banner
+  // Indicar duración de cada banner (7 segundos)
   private readonly SLIDE_DURATION = 7000;
   // Detectar dispositivo (Desktop / Mobile)
   public isMobile = signal(false);
-  // Obtener mes actual
+
+  // Backing signals para inputs configurables
+  private readonly _promos = signal<LandingPromo[]>(DEFAULT_PROMOS);
+  private readonly _brandTagline = signal('DISTRIBUIDOR AUTORIZADO');
+
+  // Sobreescribir valor (tag superior) a nulo en caso de no recibir parámetros
+  @Input() set promos(value: LandingPromo[] | undefined) {
+    if (value != null) this._promos.set(value);
+  }
+
+  // Sobreescribir valor (tag inferior) a nulo en caso de no recibir parámetros
+  @Input() set brandTagline(value: string | undefined) {
+    if (value != null) this._brandTagline.set(value);
+  }
+
+  // Obtener los banners de promoción de cada landing
+  get promociones(): LandingPromo[] {
+    return this._promos();
+  }
+
+  // Obtener el mes actual de manera automática
   public currentMonth = computed(() => {
-    const date = new Date();
-    const monthsInSpanish = [
+    const months = [
       'Enero',
       'Febrero',
       'Marzo',
@@ -49,44 +88,21 @@ export class BannerComponent implements OnInit, OnDestroy {
       'Noviembre',
       'Diciembre',
     ];
-    return monthsInSpanish[date.getMonth()];
+    return months[new Date().getMonth()];
   });
 
   // Lista de texto de promoción (TOP)
   public promoTextsList = computed(() => {
-    const baseText = `Promociones de ${this.currentMonth()}`;
-    return Array(6).fill(baseText);
+    return Array(6).fill(`Promociones de ${this.currentMonth()}`);
   });
 
   // Lista de texto promoción (BOTTOM)
   public brandTextsList = computed(() => {
-    const baseText = `DISTRIBUIDOR AUTORIZADO AUSTROMEX`;
-    return Array(6).fill(baseText);
+    return Array(6).fill(this._brandTagline());
   });
 
-  // Información de los banners
-  public promociones = [
-    {
-      id: 1,
-      titulo: 'Promo Austromex - Envío Gratis',
-      imgDesktop: 'assets/brand/austromex/promo-austromex/promoH1.webp',
-      imgMobile: 'assets/brand/austromex/promo-austromex/promoV1.webp',
-      link: 'https://mersolsureste.com.mx/tienda',
-      alt: 'Promoción envío gratis Austromex',
-    },
-    {
-      id: 2,
-      titulo: 'Nueva Colección Industrial',
-      imgDesktop: 'assets/brand/austromex/promo-austromex/promoH2.webp',
-      imgMobile: 'assets/brand/austromex/promo-austromex/promoV2.webp',
-      link: 'https://mersolsureste.com.mx/tienda',
-      alt: 'Nuevos productos industriales Mersol',
-    },
-  ];
-
-  // Actualizar estado dependiendo del dispositivo (Desktop / Mobile)
-  @HostListener('window:resize', ['$event'])
-  onResize(event: Event) {
+  @HostListener('window:resize')
+  onResize() {
     this.checkBreakpoint();
   }
 
@@ -113,7 +129,7 @@ export class BannerComponent implements OnInit, OnDestroy {
   // Recorrer automáticamente lista de banners
   public startAutoPlay(): void {
     this.stopAutoPlay();
-    if (this.promociones.length > 1) {
+    if (this._promos().length > 1) {
       this.autoPlayInterval = setInterval(() => {
         this.nextSlide();
       }, this.SLIDE_DURATION);
@@ -130,7 +146,7 @@ export class BannerComponent implements OnInit, OnDestroy {
 
   // Lógica de transición automática
   public nextSlide(): void {
-    const next = (this.currentIndex() + 1) % this.promociones.length;
+    const next = (this.currentIndex() + 1) % this._promos().length;
     this.currentIndex.set(next);
     this.cdr.markForCheck();
   }
