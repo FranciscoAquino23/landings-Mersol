@@ -4,6 +4,7 @@
 
 <section
   class="cta-banner"
+  [style.backgroundColor]="bannerBgColor"
   role="complementary"
   aria-label="Llamada a la acción: Solicitar asesoría"
 >
@@ -11,24 +12,23 @@
     <div class="cta-wrapper">
       <!-- MESSAGE -->
       <div class="cta-content">
-        <h2 class="cta-title">
-          ¿BUSCAS CALIDAD Y SEGURIDAD PARA LLEVAR TU PRODUCTIVIDAD AL SIGUIENTE NIVEL?
-        </h2>
+        <h2 class="cta-title" [innerHTML]="title"></h2>
       </div>
 
       <!-- BUTTON (WHATSAPP) -->
       <div class="cta-action">
         <a
           [href]="whatsappUrl"
+          (click)="onContactClick($event)"
           target="_blank"
           rel="noopener noreferrer"
           class="cta-button"
+          [style.color]="buttonTextColor"
           aria-label="Contactar por WhatsApp para solicitar asesoría"
         >
           <span class="cta-icon">
-            <img src="assets/brand/shared/icons/redwhatsapp.svg" alt="" aria-hidden="true" />
+            <img [src]="whatsappIcon" alt="" aria-hidden="true" />
           </span>
-
           <span class="button-text">SOLICITAR ASESORÍA</span>
         </a>
       </div>
