@@ -6,10 +6,12 @@ import { Routes } from '@angular/router';
 
 export const routes: Routes = [
   {
-    // Ruta principal (Landing Page)
-    path: '',
+    // Landing Austromex
+    path: 'austromex',
     loadComponent: () =>
-      import('./pages/landing/landing-austromex.component').then((m) => m.LandingComponent),
+      import('./pages/landing-austromex/landing-austromex.component').then(
+        (m) => m.LandingComponent,
+      ),
 
     data: {
       title: 'Austromex | Soluciones en Soldadura y Abrasivos',
@@ -19,10 +21,26 @@ export const routes: Routes = [
   },
 
   {
+    // Landing DeWALT
+    path: 'dewalt',
+    loadComponent: () =>
+      import('./pages/landing-dewalt/landing-dewalt.component').then(
+        (m) => m.LandingDeWALTComponent,
+      ),
+    data: {
+      title: 'DeWALT en Mersol Sureste | Herramientas Profesionales',
+      description: 'Distribuidor autorizado DeWALT en el sureste mexicano.',
+      ogImage: 'assets/landing/landing-dewalt/dewalt-preview.webp',
+    },
+  },
+
+  {
     // Ruta de prueba
     path: 'landing-demo',
     loadComponent: () =>
-      import('./pages/landing/landing-austromex.component').then((m) => m.LandingComponent),
+      import('./pages/landing-austromex/landing-austromex.component').then(
+        (m) => m.LandingComponent,
+      ),
 
     data: {
       title: 'Landing Demo | Mersol Sureste',
@@ -31,10 +49,10 @@ export const routes: Routes = [
     },
   },
 
-  // Redireccionar cualquier ruta no definida a la ruta principal
+  // Redireccionar cualquier ruta no definida a la landing principal (Austromex)
   {
     path: '**',
-    redirectTo: '',
+    redirectTo: 'austromex',
     pathMatch: 'full',
   },
 ];

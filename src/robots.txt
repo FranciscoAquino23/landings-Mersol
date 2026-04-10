@@ -1,0 +1,9 @@
+# ==========================================================================
+# ROBOTS.TXT PARA MERSOL / AUSTROMEX / DEWALT
+# ==========================================================================
+
+User-agent: *
+Allow: /
+
+# Indica a los buscadores dónde encontrar el mapa de tu sitio
+Sitemap: https://mersolsureste.com.mx/sitemap.xml
