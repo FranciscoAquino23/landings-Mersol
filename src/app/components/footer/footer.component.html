@@ -16,15 +16,18 @@
               width="120"
             />
           </a>
-          <div class="brand-separator" aria-hidden="true"></div>
-          <a [routerLink]="['/']" class="logo-link" aria-label="Ir al inicio - Austromex">
-            <img
-              src="assets/brand/austromex/logos-austromex/AUSTROMEX.svg"
-              alt="Austromex"
-              class="main-logo"
-              width="140"
-            />
-          </a>
+          @if (brandLogoWhite) {
+            <div class="brand-separator" aria-hidden="true"></div>
+            <a [routerLink]="['/']" class="logo-link" aria-label="Ir al inicio - Marca aliada">
+              <img
+                [src]="brandLogoWhite"
+                alt="Marca aliada"
+                class="main-logo"
+                width="140"
+                loading="lazy"
+              />
+            </a>
+          }
         </div>
         <p class="brand-tagline">Tu socio experto en herramientas industriales</p>
       </div>

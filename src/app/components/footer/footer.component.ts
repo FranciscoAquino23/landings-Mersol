@@ -2,42 +2,35 @@
       FOOTER COMPONENT LOGIC
       ========================================================================== */
 
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
-
-// Interfaz enlaces productos
-interface FooterLink {
-  label: string;
-  url: string;
-}
-
-// Interfaz redes sociales
-interface SocialNetwork {
-  icon: string;
-  url: string;
-  name: string;
-}
+import { Component, Input } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import {
+  LandingFooterConfig,
+  LandingFooterContactInfo,
+  LandingFooterLink,
+  LandingFooterSocialNetwork,
+} from '../../shared/models/landing-config.interface';
 
 @Component({
   selector: 'app-footer',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [RouterLink],
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.scss',
 })
 export class FooterComponent {
-  public currentYear: number = new Date().getFullYear();
+  public currentYear = new Date().getFullYear();
+  public brandLogoWhite: string | undefined;
 
   // Información contactos
-  public contactInfo = {
+  public contactInfo: LandingFooterContactInfo = {
     phone: '+52 993 980 5654',
     email: 'ventas@mersolsureste.com.mx',
     schedules: ['Lun a Vie 8:00 AM - 5:30 PM', 'Sáb 8:00 AM - 1:30 PM'],
   };
 
   // Información productos
-  public productsCol1: FooterLink[] = [
+  public productsCol1: LandingFooterLink[] = [
     { label: 'Abrasivos Sólidos', url: 'solidos' },
     { label: 'Productos de Lija', url: 'lija' },
     { label: 'Productos de Fibra', url: 'fibra' },
@@ -45,7 +38,7 @@ export class FooterComponent {
     { label: 'Estética Automotriz', url: 'estetica' },
     { label: 'Construcción', url: 'construccion' },
   ];
-  public productsCol2: FooterLink[] = [
+  public productsCol2: LandingFooterLink[] = [
     { label: 'Superabrasivos', url: 'superabrasivos' },
     { label: 'Industria Automotriz', url: 'rectificado' },
     { label: 'Cepillos de Alambre', url: 'cepillos' },
@@ -54,32 +47,26 @@ export class FooterComponent {
     { label: 'Accesorios', url: 'accesorios' },
   ];
 
-  // Obtener los productos en la lista
-  get allProducts(): FooterLink[] {
-    return [...this.productsCol1, ...this.productsCol2];
+  // Información redes sociales (MERSOL)
+  public socialNetworks: LandingFooterSocialNetwork[] = [
+    { name: 'Facebook', url: 'https://www.facebook.com/MersolSuresteOficial' },
+    { name: 'Instagram', url: 'https://www.instagram.com/mersolsureste/' },
+    { name: 'Youtube', url: 'https://www.youtube.com/@mersolsureste4375' },
+    { name: 'Linkedin', url: 'https://www.linkedin.com/company/mersolsureste/posts/?feedView=all' },
+  ];
+
+  // Recibir información del footer de cada landing
+  @Input() set footerConfig(config: LandingFooterConfig | undefined) {
+    if (config == null) return;
+    this.brandLogoWhite = config.brandLogoWhite;
+    this.contactInfo = config.contactInfo;
+    this.productsCol1 = config.productsCol1;
+    this.productsCol2 = config.productsCol2;
+    this.socialNetworks = config.socialNetworks;
   }
 
-  // Información redes sociales
-  public socialNetworks: SocialNetwork[] = [
-    {
-      name: 'Facebook',
-      icon: 'fab fa-facebook-f',
-      url: 'https://www.facebook.com/MersolSuresteOficial',
-    },
-    {
-      name: 'Instagram',
-      icon: 'fab fa-instagram',
-      url: 'https://www.instagram.com/mersolsureste/',
-    },
-    {
-      name: 'YouTube',
-      icon: 'fab fa-youtube',
-      url: 'https://www.youtube.com/@mersolsureste4375',
-    },
-    {
-      name: 'LinkedIn',
-      icon: 'fab fa-linkedin-in',
-      url: 'https://www.linkedin.com/company/mersolsureste/posts/?feedView=all',
-    },
-  ];
+  // Obtener todos los productos y mostrarlos en el footer
+  get allProducts(): LandingFooterLink[] {
+    return [...this.productsCol1, ...this.productsCol2];
+  }
 }
