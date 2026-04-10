@@ -1,5 +1,9 @@
 /* ==========================================================================
+<<<<<<< HEAD
    LANDING TEMPLATE LOGIC
+=======
+   LANDING TEMPLATE LOGIC
+>>>>>>> 9fbbb94d98a55a9ae8e9f360ee16f4f4b639502e
    =========================================================================*/
 
 import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
