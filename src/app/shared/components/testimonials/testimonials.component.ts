@@ -8,26 +8,66 @@ import {
   OnDestroy,
   AfterViewInit,
   PLATFORM_ID,
-  Inject,
   ChangeDetectorRef,
   HostListener,
   ChangeDetectionStrategy,
   inject,
+  Input,
 } from '@angular/core';
-import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { isPlatformBrowser } from '@angular/common';
+import { LandingTestimonial } from '../../models/landing-config.interface';
 
-// Interfaz para definir la estructura de un testimonio
-interface Testimonial {
-  quote: string;
-  author: string;
-  location: string;
-  rating: number;
-}
+// Información de las opiniones de los clientes (Componente compartido)
+const DEFAULT_TESTIMONIALS: LandingTestimonial[] = [
+  {
+    quote: 'Excelente precios en gases y equipos de oxicorte, aquí encontré lo que buscaba',
+    author: 'Moises Santamaria',
+    location: 'Sucursal - Campeche',
+    rating: 5,
+  },
+  {
+    quote: 'Gran variedad tanto de marcas y productos, siempre encuentras lo que buscas',
+    author: 'Claudia Caraveo',
+    location: 'Sucursal - CEDIS Mérida',
+    rating: 5,
+  },
+  {
+    quote: 'Exelente para encontrar las refacciones y equipos',
+    author: 'Jose Reyes Lopez Jimenez',
+    location: 'Sucursal - Villahermosa',
+    rating: 4,
+  },
+  {
+    quote: 'Todo en materia de herramientas y seguridad industrial',
+    author: 'FREDY SPARX (SPARX)',
+    location: 'Sucursal - Villahermosa',
+    rating: 5,
+  },
+  {
+    quote: 'Una tienda grande especializada en herramientas industriales a un precio justo',
+    author: 'Carlos Arias',
+    location: 'Sucursal - Villahermosa',
+    rating: 4,
+  },
+  {
+    quote:
+      'Es una tienda especializada en insumos y herramientas para la industria, una excelente opción para las medianas y grandes empresas',
+    author: 'Carlos Cisneros',
+    location: 'Sucursal - Villahermosa',
+    rating: 5,
+  },
+  {
+    quote: 'Muy bien surtidos en materiales, herramientas y refacciones',
+    author: 'Jose Grethel Ramirez Alcazar',
+    location: 'Sucursal - Villahermosa',
+    rating: 5,
+  },
+];
 
 @Component({
   selector: 'app-testimonials',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './testimonials.component.html',
   styleUrl: './testimonials.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -36,61 +76,21 @@ export class TestimonialsComponent implements OnInit, OnDestroy, AfterViewInit {
   private cdr = inject(ChangeDetectorRef);
   private platformId = inject(PLATFORM_ID);
 
+  // Representar animaciones y efecto de loop infinito
   currentIndex = 2;
   isTransitioning = true;
   private isAnimating = false;
   private autoPlayInterval: any;
-  private isBrowser: boolean;
+  private readonly isBrowser: boolean;
   isMobile = false;
 
-  // Lista de testimonios
-  readonly testimonials: Testimonial[] = [
-    {
-      quote: 'Excelente precios en gases y equipos de oxicorte, aquí encontré lo que buscaba',
-      author: 'Moises Santamaria',
-      location: 'Sucursal - Campeche',
-      rating: 5,
-    },
-    {
-      quote: 'Gran variedad tanto de marcas y productos, siempre encuentras lo que buscas',
-      author: 'Claudia Caraveo',
-      location: 'Sucursal - CEDIS Mérida',
-      rating: 5,
-    },
-    {
-      quote: 'Exelente para encontrar las refacciones y equipos',
-      author: 'Jose Reyes Lopez Jimenez',
-      location: 'Sucursal - Villahermosa',
-      rating: 4,
-    },
-    {
-      quote: 'Todo en materia de herramientas y seguridad industrial',
-      author: 'FREDY SPARX (SPARX)',
-      location: 'Surcursal - Villahermosa',
-      rating: 5,
-    },
-    {
-      quote: 'Una tienda grande especializada en herramientas industriales a un precio justo',
-      author: 'Carlos Arias',
-      location: 'Sucursal - Villahermosa',
-      rating: 4,
-    },
-    {
-      quote:
-        'Es una tienda especializada en insumos y herramientas para la industria, una excelente opción para las medianas y grandes empresas',
-      author: 'Carlos Cisneros',
-      location: 'Sucursal - Villahermosa',
-      rating: 5,
-    },
-    {
-      quote: 'Muy bien surtidos en materiales, herramientas y refacciones',
-      author: 'Jose Grethel Ramirez Alcazar',
-      location: 'Sucursal - Villahermosa',
-      rating: 5,
-    },
-  ];
+  private _testimonials: LandingTestimonial[] = [...DEFAULT_TESTIMONIALS];
 
-  displayTestimonials: Testimonial[] = [];
+  @Input() set testimonials(value: LandingTestimonial[] | undefined) {
+    if (value != null) this._testimonials = [...value];
+  }
+
+  displayTestimonials: LandingTestimonial[] = [];
 
   constructor() {
     this.isBrowser = isPlatformBrowser(this.platformId);
@@ -104,9 +104,7 @@ export class TestimonialsComponent implements OnInit, OnDestroy, AfterViewInit {
 
   // Iniciar movimiento automático
   ngAfterViewInit(): void {
-    if (this.isBrowser) {
-      this.startAutoPlay();
-    }
+    if (this.isBrowser) this.startAutoPlay();
   }
 
   // Limpiar componente
@@ -116,7 +114,7 @@ export class TestimonialsComponent implements OnInit, OnDestroy, AfterViewInit {
 
   // Verificar tamaño de la pantalla actual
   @HostListener('window:resize', ['$event'])
-  onResize(event: Event) {
+  onResize(_event: Event) {
     this.checkScreenSize();
   }
 
@@ -140,17 +138,16 @@ export class TestimonialsComponent implements OnInit, OnDestroy, AfterViewInit {
 
   // Calcular desplazamiento
   get transformOffset(): string {
-    const offset = this.currentIndex * this.stepSize;
-    return `translateX(-${offset}%)`;
+    return `translateX(-${this.currentIndex * this.stepSize}%)`;
   }
 
   // Iniciar arreglo infinito (Efecto carrusel)
   private initInfiniteArray(): void {
-    const len = this.testimonials.length;
+    const len = this._testimonials.length;
     if (len === 0) return;
-    const firstTwo = this.testimonials.slice(0, 2);
-    const lastTwo = this.testimonials.slice(len - 2);
-    this.displayTestimonials = [...lastTwo, ...this.testimonials, ...firstTwo];
+    const firstTwo = this._testimonials.slice(0, 2);
+    const lastTwo = this._testimonials.slice(len - 2);
+    this.displayTestimonials = [...lastTwo, ...this._testimonials, ...firstTwo];
   }
 
   // Mover al siguiente
@@ -172,7 +169,6 @@ export class TestimonialsComponent implements OnInit, OnDestroy, AfterViewInit {
     this.isTransitioning = true;
     this.currentIndex = target;
     this.cdr.markForCheck();
-
     setTimeout(() => {
       if (this.isAnimating) this.onTransitionEnd();
       this.cdr.markForCheck();
@@ -197,7 +193,6 @@ export class TestimonialsComponent implements OnInit, OnDestroy, AfterViewInit {
     this.isTransitioning = false;
     this.currentIndex = targetIndex;
     this.cdr.markForCheck();
-
     setTimeout(() => {
       this.isTransitioning = true;
       this.cdr.markForCheck();
