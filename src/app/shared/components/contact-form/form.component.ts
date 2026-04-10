@@ -2,7 +2,7 @@
    CONTACT FORM LOGIC
    ========================================================================== */
 
-import { Component, OnInit, inject, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, inject, ChangeDetectorRef, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 // Importar componentes y servicios
@@ -23,7 +23,13 @@ export class ContactFormComponent implements OnInit {
   private seoService = inject(SeoService);
   private cdr = inject(ChangeDetectorRef);
 
-  // Formulario
+  // Recibir configuración de la marca (Email destino e ID)
+  @Input() brandConfig: { email: string; id: string } = {
+    email: 'ventas@mersolsureste.com.mx',
+    id: 'landing-mersol',
+  };
+
+  // Elementos del formulario
   contactForm!: FormGroup;
   isSubmitting = false;
   errorMessage = '';
@@ -119,19 +125,7 @@ export class ContactFormComponent implements OnInit {
   // Cerrar ventada de éxito
   closeSuccessModal(): void {
     this.showSuccessModal = false;
-
-    this.contactForm.reset({
-      nombre: '',
-      empresa: '',
-      email: '',
-      telefono: '',
-      estado: '',
-      codigoPostal: '',
-      esCliente: '',
-      mensaje: '',
-      website_url: '',
-    });
-
+    this.contactForm.reset();
     document.body.style.overflow = 'auto';
     this.showDropdown = false;
     this.cdr.detectChanges();
@@ -155,11 +149,13 @@ export class ContactFormComponent implements OnInit {
 
       // Construir payload con información del formulario
       const payload = {
-        to: 'ventas@mersolsureste.com.mx',
+        name: formData.nombre,
+        phone: formData.telefono,
+        to: this.brandConfig.email,
         data: formData,
         utm_info: utmInfo,
         timestamp: new Date(),
-        source: 'Landing Page Mersol',
+        source: this.brandConfig.id,
       };
 
       this.leadsService.sendLead(payload).subscribe({
@@ -168,8 +164,8 @@ export class ContactFormComponent implements OnInit {
 
           // Tracking de conversión
           this.seoService.trackEvent('conversion_lead_form', {
-            source: 'landing_mersol',
-            campaign: utmInfo?.utm_campaign || 'direct',
+            source: this.brandConfig.id,
+            campaign: utmInfo?.['utm_campaign'] || 'direct',
           });
 
           this.openSuccessModal();
@@ -177,7 +173,7 @@ export class ContactFormComponent implements OnInit {
         // Manejar de errores
         error: (err) => {
           this.isSubmitting = false;
-          this.errorMessage = err.message;
+          this.errorMessage = err.message || 'Error al enviar el formulario';
           this.cdr.detectChanges();
         },
       });
