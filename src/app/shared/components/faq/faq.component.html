@@ -6,17 +6,12 @@
   <div class="container">
     <!-- TITLE -->
     <header class="section-header">
-      <span class="overline">SERVICIO TÉCNICO Y SOPORTE</span>
+      <span class="overline">{{ overline }}</span>
       <div class="title-with-l-shape">
-        <h2 id="faq-title" class="main-title">
-          PREGUNTAS <br />
-          FRECUENTES
-        </h2>
+        <h2 id="faq-title" class="main-title" [innerHTML]="title"></h2>
       </div>
       <div class="description-container">
-        <p class="description-text">
-          Resolvemos tus dudas principales sobre nuestros servicios, equipos y procesos.
-        </p>
+        <p class="description-text">{{ description }}</p>
       </div>
     </header>
 
