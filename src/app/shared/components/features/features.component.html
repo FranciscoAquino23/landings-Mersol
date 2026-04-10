@@ -1,23 +1,18 @@
 <!-- ==========================================================================
-     FEATURES COMPONENT STRUCTURE
+     FEATURES STRUCTURE
      ======================================================================= -->
 
 <section class="features-container" aria-labelledby="features-main-title">
   <div class="container">
     <!-- TITLE -->
     <header class="features-header">
-      <span class="subtitle-red">VALOR AGREGADO</span>
+      <span class="subtitle-red">{{ overline }}</span>
 
       <div class="main-title-wrapper">
-        <h2 id="features-main-title">
-          ¿POR QUÉ ELEGIR<br />
-          MERSOL SURESTE?
-        </h2>
+        <h2 id="features-main-title" [innerHTML]="title"></h2>
       </div>
 
-      <p class="header-description">
-        Soluciones integrales con el respaldo de las mejores marcas del mercado industrial.
-      </p>
+      <p class="header-description">{{ description }}</p>
     </header>
 
     <!-- FEATURES -->
@@ -27,7 +22,7 @@
           <!-- ICONS -->
           <div class="icon-wrapper">
             <img
-              [src]="ICON_PATH + item.icon"
+              [src]="iconPath + item.icon"
               alt=""
               aria-hidden="true"
               class="feature-icon"
@@ -53,7 +48,7 @@
           <!-- ICONS -->
           <div class="icon-wrapper">
             <img
-              [src]="ICON_PATH + pillar.icon"
+              [src]="iconPath + pillar.icon"
               alt=""
               aria-hidden="true"
               class="feature-icon"
