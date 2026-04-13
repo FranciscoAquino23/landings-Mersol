@@ -25,6 +25,7 @@ export class HeroComponent implements OnInit {
 
   @Input() desktopImage = 'assets/brand/austromex/logos-austromex/banner-desktop.webp';
   @Input() mobileImage = 'assets/brand/austromex/logos-austromex/banner-mobile.webp';
+  @Input() imageAlt = 'Equipos industriales - Mersol Sureste';
 
   @Input() primaryCtaText = 'VER CATÁLOGO';
   @Input() secondaryCtaText = 'CONTACTO';

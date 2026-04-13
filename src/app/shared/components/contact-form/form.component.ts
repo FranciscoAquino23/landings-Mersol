@@ -2,18 +2,18 @@
    CONTACT FORM LOGIC
    ========================================================================== */
 
-import { Component, OnInit, inject, ChangeDetectorRef, Input } from '@angular/core';
-import { CommonModule } from '@angular/common';
-
-// Importar componentes y servicios
+import { Component, OnInit, inject, ChangeDetectorRef, Input, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
+
+// Importar servicios
 import { LeadsService } from '../../services/leads.service';
 import { SeoService } from '../../services/seo.service';
 
 @Component({
   selector: 'app-contact-form',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [ReactiveFormsModule],
   templateUrl: './form.component.html',
   styleUrl: './form.component.scss',
 })
@@ -22,6 +22,7 @@ export class ContactFormComponent implements OnInit {
   private leadsService = inject(LeadsService);
   private seoService = inject(SeoService);
   private cdr = inject(ChangeDetectorRef);
+  private platformId = inject(PLATFORM_ID);
 
   // Recibir configuración de la marca (Email destino e ID)
   @Input() brandConfig: { email: string; id: string } = {
@@ -118,7 +119,9 @@ export class ContactFormComponent implements OnInit {
   // Mostrar ventana de éxito
   openSuccessModal(): void {
     this.showSuccessModal = true;
-    document.body.style.overflow = 'hidden';
+    if (isPlatformBrowser(this.platformId)) {
+      document.body.style.overflow = 'hidden';
+    }
     this.cdr.detectChanges();
   }
 
@@ -126,7 +129,9 @@ export class ContactFormComponent implements OnInit {
   closeSuccessModal(): void {
     this.showSuccessModal = false;
     this.contactForm.reset();
-    document.body.style.overflow = 'auto';
+    if (isPlatformBrowser(this.platformId)) {
+      document.body.style.overflow = 'auto';
+    }
     this.showDropdown = false;
     this.cdr.detectChanges();
   }
@@ -161,6 +166,7 @@ export class ContactFormComponent implements OnInit {
       this.leadsService.sendLead(payload).subscribe({
         next: () => {
           this.isSubmitting = false;
+          this.leadsService.recordSuccessfulSubmission();
 
           // Tracking de conversión
           this.seoService.trackEvent('conversion_lead_form', {
@@ -180,9 +186,11 @@ export class ContactFormComponent implements OnInit {
     } else {
       // Marcar campos y mostrar errores de validación
       this.contactForm.markAllAsTouched();
-      const firstInvalid = document.querySelector('.is-invalid');
-      if (firstInvalid) {
-        firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      if (isPlatformBrowser(this.platformId)) {
+        const firstInvalid = document.querySelector('.is-invalid');
+        if (firstInvalid) {
+          firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
       }
     }
   }

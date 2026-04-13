@@ -2,7 +2,8 @@
     NAVBAR COMPONENT LOGIC
    ========================================================================== */
 
-import { Component, HostListener, Input, Renderer2 } from '@angular/core';
+import { Component, HostListener, Input, Renderer2, inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { SocialComponent } from '../../shared/components/social-links/social.component';
 
 @Component({
@@ -21,11 +22,14 @@ export class NavbarComponent {
   public isMenuOpen = false;
   public isScrolled = false;
 
+  private platformId = inject(PLATFORM_ID);
+
   constructor(private renderer: Renderer2) {}
 
   // Detectar movimiento para cambiar el estilo de la barra de navegación
   @HostListener('window:scroll', [])
-  onWindowScroll() {
+  onWindowScroll(): void {
+    if (!isPlatformBrowser(this.platformId)) return;
     const offset = window.pageYOffset || document.documentElement.scrollTop || 0;
     this.isScrolled = offset > 50;
   }
@@ -49,6 +53,7 @@ export class NavbarComponent {
   // Direccionar correctamente al usuario a la sección seleccionada
   public scrollToAnchor(elementId: string): void {
     this.closeMenu();
+    if (!isPlatformBrowser(this.platformId)) return;
     setTimeout(() => {
       // Caso 1: Regresar al inicio
       if (elementId === 'home' || elementId === 'inicio') {

@@ -5,15 +5,17 @@
 <section class="hero-section" id="inicio" [class.is-active]="isVisible()">
   <!-- BANNER -->
   <div class="hero-bg-wrapper">
-    <img
-      [ngSrc]="mobileImage"
-      [ngSrcset]="'400w, 800w, 1200w'"
-      alt="Equipos industriales de soldadura y abrasivos - Mersol Sureste"
-      priority
-      fetchpriority="high"
-      fill
-      class="hero-image-optimized"
-    />
+    <picture>
+      <source media="(min-width: 1024px)" [srcset]="desktopImage" type="image/webp" />
+      <img
+        [ngSrc]="mobileImage"
+        priority
+        fetchpriority="high"
+        fill
+        [alt]="imageAlt"
+        class="hero-image-optimized"
+      />
+    </picture>
     <div class="hero-overlay"></div>
   </div>
 

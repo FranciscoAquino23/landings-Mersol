@@ -34,7 +34,7 @@
               (click)="goToSlide($index)"
               [class.active-dot]="
                 $index + 2 === currentIndex ||
-                (currentIndex === 1 && $index === (testimonials?.length ?? 0) - 1) ||
+                (currentIndex === 1 && $index === testimonials.length - 1) ||
                 (currentIndex === displayTestimonials.length - 1 && $index === 0)
               "
               [attr.aria-selected]="$index + 2 === currentIndex"

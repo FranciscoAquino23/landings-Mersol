@@ -89,6 +89,9 @@ export class TestimonialsComponent implements OnInit, OnDestroy, AfterViewInit {
   @Input() set testimonials(value: LandingTestimonial[] | undefined) {
     if (value != null) this._testimonials = [...value];
   }
+  get testimonials(): LandingTestimonial[] {
+    return this._testimonials;
+  }
 
   displayTestimonials: LandingTestimonial[] = [];
 
