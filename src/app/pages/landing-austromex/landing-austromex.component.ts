@@ -64,8 +64,8 @@ export class LandingComponent implements OnInit, AfterViewInit, OnDestroy {
     // Información componente Hero
     hero: {
       title:
-        'SOLUCIONES <br> <span class="text-outline">INDUSTRIALES</span> <br> <span class="text-red">ALTA CALIDAD</span>',
-      subtitle: 'Expertos en soldadura y abrasivos para el sureste mexicano.',
+        'SOLUCIONES <br> <span class="text-outline">INDUSTRIALES</span> <br> <span class="text-red">AUSTROMEX</span>',
+      subtitle: 'Expertos en soldadura y abrasivos.',
       desktopImage: 'assets/brand/austromex/logos-austromex/banner-desktop.webp',
       mobileImage: 'assets/brand/austromex/logos-austromex/banner-mobile.webp',
       imageAlt: 'Equipos de soldadura y abrasivos Austromex en Mersol Sureste',
@@ -260,18 +260,18 @@ export class LandingComponent implements OnInit, AfterViewInit, OnDestroy {
       pillarFeatures: [
         {
           icon: 'truck.svg',
-          title: 'Logística de Respuesta',
+          title: 'Logística Express',
           desc: 'Garantizamos stock y entregas eficientes.',
         },
         {
           icon: 'shield.svg',
-          title: 'Confianza Certificada',
+          title: 'Garantía AUSTROMEX',
           desc: 'Nuestros procesos y productos están certificados.',
         },
         {
           icon: 'globe.svg',
           title: 'Innovación Sustentable',
-          desc: 'Reducimos el impacto ambiental.',
+          desc: 'Operación sustentable',
         },
       ],
     },
@@ -405,14 +405,14 @@ export class LandingComponent implements OnInit, AfterViewInit, OnDestroy {
         address: 'Perif. de Mérida Lic. Manuel Berzunza SN, Tixcacal Opichen, 97314 Mérida, Yuc.',
         phone: '(999) 400-5855',
         mapEmbedUrl:
-          'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1862.4780136846819!2d-89.67493617320106!3d20.994399705770117!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f30!3m3!1m2!1s0x8f5673c32eb817b3%3A0x33906a9f81e7b8a0!2sPerif.%20de%20M%C3%A9rida%20Lic.%20Manuel%20Berzunza%2C%20Yucat%C3%A1n!5e0!3m2!1ses-419!2smx!4v1775149557618!5m2!1ses-419!2smx',
+          'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3726.015160812369!2d-89.7011307!3d20.9519063!3m2!1i1024!2i768!4f20!3m3!1m2!1s0x8f567334ff2fdbe5%3A0xbb9c01258aa28193!2sMersol%20Sureste%20CEDIS%20M%C3%A9rida!5e0!3m2!1ses-419!2smx!4v1776105357323!5m2!1ses-419!2smx',
       },
       {
         name: 'Apodaca, NL',
         address: 'Regioavenida 116, Regio Parque Industrial, Cd. Apodaca, NL, C.P. 66633',
         phone: '(81) 8123-1164 • (81) 8123-1215',
         mapEmbedUrl:
-          'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d898.438239431687!2d-100.216262!3d25.745682!3m2!1i1024!2i768!4f30!3m3!1m2!1s0x866295ed8d561cb3%3Ab253f4f5e95bb375!2sMersol%20Sureste%20CEDIS%20APODACA!5e0!3m2!1ses-419!2sus!4v1775078631827!5m2!1ses-419!2sus',
+          'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1796.882876200616!2d-100.21570430683457!3d25.745259005344916!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f20!3m3!1m2!1s0x866295ed8d561cb3%3A0xb253f4f5e95bb375!2sMersol%20Sureste%20CEDIS%20APODACA!5e0!3m2!1ses-419!2sus!4v1776105617842!5m2!1ses-419!2sus',
       },
       {
         name: 'Campeche, CAM',

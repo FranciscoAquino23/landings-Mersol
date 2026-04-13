@@ -65,7 +65,7 @@ export class LandingDeWALTComponent implements OnInit, AfterViewInit, OnDestroy 
     hero: {
       title:
         'HERRAMIENTAS <br> <span class="text-outline">PROFESIONALES</span> <br> <span class="text-red">DEWALT</span>',
-      subtitle: 'Potencia y durabilidad para los profesionales del sureste mexicano.',
+      subtitle: 'Expertos en potencia y durabilidad.',
       desktopImage: 'assets/landing/landing-dewalt/banner-desktop.webp',
       mobileImage: 'assets/landing/landing-dewalt/banner-mobile.webp',
       imageAlt: 'Herramientas profesionales DeWALT disponibles en Mersol Sureste',
@@ -76,7 +76,7 @@ export class LandingDeWALTComponent implements OnInit, AfterViewInit, OnDestroy 
         'https://wa.me/529939805654?text=Hola%20Mersol!%20Me%20interesa%20informaci%C3%B3n%20sobre%20productos%20DeWALT.',
       stats: {
         value: '+18',
-        label: 'AÑOS DE LIDERAZGO',
+        label: 'AÑOS DE EXPERIENCIA',
         description: 'Liderando el mercado industrial en el sureste.',
       },
     },
@@ -113,7 +113,7 @@ export class LandingDeWALTComponent implements OnInit, AfterViewInit, OnDestroy 
           titulo: 'Herramientas DeWALT — Envío Gratis',
           imgDesktop: 'assets/brand/dewalt/promo-dewalt/promoH1.webp',
           imgMobile: 'assets/brand/dewalt/promo-dewalt/promoV1.webp',
-          link: 'https://www.dewalt.com.mx/es-mx',
+          link: 'https://mersolsureste.com.mx/csa',
           alt: 'Herramientas DeWALT disponibles en Mersol Sureste',
         },
       ],
@@ -124,37 +124,37 @@ export class LandingDeWALTComponent implements OnInit, AfterViewInit, OnDestroy 
       {
         title: 'HERRAMIENTAS ELÉCTRICAS',
         image: 'assets/brand/dewalt/categories-dewalt/01.webp',
-        link: 'https://www.dewalt.com.mx/es-mx/productos/herramientas-electricas',
+        link: 'https://mersolsureste.com.mx/tienda?search=DEWALT',
       },
       {
         title: 'HERRAMIENTAS MANUALES',
         image: 'assets/brand/dewalt/categories-dewalt/02.webp',
-        link: 'https://www.dewalt.com.mx/es-mx/productos/herramientas-manuales',
+        link: 'https://mersolsureste.com.mx/tienda?search=DEWALT',
       },
       {
         title: 'JARDINERÍA',
         image: 'assets/brand/dewalt/categories-dewalt/03.webp',
-        link: 'https://www.dewalt.com.mx/es-mx/productos/jardineria',
+        link: 'https://mersolsureste.com.mx/tienda?search=DEWALT',
       },
       {
         title: 'ALMACENAMIENTO Y ORGANIZACIÓN',
         image: 'assets/brand/dewalt/categories-dewalt/04.webp',
-        link: 'https://www.dewalt.com.mx/es-mx/productos/almacenamiento-y-organizacion',
+        link: 'https://mersolsureste.com.mx/tienda?search=DEWALT',
       },
       {
         title: 'ANCLAJES Y FIJACIONES',
         image: 'assets/brand/dewalt/categories-dewalt/05.webp',
-        link: 'https://www.dewalt.com.mx/es-mx/productos/anclajes-y-fijaciones',
+        link: 'https://mersolsureste.com.mx/tienda?search=DEWALT',
       },
       {
         title: 'EQUIPO DE SEGURIDAD PERSONAL',
         image: 'assets/brand/dewalt/categories-dewalt/06.webp',
-        link: 'https://www.dewalt.com.mx/es-mx/productos/equipo-de-seguridad-personal',
+        link: 'https://mersolsureste.com.mx/tienda?search=DEWALT',
       },
       {
-        title: 'SISTEMAS',
+        title: 'BATERÍAS',
         image: 'assets/brand/dewalt/categories-dewalt/07.webp',
-        link: 'https://www.dewalt.com.mx/es-mx/sistemas/herramientas-inalambricas',
+        link: 'https://mersolsureste.com.mx/tienda?search=DEWALT',
       },
     ],
 
@@ -206,40 +206,40 @@ export class LandingDeWALTComponent implements OnInit, AfterViewInit, OnDestroy 
       mainFeatures: [
         {
           icon: 'crosshairs.svg',
-          title: 'Precisión Industrial',
-          desc: 'Equipos calibrados para exigencias de obra y taller profesional.',
+          title: 'Tecnología de Punta',
+          desc: 'Herramientas y máquinas de calidad.',
         },
         {
           icon: 'cart.svg',
-          title: 'Envío Garantizado',
-          desc: 'Distribución express a toda la república con rastreo en tiempo real.',
+          title: 'Logística Eficiente',
+          desc: 'Entregas garantizadas en todo el país.',
         },
         {
           icon: 'user.svg',
-          title: 'Servicio Técnico',
-          desc: 'Garantía directa DeWALT y soporte especializado en sitio.',
+          title: 'Respaldo Total',
+          desc: 'Garantía y soporte técnico especializado.',
         },
         {
           icon: 'hammer.svg',
-          title: 'Asesoría Certificada',
-          desc: 'Especialistas certificados para seleccionar la herramienta correcta.',
+          title: 'Asesoría Experta',
+          desc: 'Certificados para optimizar tus procesos.',
         },
       ],
       pillarFeatures: [
         {
           icon: 'truck.svg',
           title: 'Logística Express',
-          desc: 'Stock disponible para entregas inmediatas en todo México.',
+          desc: 'Garantizamos stock y entregas eficientes.',
         },
         {
           icon: 'shield.svg',
           title: 'Garantía DeWALT',
-          desc: '3 años de garantía directa del fabricante en todas las herramientas.',
+          desc: 'Nuestros procesos y productos están certificados.',
         },
         {
           icon: 'globe.svg',
-          title: 'Innovación Constante',
-          desc: 'Acceso a los últimos modelos y tecnologías DeWALT del mercado.',
+          title: 'Innovación Sustentable',
+          desc: 'Operación sustentable.',
         },
       ],
     },
@@ -381,14 +381,14 @@ export class LandingDeWALTComponent implements OnInit, AfterViewInit, OnDestroy 
         address: 'Perif. de Mérida Lic. Manuel Berzunza SN, Tixcacal Opichen, 97314 Mérida, Yuc.',
         phone: '(999) 400-5855',
         mapEmbedUrl:
-          'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1862.4780136846819!2d-89.67493617320106!3d20.994399705770117!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f30!3m3!1m2!1s0x8f5673c32eb817b3%3A0x33906a9f81e7b8a0!2sPerif.%20de%20M%C3%A9rida%20Lic.%20Manuel%20Berzunza%2C%20Yucat%C3%A1n!5e0!3m2!1ses-419!2smx!4v1775149557618!5m2!1ses-419!2smx',
+          'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3726.015160812369!2d-89.7011307!3d20.9519063!3m2!1i1024!2i768!4f20!3m3!1m2!1s0x8f567334ff2fdbe5%3A0xbb9c01258aa28193!2sMersol%20Sureste%20CEDIS%20M%C3%A9rida!5e0!3m2!1ses-419!2smx!4v1776105357323!5m2!1ses-419!2smx',
       },
       {
         name: 'Apodaca, NL',
         address: 'Regioavenida 116, Regio Parque Industrial, Cd. Apodaca, NL, C.P. 66633',
         phone: '(81) 8123-1164 • (81) 8123-1215',
         mapEmbedUrl:
-          'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d898.438239431687!2d-100.216262!3d25.745682!3m2!1i1024!2i768!4f30!3m3!1m2!1s0x866295ed8d561cb3%3Ab253f4f5e95bb375!2sMersol%20Sureste%20CEDIS%20APODACA!5e0!3m2!1ses-419!2sus!4v1775078631827!5m2!1ses-419!2sus',
+          'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1796.882876200616!2d-100.21570430683457!3d25.745259005344916!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f20!3m3!1m2!1s0x866295ed8d561cb3%3A0xb253f4f5e95bb375!2sMersol%20Sureste%20CEDIS%20APODACA!5e0!3m2!1ses-419!2sus!4v1776105617842!5m2!1ses-419!2smx',
       },
       {
         name: 'Campeche, CAM',

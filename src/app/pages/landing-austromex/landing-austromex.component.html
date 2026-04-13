@@ -80,7 +80,9 @@
         </section>
 
         <!-- CTA -->
-        <app-cta [ctaConfig]="config.cta" />
+        <app-cta [ctaConfig]="config.cta">
+          <img src="assets/brand/shared/icons/whatsapp-red.svg" alt="" width="24" height="24" />
+        </app-cta>
       } @placeholder {
         <div style="min-height: 500px"></div>
       }
@@ -90,5 +92,5 @@
   }
 
   <!-- FOOTER -->
-  <app-footer [footerConfig]="config.footer" [basePath]="config.basePath" />
+  <app-footer [footerConfig]="config.footer" [basePath]="config.basePath" partnerName="Grupo Austromex" />
 </div>
