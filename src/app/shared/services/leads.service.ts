@@ -4,8 +4,14 @@
 
 import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable, throwError, timer } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
+import { Observable, throwError, timer, of } from 'rxjs';
+import { catchError, delay, retry } from 'rxjs/operators';
+
+// Utilizar mientras no haya un BackEnd disponible (Modificar a "true")
+const IS_OFFLINE = true;
+
+// URL del BackEnd (Modificar por oficial)
+export const API_LEADS_URL = '/api/leads';
 
 export interface LeadPayload {
   name: string;
@@ -24,9 +30,6 @@ export class LeadsService {
   // Evitar saturación de la API
   private lastSubmissionTime = 0;
   private readonly COOLDOWN_MS = 60_000;
-
-  // Modificar por API real
-  private readonly apiUrl = 'https://jsonplaceholder.typicode.com/posts';
 
   // Enviar información del formulario de contacto (Leads)
   sendLead(leadData: LeadPayload): Observable<unknown> {
@@ -47,7 +50,14 @@ export class LeadsService {
       submittedAt: new Date().toISOString(),
     };
 
-    return this.http.post(this.apiUrl, enrichedPayload).pipe(
+    // Simular una petición HTTP (Modo offline)
+    if (IS_OFFLINE) {
+      console.info('[LeadsService] Modo offline — payload:', enrichedPayload);
+      return of({ success: true, mock: true }).pipe(delay(2_000));
+    }
+
+    // Simular estado de producción de leads (Modo offline)
+    return this.http.post(API_LEADS_URL, enrichedPayload).pipe(
       retry({
         count: 2,
         delay: (_err, retryCount) => timer(retryCount * 1_000),
@@ -75,10 +85,10 @@ export class LeadsService {
       0: 'Sin conexión a internet o el servidor no responde.',
       // Manejar error de input (UI/UX)
       400: 'Los datos enviados son incorrectos. Revisa los campos.',
-      // Manejar error de saturación del servicio
-      429: 'Has enviado demasiados mensajes. Intenta más tarde.',
       // Manejar error de servidor no disponible
       404: 'El servicio de contacto no está disponible en este momento.',
+      // Manejar error de saturación del servicio
+      429: 'Has enviado demasiados mensajes. Intenta más tarde.',
     };
     // Manejar error de falla general
     const message =

@@ -46,9 +46,13 @@ export class SeoService {
     }
 
     // Twitter Cards
+    this.metaService.updateTag({ property: 'og:locale', content: 'es_MX' });
     this.metaService.updateTag({ name: 'twitter:card', content: 'summary_large_image' });
     this.metaService.updateTag({ name: 'twitter:title', content: config.title });
     this.metaService.updateTag({ name: 'twitter:description', content: config.description });
+    if (config.image) {
+      this.metaService.updateTag({ name: 'twitter:image', content: config.image });
+    }
 
     if (config.schema) {
       this.setJsonLd(config.schema);
