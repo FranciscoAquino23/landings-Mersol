@@ -22,6 +22,7 @@ export interface LandingHero {
   subtitle: string;
   desktopImage: string;
   mobileImage: string;
+  imageAlt?: string;
   primaryCtaText: string;
   secondaryCtaText: string;
   catalogUrl: string;

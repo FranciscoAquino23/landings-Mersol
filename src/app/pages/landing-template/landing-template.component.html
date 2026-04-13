@@ -9,6 +9,9 @@
   [style.--primary-hover]="config.colors.primaryHover"
   [style.--secondary]="config.colors.secondary"
 >
+  <!-- NAVBAR -->
+  <app-navbar [brandLogo]="config.business.brandLogoNavbar" [brandLogoAlt]="'Logo de la marca'" />
+
   <!-- HERO -->
   <header id="inicio" role="banner">
     <app-hero
@@ -16,6 +19,7 @@
       [subtitle]="config.hero.subtitle"
       [desktopImage]="config.hero.desktopImage"
       [mobileImage]="config.hero.mobileImage"
+      [imageAlt]="config.hero.imageAlt ?? ''"
       [primaryCtaText]="config.hero.primaryCtaText"
       [secondaryCtaText]="config.hero.secondaryCtaText"
       [catalogUrl]="config.hero.catalogUrl"
@@ -30,25 +34,28 @@
       <!-- PRODUCTS -->
       <section id="productos" class="section-padding" aria-label="Nuestros Productos">
         <div class="container">
-          <app-category-carousel />
+          <app-category-carousel [categories]="config.categories" />
         </div>
       </section>
 
       <!-- BANNER -->
       <section class="promo-wrapper" aria-label="Promociones destacadas">
         <div class="container">
-          <app-banner />
+          <app-banner
+            [promos]="config.banner?.promos"
+            [brandTagline]="config.banner?.tagline ?? ''"
+          />
         </div>
       </section>
 
       <!-- INFO + FEATURES -->
       @defer (on viewport) {
         <section id="nosotros" class="section-padding" aria-labelledby="nosotros-title">
-          <app-info />
+          <app-info [infoConfig]="config.info" />
         </section>
 
         <section id="beneficios" class="section-padding" aria-label="Nuestros Beneficios">
-          <app-features />
+          <app-features [featuresConfig]="config.features" />
         </section>
       } @placeholder {
         <div style="min-height: 400px"></div>
@@ -57,26 +64,26 @@
       <!-- TESTIMONIALS -->
       @defer (on viewport; on timer(1s)) {
         <section id="testimonios" class="section-padding" aria-label="Testimonios de Clientes">
-          <app-testimonials />
+          <app-testimonials [testimonials]="config.testimonials" />
         </section>
 
         <!-- FAQ -->
         <section id="faq" class="section-padding" aria-label="Preguntas Frecuentes">
-          <app-faq />
+          <app-faq [faqConfig]="config.faq" />
         </section>
 
         <!-- LOCATIONS -->
         <section id="sucursales" class="section-padding" aria-label="Nuestras Sucursales">
-          <app-locations />
+          <app-locations [locations]="config.locations" />
         </section>
 
         <!-- CONTACT FORM -->
         <section id="contacto" class="section-padding" aria-label="Formulario de Contacto">
-          <app-contact-form />
+          <app-contact-form [brandConfig]="config.contactForm!" />
         </section>
 
         <!-- CTA -->
-        <app-cta />
+        <app-cta [ctaConfig]="config.cta" />
       } @placeholder {
         <div style="min-height: 500px"></div>
       }
@@ -84,4 +91,7 @@
   } @placeholder {
     <div style="min-height: 50vh"></div>
   }
+
+  <!-- FOOTER -->
+  <app-footer [footerConfig]="config.footer" [basePath]="config.basePath" />
 </div>

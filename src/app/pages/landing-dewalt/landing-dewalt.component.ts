@@ -68,6 +68,7 @@ export class LandingDeWALTComponent implements OnInit, AfterViewInit, OnDestroy 
       subtitle: 'Potencia y durabilidad para los profesionales del sureste mexicano.',
       desktopImage: 'assets/landing/landing-dewalt/banner-desktop.webp',
       mobileImage: 'assets/landing/landing-dewalt/banner-mobile.webp',
+      imageAlt: 'Herramientas profesionales DeWALT disponibles en Mersol Sureste',
       primaryCtaText: 'VER CATÁLOGO',
       secondaryCtaText: 'CONTACTO',
       catalogUrl: 'https://latam.dewalt.global/catalogo',

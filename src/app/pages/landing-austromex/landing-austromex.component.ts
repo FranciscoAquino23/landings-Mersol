@@ -68,6 +68,7 @@ export class LandingComponent implements OnInit, AfterViewInit, OnDestroy {
       subtitle: 'Expertos en soldadura y abrasivos para el sureste mexicano.',
       desktopImage: 'assets/brand/austromex/logos-austromex/banner-desktop.webp',
       mobileImage: 'assets/brand/austromex/logos-austromex/banner-mobile.webp',
+      imageAlt: 'Equipos de soldadura y abrasivos Austromex en Mersol Sureste',
       primaryCtaText: 'VER CATÁLOGO',
       secondaryCtaText: 'CONTACTO',
       catalogUrl: 'https://austromex.com.mx/download/v/catalogos/CatalogoAustromex_2026_low.pdf',

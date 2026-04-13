@@ -1,10 +1,6 @@
 /* ==========================================================================
-<<<<<<< HEAD
-   LANDING TEMPLATE LOGIC
-=======
-   LANDING TEMPLATE LOGIC
->>>>>>> 9fbbb94d98a55a9ae8e9f360ee16f4f4b639502e
-   =========================================================================*/
+   LANDING TEMPLATE
+   ========================================================================== */
 
 import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
 import { ViewportScroller } from '@angular/common';
@@ -16,6 +12,8 @@ import { SeoService } from '../../shared/services/seo.service';
 import { LandingConfig } from '../../shared/models/landing-config.interface';
 
 // Importar componentes
+import { NavbarComponent } from '../../components/navbar/navbar.component';
+import { FooterComponent } from '../../components/footer/footer.component';
 import { HeroComponent } from '../../components/hero/hero.component';
 import { BannerComponent } from '../../components/banner/banner.component';
 import { InfoComponent } from '../../components/info/info.component';
@@ -31,6 +29,8 @@ import { LocationsComponent } from '../../shared/components/locations/locations.
   selector: 'app-landing-template',
   standalone: true,
   imports: [
+    NavbarComponent,
+    FooterComponent,
     HeroComponent,
     BannerComponent,
     InfoComponent,
@@ -62,15 +62,15 @@ export class LandingTemplateComponent implements OnInit, AfterViewInit, OnDestro
     // Información del componente principal (Hero)
     hero: {
       title:
-        'SOLUCIONES <br> <span class="text-outline">INDUSTRIALES</span> <br> <span class="text-red">ALTA CALIDAD</span>',
-      subtitle: 'Expertos en soldadura y abrasivos para el sureste mexicano.',
-      desktopImage: 'assets/brand/austromex/logos-austromex/banner-desktop.webp',
-      mobileImage: 'assets/brand/austromex/logos-austromex/banner-mobile.webp',
+        'NUEVA <br> <span class="text-outline">MARCA</span> <br> <span class="text-red">AQUÍ</span>',
+      subtitle: 'Descripción breve de la propuesta de valor de la marca.',
+      desktopImage: 'assets/brand/shared/placeholder-desktop.webp',
+      mobileImage: 'assets/brand/shared/placeholder-mobile.webp',
+      imageAlt: 'Banner principal de la nueva landing',
       primaryCtaText: 'VER CATÁLOGO',
       secondaryCtaText: 'CONTACTO',
-      catalogUrl: 'https://austromex.com.mx/download/v/catalogos/CatalogoAustromex_2026_low.pdf',
-      whatsappUrl:
-        'https://wa.me/529939805654?text=Hola%20Mersol!%20Vengo%20de%20su%20p%C3%A1gina%20web.%20Me%20interesa%20informaci%C3%B3n%20sobre%20sus%20productos.',
+      catalogUrl: '#',
+      whatsappUrl: 'https://wa.me/529939805654',
       stats: {
         value: '+18',
         label: 'AÑOS DE EXPERIENCIA',
@@ -86,15 +86,35 @@ export class LandingTemplateComponent implements OnInit, AfterViewInit, OnDestro
       email: 'ventas@mersolsureste.com.mx',
       website: 'https://mersolsureste.com.mx',
       logo: 'https://mersolsureste.com.mx/assets/brand/MERSOL.svg',
-      sameAs: ['https://www.facebook.com/mersolsureste', 'https://www.instagram.com/mersolsureste'],
+      sameAs: ['https://www.facebook.com/mersolsureste'],
     },
 
     // Conectar con servicio SEO
     seo: {
-      title: 'Austromex | Soluciones en Soldadura y Abrasivos',
-      description: 'Expertos en equipos de oxicorte, soldadura y gases industriales.',
-      ogImage: 'assets/brand/austromex/mersol-preview.webp',
-      canonicalUrl: 'https://mersolsureste.com.mx',
+      title: 'Nueva Marca | Mersol Sureste',
+      description: 'Descripción SEO de la nueva landing.',
+      ogImage: 'assets/brand/shared/og-placeholder.webp',
+      canonicalUrl: 'https://mersolsureste.com.mx/landing-demo',
+      pageTitle: 'Mersol | Nueva Marca',
+    },
+
+    contactForm: {
+      email: 'ventas@mersolsureste.com.mx',
+      id: 'landing-template',
+    },
+
+    footer: {
+      contactInfo: {
+        phone: '+52 993 980 5654',
+        email: 'ventas@mersolsureste.com.mx',
+        schedules: ['Lun a Vie 8:00 AM - 5:30 PM', 'Sáb 8:00 AM - 1:30 PM'],
+      },
+      productsCol1: [],
+      productsCol2: [],
+      socialNetworks: [
+        { name: 'Facebook', url: 'https://www.facebook.com/MersolSuresteOficial' },
+        { name: 'Instagram', url: 'https://www.instagram.com/mersolsureste/' },
+      ],
     },
   };
 
@@ -111,11 +131,15 @@ export class LandingTemplateComponent implements OnInit, AfterViewInit, OnDestro
     // Llamar al servicio SEO para los metadatos
     this.seoService.setMetaTags({
       title: this.config.seo.title,
+      pageTitle: this.config.seo.pageTitle,
       description: this.config.seo.description,
       image: this.config.seo.ogImage,
       url: this.config.seo.canonicalUrl,
       schema: this.seoService.buildOrganizationSchema(this.config.business),
     });
+    if (this.config.seo.faviconPath) {
+      this.seoService.setFavicon(this.config.seo.faviconPath);
+    }
   }
 
   // Iniciar scroll automático al resto de secciones dentro de la landing
