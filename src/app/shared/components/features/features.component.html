@@ -21,15 +21,12 @@
         <article class="feature-card" role="listitem">
           <!-- ICONS -->
           <div class="icon-wrapper">
-            <img
-              [src]="iconPath + item.icon"
-              alt=""
-              aria-hidden="true"
+            <span
               class="feature-icon"
-              loading="lazy"
-              width="40"
-              height="40"
-            />
+              [style.mask-image]="'url(' + iconPath + item.icon + ')'"
+              [style.webkitMaskImage]="'url(' + iconPath + item.icon + ')'"
+              aria-hidden="true"
+            ></span>
           </div>
 
           <!-- CONTENT -->
@@ -47,15 +44,12 @@
         <article class="feature-card pillar-variant" role="listitem">
           <!-- ICONS -->
           <div class="icon-wrapper">
-            <img
-              [src]="iconPath + pillar.icon"
-              alt=""
-              aria-hidden="true"
+            <span
               class="feature-icon"
-              loading="lazy"
-              width="40"
-              height="40"
-            />
+              [style.mask-image]="'url(' + iconPath + pillar.icon + ')'"
+              [style.webkitMaskImage]="'url(' + iconPath + pillar.icon + ')'"
+              aria-hidden="true"
+            ></span>
           </div>
 
           <!-- CONTENT -->

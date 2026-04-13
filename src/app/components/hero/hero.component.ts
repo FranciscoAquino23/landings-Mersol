@@ -21,7 +21,7 @@ export class HeroComponent implements OnInit {
   // Recibir información de cada landing (header / banner / botones)
   @Input() title =
     'SOLUCIONES <br> <span class="text-outline">INDUSTRIALES</span> <br> <span class="text-red">ALTA CALIDAD</span>';
-  @Input() subtitle = 'Expertos en soldadura y abrasivos para el sureste mexicano.';
+  @Input() subtitle = 'Expertos en soldadura y abrasivos.';
 
   @Input() desktopImage = 'assets/brand/austromex/logos-austromex/banner-desktop.webp';
   @Input() mobileImage = 'assets/brand/austromex/logos-austromex/banner-mobile.webp';

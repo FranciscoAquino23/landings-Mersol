@@ -8,6 +8,7 @@
   --nav-height: 85px;
   --top-bar-height: 45px;
   --text-light: rgba(255, 255, 255, 0.9);
+  --nav-hover-color: var(--primary);
   display: block;
 }
 
@@ -174,7 +175,7 @@
 
     &:hover,
     &:focus-visible {
-      color: #b71c1c;
+      color: var(--nav-hover-color);
       outline: none;
       &::after {
         width: 100%;
@@ -213,7 +214,7 @@
   &:hover {
     background-color: var(--primary-hover);
     transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(210, 36, 42, 0.3);
+    box-shadow: 0 8px 20px color-mix(in srgb, var(--nav-hover-color) 35%, transparent);
   }
 }
 

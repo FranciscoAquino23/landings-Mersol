@@ -26,8 +26,8 @@
           [style.color]="buttonTextColor"
           aria-label="Contactar por WhatsApp para solicitar asesoría"
         >
-          <span class="cta-icon">
-            <img [src]="whatsappIcon" alt="" aria-hidden="true" />
+          <span class="cta-icon" aria-hidden="true">
+            <ng-content />
           </span>
           <span class="button-text">SOLICITAR ASESORÍA</span>
         </a>

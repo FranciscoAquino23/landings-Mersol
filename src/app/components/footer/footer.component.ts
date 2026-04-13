@@ -25,6 +25,9 @@ export class FooterComponent {
   // Recibir información de la ruta base de la landing actual
   @Input() basePath = '/';
 
+  // Recibir nombre de la empresa aliada para el footer (Copyright)
+  @Input() partnerName = '';
+
   // Información contactos
   public contactInfo: LandingFooterContactInfo = {
     phone: '+52 993 980 5654',

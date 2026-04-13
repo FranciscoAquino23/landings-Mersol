@@ -17,7 +17,6 @@ import { SeoService } from '../../services/seo.service';
 // Información default del componente (CTA)
 export class CtaComponent {
   title = '¿BUSCAS CALIDAD Y SEGURIDAD PARA LLEVAR TU PRODUCTIVIDAD AL SIGUIENTE NIVEL?';
-  whatsappIcon = 'assets/brand/shared/icons/redwhatsapp.svg';
   bannerBgColor = 'var(--primary)';
   buttonTextColor = 'var(--primary)';
 

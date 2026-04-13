@@ -162,10 +162,10 @@
       &:focus {
         outline: none;
         border-color: var(--primary);
-        box-shadow: 0 0 0 3px rgba(210, 36, 42, 0.05);
+        box-shadow: 0 0 0 3px color-mix(in srgb, var(--primary) 10%, transparent);
       }
       &.is-invalid {
-        border-color: var(--primary);
+        border-color: #d2242a;
         background-color: rgba(210, 36, 42, 0.02);
       }
     }
@@ -175,7 +175,7 @@
     }
 
     .error-msg {
-      color: var(--primary);
+      color: #d2242a;
       font-size: 0.65rem;
       font-weight: 600;
       margin-top: 1px;
@@ -207,7 +207,7 @@
 
   &:hover {
     background-color: var(--primary-hover);
-    box-shadow: 0 4px 10px rgba(210, 36, 42, 0.2);
+    box-shadow: 0 4px 10px color-mix(in srgb, var(--primary) 30%, transparent);
   }
 }
 

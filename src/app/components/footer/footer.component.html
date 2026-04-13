@@ -45,11 +45,11 @@
             </div>
           </li>
           <li class="icon-inline">
-            <img src="assets/brand/shared/socials/phone.svg" alt="" width="18" class="icon-red" />
+            <span class="icon-brand icon-phone" aria-hidden="true"></span>
             <a [href]="'tel:' + contactInfo.phone">{{ contactInfo.phone }}</a>
           </li>
           <li class="icon-inline">
-            <img src="assets/brand/shared/socials/mail.svg" alt="" width="18" class="icon-red" />
+            <span class="icon-brand icon-mail" aria-hidden="true"></span>
             <a [href]="'mailto:' + contactInfo.email">{{ contactInfo.email }}</a>
           </li>
         </ul>
@@ -86,7 +86,7 @@
 
     <!-- COPYRIGHT -->
     <div class="footer-bottom">
-      <p>© {{ currentYear }} Mersol Sureste & Grupo Austromex. Todos los derechos reservados.</p>
+      <p>© {{ currentYear }} Mersol Sureste{{ partnerName ? ' & ' + partnerName : '' }}. Todos los derechos reservados.</p>
     </div>
   </div>
 </footer>

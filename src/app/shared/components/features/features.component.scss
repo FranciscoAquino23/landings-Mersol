@@ -132,14 +132,14 @@
     .icon-wrapper {
       background: var(--primary);
       .feature-icon {
-        filter: brightness(0) invert(1);
+        background-color: var(--white);
       }
     }
   }
 
   .icon-wrapper {
     margin-bottom: 25px;
-    background: rgba(210, 36, 42, 0.05);
+    background: color-mix(in srgb, var(--primary) 12%, transparent);
     width: 70px;
     height: 70px;
     display: flex;
@@ -149,11 +149,17 @@
     transition: var(--transition);
 
     .feature-icon {
+      display: inline-block;
       width: 32px;
       height: 32px;
-      filter: invert(18%) sepia(88%) saturate(3753%) hue-rotate(349deg) brightness(88%)
-        contrast(97%);
-      transition: var(--transition);
+      background-color: var(--primary);
+      mask-size: contain;
+      mask-repeat: no-repeat;
+      mask-position: center;
+      -webkit-mask-size: contain;
+      -webkit-mask-repeat: no-repeat;
+      -webkit-mask-position: center;
+      transition: background-color 0.3s ease;
     }
   }
 
