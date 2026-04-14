@@ -4,9 +4,14 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build --configuration production",
+    "build:ssr": "ng build --configuration production",
+    "serve:ssr": "node dist/mersol-front/server/server.mjs",
+    "generate:sitemap": "node scripts/sitemap-generator.js",
+    "build:prod": "npm run generate:sitemap && ng build --configuration production",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "serve:prod": "npm run build && angular-http-server --path ./dist/mersol-front/browser -p 8080"
   },
   "private": true,
   "packageManager": "npm@11.9.0",

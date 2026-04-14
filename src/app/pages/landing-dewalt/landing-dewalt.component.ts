@@ -66,8 +66,8 @@ export class LandingDeWALTComponent implements OnInit, AfterViewInit, OnDestroy 
       title:
         'HERRAMIENTAS <br> <span class="text-outline">PROFESIONALES</span> <br> <span class="text-red">DEWALT</span>',
       subtitle: 'Expertos en potencia y durabilidad.',
-      desktopImage: 'assets/landing/landing-dewalt/banner-desktop.webp',
-      mobileImage: 'assets/landing/landing-dewalt/banner-mobile.webp',
+      desktopImage: 'assets/brand/dewalt/logos-dewalt/banner-desktop.webp',
+      mobileImage: 'assets/brand/dewalt/logos-dewalt/banner-mobile.webp',
       imageAlt: 'Herramientas profesionales DeWALT disponibles en Mersol Sureste',
       primaryCtaText: 'VER CATÁLOGO',
       secondaryCtaText: 'CONTACTO',

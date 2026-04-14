@@ -16,25 +16,6 @@ import {
 } from '@angular/core';
 import { LandingPromo } from '../../shared/models/landing-config.interface';
 
-const DEFAULT_PROMOS: LandingPromo[] = [
-  {
-    id: 1,
-    titulo: 'Promo Austromex - Envío Gratis',
-    imgDesktop: 'assets/brand/austromex/promo-austromex/promoH1.webp',
-    imgMobile: 'assets/brand/austromex/promo-austromex/promoV1.webp',
-    link: 'https://mersolsureste.com.mx/tienda',
-    alt: 'Promoción envío gratis Austromex',
-  },
-  {
-    id: 2,
-    titulo: 'Nueva Colección Industrial',
-    imgDesktop: 'assets/brand/austromex/promo-austromex/promoH2.webp',
-    imgMobile: 'assets/brand/austromex/promo-austromex/promoV2.webp',
-    link: 'https://mersolsureste.com.mx/tienda',
-    alt: 'Nuevos productos industriales Mersol',
-  },
-];
-
 @Component({
   selector: 'app-banner',
   standalone: true,
@@ -54,7 +35,7 @@ export class BannerComponent implements OnInit, OnDestroy {
   public isMobile = signal(false);
 
   // Backing signals para inputs configurables
-  private readonly _promos = signal<LandingPromo[]>(DEFAULT_PROMOS);
+  private readonly _promos = signal<LandingPromo[]>([]);
   private readonly _brandTagline = signal('DISTRIBUIDOR AUTORIZADO');
 
   // Sobreescribir valor (tag superior) a nulo en caso de no recibir parámetros

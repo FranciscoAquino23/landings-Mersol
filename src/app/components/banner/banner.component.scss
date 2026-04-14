@@ -44,11 +44,11 @@
   }
 
   &.top .marquee-track {
-    animation: marquee-top 15s linear infinite;
+    animation: marquee-top 30s linear infinite;
   }
 
   &.bottom .marquee-track {
-    animation: marquee-bottom 22s linear infinite;
+    animation: marquee-bottom 44s linear infinite;
   }
 
   .marquee-content {

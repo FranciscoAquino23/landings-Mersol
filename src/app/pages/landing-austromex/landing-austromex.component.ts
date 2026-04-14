@@ -110,8 +110,8 @@ export class LandingComponent implements OnInit, AfterViewInit, OnDestroy {
         {
           id: 1,
           titulo: 'Promo Austromex - Envío Gratis',
-          imgDesktop: 'assets/brand/austromex/promo-austromex/promoH1.webp',
-          imgMobile: 'assets/brand/austromex/promo-austromex/promoV1.webp',
+          imgDesktop: 'assets/brand/austromex/promo-austromex/promoH0.webp',
+          imgMobile: 'assets/brand/austromex/promo-austromex/promoV0.webp',
           link: 'https://mersolsureste.com.mx/tienda',
           alt: 'Promoción envío gratis Austromex',
         },
