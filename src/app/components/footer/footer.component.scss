@@ -3,6 +3,7 @@
    ========================================================================== */
 
 :host {
+  --primary-on-dark: color-mix(in srgb, var(--primary), white 30%);
   display: block;
   width: 100%;
 }
@@ -92,7 +93,7 @@
         left: 0;
         width: 30px;
         height: 2px;
-        background-color: var(--primary);
+        background-color: var(--primary-on-dark);
       }
     }
 
@@ -149,7 +150,7 @@
     flex-shrink: 0;
     width: 16px;
     height: 16px;
-    background-color: var(--primary);
+    background-color: var(--primary-on-dark);
     mask-size: contain;
     mask-repeat: no-repeat;
     mask-position: center;
@@ -184,7 +185,7 @@
       transition: var(--transition);
       &:hover,
       &:focus-visible {
-        color: var(--primary) !important;
+        color: var(--primary-on-dark) !important;
         transform: translateX(5px);
         outline: none;
       }
