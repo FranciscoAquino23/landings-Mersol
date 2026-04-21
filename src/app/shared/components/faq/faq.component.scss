@@ -86,13 +86,13 @@
   flex-shrink: 0;
 
   &:hover {
-    border-color: rgba(210, 36, 42, 0.3);
+    border-color: color-mix(in srgb, var(--primary) 30%, transparent);
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.04);
   }
 
   &.active {
     border-color: var(--primary);
-    box-shadow: 0 10px 25px rgba(210, 36, 42, 0.08);
+    box-shadow: 0 10px 25px color-mix(in srgb, var(--primary) 8%, transparent);
     background-color: var(--bg-white);
 
     .faq-question {
