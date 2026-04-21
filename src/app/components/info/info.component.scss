@@ -104,8 +104,8 @@
 
       &:hover {
         transform: scale(1.05) translateY(-5px);
-        box-shadow: 0 15px 30px rgba(210, 36, 42, 0.08);
-        border-color: rgba(210, 36, 42, 0.2);
+        box-shadow: 0 15px 30px color-mix(in srgb, var(--primary) 8%, transparent);
+        border-color: color-mix(in srgb, var(--primary) 20%, transparent);
       }
 
       &.highlight-red {
@@ -188,7 +188,7 @@
         &:hover {
           transform: translateY(-5px);
           border-color: var(--primary);
-          box-shadow: 0 10px 25px rgba(210, 36, 42, 0.05);
+          box-shadow: 0 10px 25px color-mix(in srgb, var(--primary) 5%, transparent);
         }
 
         .cert-icon-wrapper {
