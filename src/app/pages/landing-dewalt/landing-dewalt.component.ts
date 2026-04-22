@@ -188,13 +188,13 @@ export class LandingDeWALTComponent implements OnInit, AfterViewInit, OnDestroy 
         {
           nombre: 'DEWALT Guarantee',
           subtitulo: 'Garantía de 3 Años',
-          desc: 'Respaldo directo con garantía extendida en servicios y herramientas.',
+          desc: 'Respalda directamente la garantía extendida en servicios y herramientas.',
           icon: 'assets/brand/shared/icons/award.svg',
         },
       ],
       certSectionTitle: 'Calidad y Seguridad Avalada Internacionalmente',
       certSectionDesc:
-        'Todas las herramientas en DeWALT han sido diseñadas y probadass bajo los estándares más exigentes de la industria global.',
+        'Todas las herramientas en DeWALT han sido diseñadas y probadas bajo los estándares más exigentes de la industria global.',
       quote: '"Diseño por y para profesionales"',
       quoteAuthor: '— DeWALT & Mersol Sureste',
     },
@@ -241,7 +241,7 @@ export class LandingDeWALTComponent implements OnInit, AfterViewInit, OnDestroy 
         {
           icon: 'globe.svg',
           title: 'Innovación Ecológica',
-          desc: 'Operación sustentable.',
+          desc: 'Operación responsable con el medio ambiente.',
         },
       ],
     },
