@@ -34,14 +34,16 @@
           <!-- BUTTONS -->
           <div class="hero-actions">
             <!-- CATALOG -->
-            <button
-              (click)="onPrimaryAction()"
-              class="btn-hero primary"
-              type="button"
-              aria-label="Descargar catálogo de productos PDF"
-            >
-              <span class="btn-text">{{ primaryCtaText }}</span>
-            </button>
+            @if (catalogUrl) {
+              <button
+                (click)="onPrimaryAction()"
+                class="btn-hero primary"
+                type="button"
+                aria-label="Ver catálogo de productos"
+              >
+                <span class="btn-text">{{ primaryCtaText }}</span>
+              </button>
+            }
 
             <!-- WHATSAPP -->
             <button

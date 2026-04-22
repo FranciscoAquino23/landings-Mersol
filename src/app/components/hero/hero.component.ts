@@ -30,15 +30,22 @@ export class HeroComponent implements OnInit {
   @Input() primaryCtaText = 'VER CATÁLOGO';
   @Input() secondaryCtaText = 'CONTACTO';
 
-  // Recibir información del catálogo (URL)
-  @Input() catalogUrl =
-    'https://austromex.com.mx/download/v/catalogos/CatalogoAustromex_2026_low.pdf';
+  // Recibir información del catálogo (URL o PDF / vacío = ocultar botón)
+  @Input() catalogUrl?: string;
 
   // Recibir información del mensaje (Whatsapp)
   @Input() whatsappUrl =
     'https://wa.me/529939805654?text=Hola%20Mersol!%20Vengo%20de%20su%20p%C3%A1gina%20web.%20Me%20interesa%20informaci%C3%B3n%20sobre%20sus%20productos.';
+  @Input() whatsappMessage?: string;
 
-  /** Tarjeta de confianza — cifra destacada en el Hero. */
+  get effectiveWhatsappUrl(): string {
+    if (this.whatsappMessage) {
+      return 'https://wa.me/529939805654?text=' + encodeURIComponent(this.whatsappMessage);
+    }
+    return this.whatsappUrl;
+  }
+
+  // Tarjeta de confianza
   @Input() stats: LandingHeroStats = {
     value: '+18',
     label: 'AÑOS DE EXPERIENCIA',
@@ -71,6 +78,6 @@ export class HeroComponent implements OnInit {
       action: 'contact_whatsapp',
       label: this.secondaryCtaText,
     });
-    window.open(this.whatsappUrl, '_blank');
+    window.open(this.effectiveWhatsappUrl, '_blank');
   }
 }
