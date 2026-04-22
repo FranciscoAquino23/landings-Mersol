@@ -74,6 +74,8 @@ export class LandingComponent implements OnInit, AfterViewInit, OnDestroy {
       catalogUrl: 'https://austromex.com.mx/download/v/catalogos/CatalogoAustromex_2026_low.pdf',
       whatsappUrl:
         'https://wa.me/529939805654?text=Hola%20Mersol!%20Vengo%20de%20su%20p%C3%A1gina%20web.%20Me%20interesa%20informaci%C3%B3n%20sobre%20sus%20productos.',
+      whatsappMessage:
+        'Hola Mersol! Vengo de su página Austromex. Me interesa información sobre sus productos y servicios.',
       stats: {
         value: '+18',
         label: 'AÑOS DE EXPERIENCIA',
@@ -192,7 +194,7 @@ export class LandingComponent implements OnInit, AfterViewInit, OnDestroy {
 
     // Información componente Info (Nosotros)
     info: {
-      subtitle: 'Liderazgo y Respaldo Regional',
+      subtitle: 'Liderazgo y Respaldo Internacional',
       sectionTitle: 'Trayectoria de Excelencia',
       mainDescription:
         'Nuestra alianza estratégica con Grupo Austromex nos permite elevar la productividad de tu industria mediante soluciones técnicas certificadas y un soporte técnico especializado.',
@@ -222,9 +224,9 @@ export class LandingComponent implements OnInit, AfterViewInit, OnDestroy {
           icon: 'assets/brand/shared/icons/award.svg',
         },
       ],
-      certSectionTitle: 'Seguridad y Calidad Avalada Internacionalmente',
+      certSectionTitle: 'Calidad y Seguridad Avalada Internacionalmente',
       certSectionDesc:
-        'Nuestras operaciones y productos cumplen con las normativas globales más exigentes del sector industrial.',
+        'Todas las operaciones y productos en Austromex cumplen con las normativas globales más exigentes del sector industrial.',
       quote: '"Tu éxito es el nuestro"',
       quoteAuthor: '— Grupo Austromex & Mersol Sureste',
     },
@@ -270,7 +272,7 @@ export class LandingComponent implements OnInit, AfterViewInit, OnDestroy {
         },
         {
           icon: 'globe.svg',
-          title: 'Innovación Sustentable',
+          title: 'Innovación Ecológica',
           desc: 'Operación sustentable',
         },
       ],
@@ -344,7 +346,7 @@ export class LandingComponent implements OnInit, AfterViewInit, OnDestroy {
         rating: 5,
       },
       {
-        quote: 'Exelente para encontrar las refacciones y equipos',
+        quote: 'Excelente para encontrar las refacciones y equipos',
         author: 'Jose Reyes Lopez Jimenez',
         location: 'Sucursal - Villahermosa',
         rating: 4,
