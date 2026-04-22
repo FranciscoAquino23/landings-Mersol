@@ -1,0 +1,480 @@
+/* ==========================================================================
+   LANDING HYPERTHERM STRUCTURE
+   ========================================================================== */
+
+import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
+import { ViewportScroller } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
+
+// Importar servicios
+import { SeoService } from '../../shared/services/seo.service';
+import { LandingConfig } from '../../shared/models/landing-config.interface';
+
+// Importar componentes
+import { NavbarComponent } from '../../components/navbar/navbar.component';
+import { FooterComponent } from '../../components/footer/footer.component';
+import { HeroComponent } from '../../components/hero/hero.component';
+import { BannerComponent } from '../../components/banner/banner.component';
+import { InfoComponent } from '../../components/info/info.component';
+import { CategoryCarouselComponent } from '../../components/categories/category.component';
+import { FeaturesComponent } from '../../shared/components/features/features.component';
+import { ContactFormComponent } from '../../shared/components/contact-form/form.component';
+import { FaqComponent } from '../../shared/components/faq/faq.component';
+import { TestimonialsComponent } from '../../shared/components/testimonials/testimonials.component';
+import { CtaComponent } from '../../shared/components/cta/cta.component';
+import { LocationsComponent } from '../../shared/components/locations/locations.component';
+
+@Component({
+  selector: 'app-landing-hypertherm',
+  standalone: true,
+  imports: [
+    NavbarComponent,
+    FooterComponent,
+    HeroComponent,
+    BannerComponent,
+    InfoComponent,
+    CategoryCarouselComponent,
+    FeaturesComponent,
+    ContactFormComponent,
+    FaqComponent,
+    TestimonialsComponent,
+    CtaComponent,
+    LocationsComponent,
+  ],
+  templateUrl: './landing-hypertherm.component.html',
+  styleUrl: './landing-hypertherm.component.scss',
+})
+export class LandingHyperthermComponent implements OnInit, AfterViewInit, OnDestroy {
+  private fragmentSub: Subscription | undefined;
+
+  /* =========================================================================
+     CONFIGURACIÓN DE MARCA HYPERTHERM
+     ========================================================================= */
+  protected config: LandingConfig = {
+    basePath: '/hypertherm',
+
+    // Información Styles
+    colors: {
+      primary: '#ed1c24',
+      primaryHover: '#c8121a',
+      secondary: '#1e1e1e',
+    },
+
+    // Información componente Hero
+    hero: {
+      title:
+        'CORTES <br> <span class="text-outline">PLASMA</span> <br> <span class="text-red">HYPERTHERM</span>',
+      subtitle: 'Expertos en tecnología de corte y productividad.',
+      desktopImage: 'assets/brand/hypertherm/logos-hypertherm/banner-desktop.webp',
+      mobileImage: 'assets/brand/hypertherm/logos-hypertherm/banner-mobile.webp',
+      imageAlt: 'Sistemas de corte por plasma Hypertherm en Mersol Sureste',
+      primaryCtaText: 'VER CATÁLOGO',
+      secondaryCtaText: 'CONTACTO',
+      catalogUrl: 'assets/brand/hypertherm/promo-hypertherm/catalog-hypertherm.pdf',
+      whatsappUrl:
+        'https://wa.me/529939805654?text=Hola%20Mersol!%20Vengo%20de%20su%20p%C3%A1gina%20Hypertherm.%20Me%20interesa%20informaci%C3%B3n%20sobre%20sus%20sistemas%20de%20corte.',
+      whatsappMessage:
+        'Hola Mersol! Vengo de su página Hypertherm. Me interesa información sobre sus productos y servicios.',
+      stats: {
+        value: '+18',
+        label: 'AÑOS DE EXPERIENCIA',
+        description: 'Liderando el mercado industrial en el sureste.',
+      },
+    },
+
+    // Información componente Navbar
+    business: {
+      name: 'Mercado de la Soldadura del Sureste',
+      alternateName: 'Mersol',
+      phone: '+52-993-980-5654',
+      email: 'ventas@mersolsureste.com.mx',
+      website: 'https://mersolsureste.com.mx',
+      logo: 'https://mersolsureste.com.mx/assets/brand/MERSOL.svg',
+      brandLogoNavbar: 'assets/brand/hypertherm/logos-hypertherm/HYPERTHERM.svg',
+      sameAs: ['https://www.facebook.com/mersolsureste', 'https://www.instagram.com/mersolsureste'],
+    },
+
+    // Información servicio SEO
+    seo: {
+      title: 'Hypertherm | Líderes en Corte por Plasma',
+      description:
+        'Distribuidor autorizado Hypertherm en el sureste mexicano. Sistemas Powermax, plasma mecanizado, consumibles originales y soluciones de automatización para corte industrial.',
+      ogImage: 'assets/brand/hypertherm/mersol-preview.webp',
+      canonicalUrl: 'https://mersolsureste.com.mx/hypertherm',
+      pageTitle: 'Mersol | Hypertherm',
+      faviconPath: 'assets/brand/hypertherm/logos-hypertherm/favicon.png',
+    },
+
+    // Información componente Banner
+    banner: {
+      tagline: 'DISTRIBUIDOR AUTORIZADO HYPERTHERM',
+      promos: [
+        {
+          id: 1,
+          titulo: 'Hypertherm Powermax - Corte Manual',
+          imgDesktop: 'assets/brand/hypertherm/promo-hypertherm/promoH0.webp',
+          imgMobile: 'assets/brand/hypertherm/promo-hypertherm/promoV0.webp',
+          link: 'https://mersolsureste.com.mx/tienda?search=HYPERTHERM',
+          alt: 'Sistemas Powermax Hypertherm en Mersol Sureste',
+        },
+        {
+          id: 2,
+          titulo: 'Hypertherm - Consumibles Originales',
+          imgDesktop: 'assets/brand/hypertherm/promo-hypertherm/promoH1.webp',
+          imgMobile: 'assets/brand/hypertherm/promo-hypertherm/promoV1.webp',
+          link: 'https://mersolsureste.com.mx/tienda?search=HYPERTHERM',
+          alt: 'Consumibles originales Hypertherm en Mersol Sureste',
+        },
+      ],
+    },
+
+    // Información componente Category (Productos)
+    categories: [
+      {
+        title: 'SISTEMAS DE PLASMA',
+        image: 'assets/brand/hypertherm/categories-hypertherm/01.webp',
+        link: 'https://mersolsureste.com.mx/tienda?search=HYPERTHERM',
+      },
+      {
+        title: 'PISTOLAS DE PLASMA',
+        image: 'assets/brand/hypertherm/categories-hypertherm/02.webp',
+        link: 'https://mersolsureste.com.mx/tienda?search=HYPERTHERM',
+      },
+      {
+        title: 'CAD/CAM SOFTWARE',
+        image: 'assets/brand/hypertherm/categories-hypertherm/03.webp',
+        link: 'https://mersolsureste.com.mx/tienda?search=HYPERTHERM',
+      },
+      {
+        title: 'REFACCIONES',
+        image: 'assets/brand/hypertherm/categories-hypertherm/04.webp',
+        link: 'https://mersolsureste.com.mx/tienda?search=HYPERTHERM',
+      },
+      {
+        title: 'ACCESORIOS',
+        image: 'assets/brand/hypertherm/categories-hypertherm/05.webp',
+        link: 'https://mersolsureste.com.mx/tienda?search=HYPERTHERM',
+      },
+    ],
+
+    // Información componente Info (Nosotros)
+    info: {
+      subtitle: 'Liderazgo y Confianza Global',
+      sectionTitle: 'Trayectoria de Excelencia',
+      mainDescription:
+        'Nuestra alianza estratégica con Hypertherm nos permite elevar la productividad de tu industria mediante soluciones técnicas certificadas y un soporte técnico especializado.',
+      stats: [
+        { endValue: 55, suffix: '+', label: 'Años de Liderazgo', highlight: true },
+        { endValue: 18, suffix: '+', label: 'Presencia Mersol', highlight: false },
+        { endValue: 300, suffix: '+', label: 'Productos en Catálogo', highlight: false },
+        { endValue: 7, suffix: '', label: 'Sucursales Regionales', highlight: true },
+      ],
+      certificaciones: [
+        {
+          nombre: 'ISO 9001',
+          subtitulo: 'Gestión de Calidad',
+          desc: 'Garantiza la calidad de todos los sistemas a través de estrictos controles de producción.',
+          icon: 'assets/brand/shared/icons/award.svg',
+        },
+        {
+          nombre: 'CE / UL / CSA',
+          subtitulo: 'Seguridad Internacional',
+          desc: 'Asegura la seguridad de las herramientas eléctricas cumpliendo con las principales normativas de Europa y América del Norte.',
+          icon: 'assets/brand/shared/icons/award.svg',
+        },
+        {
+          nombre: 'Hypertherm Genuine',
+          subtitulo: 'Consumibles Originales',
+          desc: 'Garantiza el rendimiento, utilidad, calidad y originalidad de todos los consumibles.',
+          icon: 'assets/brand/shared/icons/award.svg',
+        },
+      ],
+      certSectionTitle: 'Calidad y Seguridad Avalada Internacionalmente',
+      certSectionDesc:
+        'Todos los sistemas en Hypertherm cumplen con los más altos estándares internacionales de rendimiento y seguridad industrial.',
+      quote: '"Corta más y Gasta menos."',
+      quoteAuthor: '— Hypertherm & Mersol Sureste',
+    },
+
+    // Información componente Features
+    features: {
+      overline: 'VALOR AGREGADO',
+      title: '¿POR QUÉ ELEGIR<br />MERSOL SURESTE?',
+      description:
+        'Soluciones integrales con el respaldo de las mejores marcas del mercado industrial.',
+      mainFeatures: [
+        {
+          icon: 'crosshairs.svg',
+          title: 'Tecnología de Punta',
+          desc: 'Herramientas y máquinas de calidad.',
+        },
+        {
+          icon: 'cart.svg',
+          title: 'Logística Eficiente',
+          desc: 'Entregas garantizadas en todo el país.',
+        },
+        {
+          icon: 'user.svg',
+          title: 'Respaldo Total',
+          desc: 'Garantía y soporte técnico especializado.',
+        },
+        {
+          icon: 'hammer.svg',
+          title: 'Asesoría Experta',
+          desc: 'Certificados para optimizar tus procesos.',
+        },
+      ],
+      pillarFeatures: [
+        {
+          icon: 'truck.svg',
+          title: 'Logística Express',
+          desc: 'Garantizamos stock y entregas eficientes.',
+        },
+        {
+          icon: 'shield.svg',
+          title: 'Garantía HYPERTHERM',
+          desc: 'Nuestros procesos y productos están certificados.',
+        },
+        {
+          icon: 'globe.svg',
+          title: 'Innovación Ecológica',
+          desc: 'Operación responsable con el medio ambiente.',
+        },
+      ],
+    },
+
+    // Información componente FAQ
+    faq: {
+      items: [
+        {
+          pregunta: '¿Qué es Mersol Sureste y qué tipo de soluciones ofrece?',
+          respuesta:
+            'Empresa especializada en soluciones industriales, enfocada en soldadura, corte, herramientas, abrasivos y equipo de protección personal.',
+        },
+        {
+          pregunta: '¿En qué sectores industriales tiene experiencia Mersol Sureste?',
+          respuesta:
+            'Atendemos sectores como metalmecánico, construcción, manufactura, mantenimiento industrial y energía.',
+        },
+        {
+          pregunta: '¿Los productos son originales y cuentan con garantía de fábrica?',
+          respuesta:
+            'Sí, todos nuestros productos son 100% originales y cuentan con garantía directa del fabricante.',
+        },
+        {
+          pregunta: '¿Manejan productos especializados o bajo pedido?',
+          respuesta:
+            'Sí, podemos conseguir equipos y consumibles especializados bajo pedido según tus necesidades.',
+        },
+        {
+          pregunta: '¿Realizan envíos a toda la República Mexicana?',
+          respuesta: 'Sí, realizamos envíos a todo México con opciones rápidas y seguras.',
+        },
+        {
+          pregunta: '¿Puedo recoger mi pedido en sucursal?',
+          respuesta: 'Sí, puedes recoger directamente en cualquiera de nuestras sucursales.',
+        },
+        {
+          pregunta: '¿Manejan precios especiales por volumen o mayoreo?',
+          respuesta:
+            'Sí, ofrecemos precios preferenciales para compras por volumen y clientes recurrentes.',
+        },
+        {
+          pregunta: '¿Ofrecen crédito a empresas?',
+          respuesta: 'Sí, contamos con opciones de crédito sujetas a evaluación.',
+        },
+        {
+          pregunta: '¿Venden refacciones originales?',
+          respuesta:
+            'Sí, manejamos refacciones originales para asegurar el correcto funcionamiento de tus equipos.',
+        },
+        {
+          pregunta: '¿Atienden proyectos industriales o compras a gran escala?',
+          respuesta:
+            'Sí, brindamos atención especializada para proyectos industriales y compras de alto volumen.',
+        },
+      ],
+    },
+
+    // Información componente Testimonials
+    testimonials: [
+      {
+        quote: 'Excelente precios en gases y equipos de oxicorte, aquí encontré lo que buscaba',
+        author: 'Moises Santamaria',
+        location: 'Sucursal - Campeche',
+        rating: 5,
+      },
+      {
+        quote: 'Gran variedad tanto de marcas y productos, siempre encuentras lo que buscas',
+        author: 'Claudia Caraveo',
+        location: 'Sucursal - CEDIS Mérida',
+        rating: 5,
+      },
+      {
+        quote: 'Excelente para encontrar las refacciones y equipos',
+        author: 'Jose Reyes Lopez Jimenez',
+        location: 'Sucursal - Villahermosa',
+        rating: 4,
+      },
+      {
+        quote: 'Todo en materia de herramientas y seguridad industrial',
+        author: 'FREDY SPARX (SPARX)',
+        location: 'Sucursal - Villahermosa',
+        rating: 5,
+      },
+      {
+        quote: 'Una tienda grande especializada en herramientas industriales a un precio justo',
+        author: 'Carlos Arias',
+        location: 'Sucursal - Villahermosa',
+        rating: 4,
+      },
+      {
+        quote:
+          'Es una tienda especializada en insumos y herramientas para la industria, una excelente opción para las medianas y grandes empresas',
+        author: 'Carlos Cisneros',
+        location: 'Sucursal - Villahermosa',
+        rating: 5,
+      },
+      {
+        quote: 'Muy bien surtidos en materiales, herramientas y refacciones',
+        author: 'Jose Grethel Ramirez Alcazar',
+        location: 'Sucursal - Villahermosa',
+        rating: 5,
+      },
+    ],
+
+    // Información componente CTA (Call To Action)
+    cta: {
+      title: '¿BUSCAS CALIDAD Y SEGURIDAD PARA LLEVAR TU PRODUCTIVIDAD AL SIGUIENTE NIVEL?',
+      whatsappPhone: '529939805654',
+      whatsappMessage:
+        'Hola Mersol! Vengo de su página Hypertherm. Me interesa obtener una asesoría industrial.',
+    },
+
+    // Información componente Locations (Sucursales)
+    locations: [
+      {
+        name: 'Villahermosa, TAB',
+        address: 'Av. Ruiz Cortines 2001-B, Col. Atasta, Villahermosa, TAB, C.P. 86100',
+        phone: '(993) 354-4023 • (993) 354-7657 • (993) 161-4479',
+        mapEmbedUrl:
+          'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d948.7070888024072!2d-92.95968200000002!3d17.986721!3m2!1i1024!2i768!4f30!3m3!1m2!1s0x85edd7899875a39f%3A0x27cd52aa1ad690b6!2sMersol%20Sureste%20Villahermosa!5e0!3m2!1ses-419!2sus!4v1775078801107!5m2!1ses-419!2sus',
+      },
+      {
+        name: 'Veracruz, VER',
+        address: 'Manuel de Jesús Clouthier 5417 L-15, Col. Amapolas, Veracruz, VER, C.P. 91698',
+        phone: '(229) 920-8577 • (229) 931-1630 • (229) 260-8910',
+        mapEmbedUrl:
+          'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d471.10905557776897!2d-96.1922!3d19.15706!3m2!1i1024!2i768!4f30!3m3!1m2!1s0x85c34127b4214919%3A0x58189403ee35a26b!2sMersol%20Sureste%20Veracruz!5e0!3m2!1ses-419!2sus!4v1775078669935!5m2!1ses-419!2sus',
+      },
+      {
+        name: 'Mérida, YUC',
+        address: 'Perif. de Mérida Lic. Manuel Berzunza SN, Tixcacal Opichen, 97314 Mérida, Yuc.',
+        phone: '(999) 400-5855',
+        mapEmbedUrl:
+          'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3726.015160812369!2d-89.7011307!3d20.9519063!3m2!1i1024!2i768!4f20!3m3!1m2!1s0x8f567334ff2fdbe5%3A0xbb9c01258aa28193!2sMersol%20Sureste%20CEDIS%20M%C3%A9rida!5e0!3m2!1ses-419!2smx!4v1776105357323!5m2!1ses-419!2smx',
+      },
+      {
+        name: 'Apodaca, NL',
+        address: 'Regioavenida 116, Regio Parque Industrial, Cd. Apodaca, NL, C.P. 66633',
+        phone: '(81) 8123-1164 • (81) 8123-1215',
+        mapEmbedUrl:
+          'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1796.882876200616!2d-100.21570430683457!3d25.745259005344916!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f20!3m3!1m2!1s0x866295ed8d561cb3%3A0xb253f4f5e95bb375!2sMersol%20Sureste%20CEDIS%20APODACA!5e0!3m2!1ses-419!2sus!4v1776105617842!5m2!1ses-419!2sus',
+      },
+      {
+        name: 'Campeche, CAM',
+        address: 'Av. Gobernadores 72, Col. Santa Lucia, Campeche, CAM, C.P. 24020',
+        phone: '(981) 827-9038',
+        mapEmbedUrl:
+          'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d234.5591245016365!2d-90.506222!3d19.842238!3m2!1i1024!2i768!4f30!3m3!1m2!1s0x85f831b15429c451%3A0xd25968b749d6560b!2sMersol%20Sureste%20Campeche!5e0!3m2!1ses-419!2sus!4v1775078841190!5m2!1ses-419!2sus',
+      },
+      {
+        name: 'Paraíso, TAB',
+        address: 'Carretera Paraíso - Dos Bocas KM 1 S/N, Col. El Limón, Paraíso, TAB, C.P. 86600',
+        phone: '(933) 333-4692 • (933) 333-4564 • (933) 333-4942',
+        mapEmbedUrl:
+          'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d473.21202703886235!2d-93.215647!3d18.406672!3m2!1i1024!2i768!4f30!3m3!1m2!1s0x85ee8fa936e38025%3A0x9c06480451266e81!2sMersol%20Sureste%20Para%C3%ADso!5e0!3m2!1ses-419!2sus!4v1775078771604!5m2!1ses-419!2sus',
+      },
+      {
+        name: 'Tula, HGO',
+        address:
+          'Ctra. Federal Tula - Refinería Km 4.5, El Llano, 2da. sección, Tula de Allende, HGO, C.P. 42803',
+        phone: '(773) 688-2091 • (773) 688-3089',
+        mapEmbedUrl:
+          'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d468.4798639267234!2d-99.295963!3d20.057189!3m2!1i1024!2i768!4f30!3m3!1m2!1s0x85d22d04181e4587%3A0x5dfc38ceeb6ef77c!2sMersol%20Sureste%20Tula%20de%20Allende!5e0!3m2!1ses-419!2sus!4v1775078581714!5m2!1ses-419!2sus',
+      },
+    ],
+
+    // Información componente ContactForm (Formulario)
+    contactForm: {
+      email: 'ventas@mersolsureste.com.mx',
+      id: 'landing-hypertherm',
+    },
+
+    // Información componente Footer
+    footer: {
+      brandLogoWhite: 'assets/brand/hypertherm/logos-hypertherm/HYPERTHERM.svg',
+      contactInfo: {
+        phone: '+52 993 980 5654',
+        email: 'ventas@mersolsureste.com.mx',
+        schedules: ['Lun a Vie 8:00 AM - 5:30 PM', 'Sáb 8:00 AM - 1:30 PM'],
+      },
+      productsCol1: [
+        { label: 'Sistema de Plasma', url: 'plasma' },
+        { label: 'Pistolas de Plasma', url: 'pistolas' },
+        { label: 'CAD/CAM Software', url: 'cadcam' },
+      ],
+      productsCol2: [
+        { label: 'Refacciones', url: 'refacciones' },
+        { label: 'Accesorios', url: 'accesorios' },
+      ],
+      socialNetworks: [
+        { name: 'Facebook', url: 'https://www.facebook.com/MersolSuresteOficial' },
+        { name: 'Instagram', url: 'https://www.instagram.com/mersolsureste/' },
+        { name: 'Youtube', url: 'https://www.youtube.com/@mersolsureste4375' },
+        {
+          name: 'Linkedin',
+          url: 'https://www.linkedin.com/company/mersolsureste/posts/?feedView=all',
+        },
+      ],
+    },
+  };
+
+  // Constructor de la landing-page Hypertherm
+  constructor(
+    private route: ActivatedRoute,
+    private viewportScroller: ViewportScroller,
+    private seoService: SeoService,
+  ) {}
+
+  // Iniciar servicios
+  ngOnInit(): void {
+    this.seoService.captureUtms();
+    this.seoService.setMetaTags({
+      title: this.config.seo.title,
+      pageTitle: this.config.seo.pageTitle,
+      description: this.config.seo.description,
+      image: this.config.seo.ogImage,
+      url: this.config.seo.canonicalUrl,
+      schema: this.seoService.buildOrganizationSchema(this.config.business),
+    });
+    if (this.config.seo.faviconPath) {
+      this.seoService.setFavicon(this.config.seo.faviconPath);
+    }
+  }
+
+  // Mantener una Single Page Application (SPA)
+  ngAfterViewInit(): void {
+    this.fragmentSub = this.route.fragment.subscribe((fragment) => {
+      if (fragment) {
+        setTimeout(() => this.viewportScroller.scrollToAnchor(fragment), 100);
+      }
+    });
+  }
+
+  // Limpiar componentes
+  ngOnDestroy(): void {
+    this.fragmentSub?.unsubscribe();
+  }
+}
