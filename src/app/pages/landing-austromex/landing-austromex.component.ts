@@ -273,7 +273,7 @@ export class LandingComponent implements OnInit, AfterViewInit, OnDestroy {
         {
           icon: 'globe.svg',
           title: 'Innovación Ecológica',
-          desc: 'Operación sustentable',
+          desc: 'Operación responsable con el medio ambiente.',
         },
       ],
     },
