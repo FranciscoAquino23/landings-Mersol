@@ -74,6 +74,8 @@ export class LandingDeWALTComponent implements OnInit, AfterViewInit, OnDestroy 
       catalogUrl: 'https://latam.dewalt.global/catalogo',
       whatsappUrl:
         'https://wa.me/529939805654?text=Hola%20Mersol!%20Me%20interesa%20informaci%C3%B3n%20sobre%20productos%20DeWALT.',
+      whatsappMessage:
+        'Hola Mersol! Vengo de su página DeWALT. Me interesa información sobre sus productos y servicios.',
       stats: {
         value: '+18',
         label: 'AÑOS DE EXPERIENCIA',
@@ -161,7 +163,7 @@ export class LandingDeWALTComponent implements OnInit, AfterViewInit, OnDestroy 
     // Información componente Info (Nosotros)
     info: {
       subtitle: 'Liderazgo y Confianza Global',
-      sectionTitle: 'Más de 70 Años de Innovación',
+      sectionTitle: 'Trayectoria de Excelencia',
       mainDescription:
         'Nuestra alianza estratégica con DeWALT nos permite elevar la productividad de tu industria mediante soluciones técnicas certificadas y un soporte técnico especializado.',
       stats: [
@@ -190,19 +192,19 @@ export class LandingDeWALTComponent implements OnInit, AfterViewInit, OnDestroy 
           icon: 'assets/brand/shared/icons/award.svg',
         },
       ],
-      certSectionTitle: 'Calidad y Seguridad Garantizada',
+      certSectionTitle: 'Calidad y Seguridad Avalada Internacionalmente',
       certSectionDesc:
-        'Cada herramienta DeWALT ha sido diseñada y probada bajo los estándares más exigentes de la industria global.',
-      quote: '"Diseñadas por y para profesionales"',
+        'Todas las herramientas en DeWALT han sido diseñadas y probadass bajo los estándares más exigentes de la industria global.',
+      quote: '"Diseño por y para profesionales"',
       quoteAuthor: '— DeWALT & Mersol Sureste',
     },
 
     // Información componente Features
     features: {
       overline: 'VALOR AGREGADO',
-      title: '¿POR QUÉ ELEGIR<br />DEWALT EN MERSOL?',
+      title: '¿POR QUÉ ELEGIR<br />MERSOL SURESTE?',
       description:
-        'Herramientas profesionales respaldadas por el distribuidor autorizado con mayor presencia en el sureste mexicano.',
+        'Soluciones integrales con el respaldo de las mejores marcas del mercado industrial.',
       mainFeatures: [
         {
           icon: 'crosshairs.svg',
@@ -238,7 +240,7 @@ export class LandingDeWALTComponent implements OnInit, AfterViewInit, OnDestroy 
         },
         {
           icon: 'globe.svg',
-          title: 'Innovación Sustentable',
+          title: 'Innovación Ecológica',
           desc: 'Operación sustentable.',
         },
       ],
@@ -248,54 +250,51 @@ export class LandingDeWALTComponent implements OnInit, AfterViewInit, OnDestroy 
     faq: {
       items: [
         {
-          pregunta: '¿Mersol Sureste es distribuidor autorizado DeWALT?',
+          pregunta: '¿Qué es Mersol Sureste y qué tipo de soluciones ofrece?',
           respuesta:
-            'Sí, somos distribuidores autorizados DeWALT con más de 18 años de presencia en el sureste mexicano, garantizando productos 100% originales.',
+            'Empresa especializada en soluciones industriales, enfocada en soldadura, corte, herramientas, abrasivos y equipo de protección personal.',
         },
         {
-          pregunta: '¿Qué líneas de productos DeWALT manejan?',
+          pregunta: '¿En qué sectores industriales tiene experiencia Mersol Sureste?',
           respuesta:
-            'Manejamos herramientas eléctricas, manuales, inalámbricas, equipo de seguridad personal, almacenamiento, anclajes, sistemas FLEXVOLT y accesorios.',
+            'Atendemos sectores como metalmecánico, construcción, manufactura, mantenimiento industrial y energía.',
         },
         {
-          pregunta: '¿Los productos DeWALT tienen garantía de fábrica?',
+          pregunta: '¿Los productos son originales y cuentan con garantía de fábrica?',
           respuesta:
-            'Sí, todas las herramientas DeWALT cuentan con garantía directa de 3 años del fabricante. Aplicamos el programa "DeWALT Guarantee".',
+            'Sí, todos nuestros productos son 100% originales y cuentan con garantía directa del fabricante.',
+        },
+        {
+          pregunta: '¿Manejan productos especializados o bajo pedido?',
+          respuesta:
+            'Sí, podemos conseguir equipos y consumibles especializados bajo pedido según tus necesidades.',
         },
         {
           pregunta: '¿Realizan envíos a toda la República Mexicana?',
-          respuesta:
-            'Sí, realizamos envíos a todo México. Contamos con 7 sucursales estratégicas para garantizar tiempos de entrega eficientes.',
+          respuesta: 'Sí, realizamos envíos a todo México con opciones rápidas y seguras.',
         },
         {
-          pregunta: '¿Puedo recoger mi pedido en alguna sucursal?',
-          respuesta:
-            'Sí, puedes recoger en cualquiera de nuestras sucursales en Villahermosa, Veracruz, Mérida, Apodaca, Campeche, Paraíso y Tula.',
+          pregunta: '¿Puedo recoger mi pedido en sucursal?',
+          respuesta: 'Sí, puedes recoger directamente en cualquiera de nuestras sucursales.',
         },
         {
-          pregunta: '¿Manejan precios especiales para compras por volumen?',
+          pregunta: '¿Manejan precios especiales por volumen o mayoreo?',
           respuesta:
-            'Sí, ofrecemos precios preferenciales para contratistas, empresas y compras de alto volumen. Contáctanos para cotización personalizada.',
+            'Sí, ofrecemos precios preferenciales para compras por volumen y clientes recurrentes.',
         },
         {
-          pregunta: '¿Ofrecen servicio técnico y reparación de herramientas DeWALT?',
-          respuesta:
-            'Sí, contamos con técnicos certificados por DeWALT para diagnóstico, mantenimiento y reparación de herramientas.',
+          pregunta: '¿Ofrecen crédito a empresas?',
+          respuesta: 'Sí, contamos con opciones de crédito sujetas a evaluación.',
         },
         {
-          pregunta: '¿Tienen disponibilidad de refacciones originales DeWALT?',
+          pregunta: '¿Venden refacciones originales?',
           respuesta:
-            'Sí, manejamos refacciones originales DeWALT para asegurar el máximo rendimiento y durabilidad de tus herramientas.',
+            'Sí, manejamos refacciones originales para asegurar el correcto funcionamiento de tus equipos.',
         },
         {
-          pregunta: '¿Ofrecen crédito o financiamiento para empresas?',
+          pregunta: '¿Atienden proyectos industriales o compras a gran escala?',
           respuesta:
-            'Sí, contamos con opciones de crédito empresarial sujetas a evaluación. Contáctanos para conocer los requisitos.',
-        },
-        {
-          pregunta: '¿Atienden proyectos industriales o licitaciones?',
-          respuesta:
-            'Sí, brindamos atención especializada para proyectos industriales, licitaciones públicas y compras de alto volumen con soporte técnico incluido.',
+            'Sí, brindamos atención especializada para proyectos industriales y compras de alto volumen.',
         },
       ],
     },
@@ -303,58 +302,53 @@ export class LandingDeWALTComponent implements OnInit, AfterViewInit, OnDestroy 
     // Información componente Testimonials
     testimonials: [
       {
-        quote:
-          'Excelente atención y productos originales DeWALT, encontré exactamente lo que necesitaba para mi obra',
-        author: 'Roberto Hernández',
+        quote: 'Excelente precios en gases y equipos de oxicorte, aquí encontré lo que buscaba',
+        author: 'Moises Santamaria',
+        location: 'Sucursal - Campeche',
+        rating: 5,
+      },
+      {
+        quote: 'Gran variedad tanto de marcas y productos, siempre encuentras lo que buscas',
+        author: 'Claudia Caraveo',
+        location: 'Sucursal - CEDIS Mérida',
+        rating: 5,
+      },
+      {
+        quote: 'Excelente para encontrar las refacciones y equipos',
+        author: 'Jose Reyes Lopez Jimenez',
+        location: 'Sucursal - Villahermosa',
+        rating: 4,
+      },
+      {
+        quote: 'Todo en materia de herramientas y seguridad industrial',
+        author: 'FREDY SPARX (SPARX)',
         location: 'Sucursal - Villahermosa',
         rating: 5,
       },
       {
-        quote:
-          'Gran variedad de herramientas DeWALT y el mejor precio de la región, muy recomendable',
-        author: 'Ingeniería Constructora del Sureste',
-        location: 'Sucursal - Mérida',
-        rating: 5,
-      },
-      {
-        quote:
-          'El servicio técnico es de primera, resolvieron el problema de mi taladro el mismo día',
-        author: 'Luis Domínguez',
-        location: 'Sucursal - Veracruz',
-        rating: 5,
-      },
-      {
-        quote:
-          'Compro mis herramientas DeWALT aquí desde hace años, siempre con garantía y respaldo',
-        author: 'Contratista Independiente',
-        location: 'Sucursal - Campeche',
+        quote: 'Una tienda grande especializada en herramientas industriales a un precio justo',
+        author: 'Carlos Arias',
+        location: 'Sucursal - Villahermosa',
         rating: 4,
       },
       {
         quote:
-          'Envío rápido y producto bien empacado, el taladro percutor llegó en perfectas condiciones',
-        author: 'Maestro Carpintero',
-        location: 'Envío - Tabasco',
+          'Es una tienda especializada en insumos y herramientas para la industria, una excelente opción para las medianas y grandes empresas',
+        author: 'Carlos Cisneros',
+        location: 'Sucursal - Villahermosa',
         rating: 5,
       },
       {
-        quote: 'Asesoría profesional para elegir la sierra correcta para mi taller, muy satisfecho',
-        author: 'Taller Metalmecánico Garza',
-        location: 'Sucursal - Apodaca',
+        quote: 'Muy bien surtidos en materiales, herramientas y refacciones',
+        author: 'Jose Grethel Ramirez Alcazar',
+        location: 'Sucursal - Villahermosa',
         rating: 5,
-      },
-      {
-        quote:
-          'Refacciones originales disponibles de inmediato, evitaron que mi equipo estuviera parado días',
-        author: 'Empresa Manufacturera',
-        location: 'Sucursal - Tula',
-        rating: 4,
       },
     ],
 
     // Información componente CTA (Call To Action)
     cta: {
-      title: '¿BUSCAS HERRAMIENTAS PROFESIONALES DEWALT PARA TU PROYECTO?',
+      title: '¿BUSCAS CALIDAD Y SEGURIDAD PARA LLEVAR TU PRODUCTIVIDAD AL SIGUIENTE NIVEL?',
       whatsappPhone: '529939805654',
       whatsappMessage:
         'Hola Mersol! Vengo de su página DeWALT. Me interesa obtener una asesoría industrial.',
