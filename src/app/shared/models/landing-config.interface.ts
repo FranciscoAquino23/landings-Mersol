@@ -25,8 +25,9 @@ export interface LandingHero {
   imageAlt?: string;
   primaryCtaText: string;
   secondaryCtaText: string;
-  catalogUrl: string;
+  catalogUrl?: string;
   whatsappUrl: string;
+  whatsappMessage?: string;
   stats: LandingHeroStats;
 }
 
