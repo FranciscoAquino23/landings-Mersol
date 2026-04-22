@@ -21,6 +21,64 @@ export const routes: Routes = [
   },
 
   {
+    // Landing Lincoln Electric
+    path: 'lincoln',
+    loadComponent: () =>
+      import('./pages/landing-lincoln/landing-lincoln.component').then(
+        (m) => m.LandingLincolnComponent,
+      ),
+    data: {
+      title: 'Lincoln Electric | La solución en soldadura',
+      description:
+        'Expertos en equipos de soldadura, consumibles y soluciones de automatización. Distribuidor autorizado Lincoln Electric en el sureste mexicano.',
+      ogImage: 'assets/brand/lincoln/mersol-preview.webp',
+    },
+  },
+
+  {
+    // Landing Milwaukee Tool
+    path: 'milwaukee',
+    loadComponent: () =>
+      import('./pages/landing-milwaukee/landing-milwaukee.component').then(
+        (m) => m.LandingMilwaukeeComponent,
+      ),
+    data: {
+      title: 'Milwaukee Tool | Nada más que trabajo pesado',
+      description:
+        'Expertos en herramientas inalámbricas de alto rendimiento y tecnología FUEL. Distribuidor autorizado Milwaukee Tool en el sureste mexicano.',
+      ogImage: 'assets/brand/milwaukee/mersol-preview.webp',
+    },
+  },
+
+  {
+    // Landing URREA
+    path: 'urrea',
+    loadComponent: () =>
+      import('./pages/landing-urrea/landing-urrea.component').then((m) => m.LandingUrreaComponent),
+    data: {
+      title: 'URREA | Herramientas Profesionales',
+      description:
+        'Expertos en soluciones totales para la industria y el mantenimiento. Distribuidor autorizado URREA en el sureste mexicano.',
+      ogImage: 'assets/brand/urrea/mersol-preview.webp',
+    },
+  },
+
+  {
+    // Landing Hypertherm
+    path: 'hypertherm',
+    loadComponent: () =>
+      import('./pages/landing-hypertherm/landing-hypertherm.component').then(
+        (m) => m.LandingHyperthermComponent,
+      ),
+    data: {
+      title: 'Hypertherm | Líderes en Corte por Plasma',
+      description:
+        'Distribuidor autorizado Hypertherm en el sureste mexicano. Sistemas Powermax, plasma mecanizado y consumibles originales para corte industrial.',
+      ogImage: 'assets/brand/hypertherm/mersol-preview.webp',
+    },
+  },
+
+  {
     // Landing DeWALT
     path: 'dewalt',
     loadComponent: () =>
