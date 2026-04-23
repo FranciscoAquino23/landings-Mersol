@@ -103,7 +103,7 @@ export class LandingMilwaukeeComponent implements OnInit, AfterViewInit, OnDestr
       ogImage: 'assets/brand/milwaukee/mersol-preview.webp',
       canonicalUrl: 'https://mersolsureste.com.mx/milwaukee',
       pageTitle: 'Mersol | Milwaukee',
-      faviconPath: 'assets/brand/milwaukee/logos-milwaukee/favicon.png',
+      faviconPath: 'assets/brand/milwaukee/logos-milwaukee/favicon.ico',
     },
 
     // Información componente Banner

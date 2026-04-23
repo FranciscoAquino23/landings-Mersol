@@ -103,7 +103,7 @@ export class LandingUrreaComponent implements OnInit, AfterViewInit, OnDestroy {
       ogImage: 'assets/brand/urrea/mersol-preview.webp',
       canonicalUrl: 'https://mersolsureste.com.mx/urrea',
       pageTitle: 'Mersol | URREA',
-      faviconPath: 'assets/brand/urrea/logos-urrea/favicon.png',
+      faviconPath: 'assets/brand/urrea/logos-urrea/favicon.ico',
     },
 
     // Información componente Banner

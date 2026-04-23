@@ -103,7 +103,7 @@ export class LandingHyperthermComponent implements OnInit, AfterViewInit, OnDest
       ogImage: 'assets/brand/hypertherm/mersol-preview.webp',
       canonicalUrl: 'https://mersolsureste.com.mx/hypertherm',
       pageTitle: 'Mersol | Hypertherm',
-      faviconPath: 'assets/brand/hypertherm/logos-hypertherm/favicon.png',
+      faviconPath: 'assets/brand/hypertherm/logos-hypertherm/favicon.ico',
     },
 
     // Información componente Banner

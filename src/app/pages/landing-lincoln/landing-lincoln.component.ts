@@ -104,7 +104,7 @@ export class LandingLincolnComponent implements OnInit, AfterViewInit, OnDestroy
       ogImage: 'assets/brand/lincoln/mersol-preview.webp',
       canonicalUrl: 'https://mersolsureste.com.mx/lincoln',
       pageTitle: 'Mersol | Lincoln Electric',
-      faviconPath: 'assets/brand/lincoln/logos-lincoln/favicon.png',
+      faviconPath: 'assets/brand/lincoln/logos-lincoln/favicon.ico',
     },
 
     // Información componente Banner
