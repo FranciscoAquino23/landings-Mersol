@@ -91,7 +91,7 @@ export class LandingHyperthermComponent implements OnInit, AfterViewInit, OnDest
       email: 'ventas@mersolsureste.com.mx',
       website: 'https://mersolsureste.com.mx',
       logo: 'https://mersolsureste.com.mx/assets/brand/MERSOL.svg',
-      brandLogoNavbar: 'assets/brand/hypertherm/logos-hypertherm/HYPERTHERM.svg',
+      brandLogoNavbar: 'assets/brand/hypertherm/logos-hypertherm/HYPERTHERM.webp',
       sameAs: ['https://www.facebook.com/mersolsureste', 'https://www.instagram.com/mersolsureste'],
     },
 
@@ -414,7 +414,7 @@ export class LandingHyperthermComponent implements OnInit, AfterViewInit, OnDest
 
     // Información componente Footer
     footer: {
-      brandLogoWhite: 'assets/brand/hypertherm/logos-hypertherm/HYPERTHERM.svg',
+      brandLogoWhite: 'assets/brand/hypertherm/logos-hypertherm/HYPERTHERM-white.png',
       contactInfo: {
         phone: '+52 993 980 5654',
         email: 'ventas@mersolsureste.com.mx',
