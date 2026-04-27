@@ -176,7 +176,7 @@ export class LandingUrreaComponent implements OnInit, AfterViewInit, OnDestroy {
         'Nuestra alianza estratégica con URREA nos permite elevar la productividad de tu industria mediante soluciones técnicas certificadas y un soporte técnico especializado.',
       stats: [
         { endValue: 75, suffix: '+', label: 'Años de Liderazgo', highlight: true },
-        { endValue: 18, suffix: '+', label: 'Presencia Mersol', highlight: false },
+        { endValue: 18, suffix: '+', label: 'Años de Presencia Mersol', highlight: false },
         { endValue: 6000, suffix: '+', label: 'Productos en Catálogo', highlight: false },
         { endValue: 7, suffix: '', label: 'Sucursales Regionales', highlight: true },
       ],

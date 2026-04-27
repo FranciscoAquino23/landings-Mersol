@@ -176,7 +176,7 @@ export class LandingMilwaukeeComponent implements OnInit, AfterViewInit, OnDestr
         'Nuestra alianza estratégica con Milwaukee nos permite elevar la productividad de tu industria mediante soluciones técnicas certificadas y un soporte técnico especializado.',
       stats: [
         { endValue: 100, suffix: '+', label: 'Años de Liderazgo', highlight: true },
-        { endValue: 18, suffix: '+', label: 'Presencia Mersol', highlight: false },
+        { endValue: 18, suffix: '+', label: 'Años de Presencia Mersol', highlight: false },
         { endValue: 1000, suffix: '+', label: 'Productos en Catálogo', highlight: false },
         { endValue: 7, suffix: '', label: 'Sucursales Regionales', highlight: true },
       ],

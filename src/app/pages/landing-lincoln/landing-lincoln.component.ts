@@ -177,7 +177,7 @@ export class LandingLincolnComponent implements OnInit, AfterViewInit, OnDestroy
         'Nuestra alianza estratégica con Lincoln Electric nos permite elevar la productividad de tu industria mediante soluciones técnicas certificadas y un soporte técnico especializado.',
       stats: [
         { endValue: 125, suffix: '+', label: 'Años de Liderazgo', highlight: true },
-        { endValue: 18, suffix: '+', label: 'Presencia Mersol', highlight: false },
+        { endValue: 18, suffix: '+', label: 'Años de Presencia Mersol', highlight: false },
         { endValue: 4200, suffix: '+', label: 'Productos en Catálogo', highlight: false },
         { endValue: 7, suffix: '', label: 'Sucursales Regionales', highlight: true },
       ],

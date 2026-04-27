@@ -166,7 +166,7 @@ export class LandingHyperthermComponent implements OnInit, AfterViewInit, OnDest
         'Nuestra alianza estratégica con Hypertherm nos permite elevar la productividad de tu industria mediante soluciones técnicas certificadas y un soporte técnico especializado.',
       stats: [
         { endValue: 55, suffix: '+', label: 'Años de Liderazgo', highlight: true },
-        { endValue: 18, suffix: '+', label: 'Presencia Mersol', highlight: false },
+        { endValue: 18, suffix: '+', label: 'Años de Presencia Mersol', highlight: false },
         { endValue: 300, suffix: '+', label: 'Productos en Catálogo', highlight: false },
         { endValue: 7, suffix: '', label: 'Sucursales Regionales', highlight: true },
       ],
