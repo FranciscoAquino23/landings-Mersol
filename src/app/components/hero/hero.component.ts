@@ -23,8 +23,8 @@ export class HeroComponent implements OnInit {
     'SOLUCIONES <br> <span class="text-outline">INDUSTRIALES</span> <br> <span class="text-red">ALTA CALIDAD</span>';
   @Input() subtitle = 'Expertos en soldadura y abrasivos.';
 
-  @Input() desktopImage = 'assets/brand/austromex/logos-austromex/banner-desktop.webp';
-  @Input() mobileImage = 'assets/brand/austromex/logos-austromex/banner-mobile.webp';
+  @Input() desktopImage = '';
+  @Input() mobileImage = '';
   @Input() imageAlt = 'Equipos industriales - Mersol Sureste';
 
   @Input() primaryCtaText = 'VER CATÁLOGO';
@@ -34,13 +34,13 @@ export class HeroComponent implements OnInit {
   @Input() catalogUrl?: string;
 
   // Recibir información del mensaje (Whatsapp)
-  @Input() whatsappUrl =
-    'https://wa.me/529939805654?text=Hola%20Mersol!%20Vengo%20de%20su%20p%C3%A1gina%20web.%20Me%20interesa%20informaci%C3%B3n%20sobre%20sus%20productos.';
+  @Input() whatsappUrl = '';
   @Input() whatsappMessage?: string;
 
   get effectiveWhatsappUrl(): string {
     if (this.whatsappMessage) {
-      return 'https://wa.me/529939805654?text=' + encodeURIComponent(this.whatsappMessage);
+      const base = this.whatsappUrl.split('?')[0];
+      return `${base}?text=${encodeURIComponent(this.whatsappMessage)}`;
     }
     return this.whatsappUrl;
   }

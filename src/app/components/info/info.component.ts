@@ -50,60 +50,15 @@ export class InfoComponent implements AfterViewInit, OnDestroy {
   private animationInterval: any;
   private hasAnimated = false;
 
-  // Configurar valores por defecto (Austromex)
-  // (header / descripción / KPI'S)
-  public readonly subtitle = signal('Liderazgo y Respaldo Regional');
-  public readonly sectionTitle = signal('Trayectoria de Excelencia');
-  public readonly mainDescription = signal(
-    'Nuestra alianza estratégica con Grupo Austromex nos permite elevar la productividad de tu industria mediante soluciones técnicas certificadas y un soporte técnico especializado.',
-  );
-  public readonly certSectionTitle = signal('Seguridad y Calidad Avalada Internacionalmente');
-  public readonly certSectionDesc = signal(
-    'Nuestras operaciones y productos cumplen con las normativas globales más exigentes del sector industrial.',
-  );
-  public readonly quote = signal('"Tu éxito es el nuestro"');
-  public readonly quoteAuthor = signal('— Grupo Austromex & Mersol Sureste');
-
-  public readonly stats = signal<Stat[]>([
-    { currentValue: 0, endValue: 60, suffix: '+', label: 'Años de Liderazgo', highlight: true },
-    {
-      currentValue: 0,
-      endValue: 18,
-      suffix: '+',
-      label: 'Años de Presencia Mersol',
-      highlight: false,
-    },
-    {
-      currentValue: 0,
-      endValue: 2800,
-      suffix: '+',
-      label: 'Productos en Catálogo',
-      highlight: false,
-    },
-    { currentValue: 0, endValue: 7, suffix: '', label: 'Sucursales Regionales', highlight: true },
-  ]);
-
-  // Información de las certificaciones
-  public readonly certificaciones = signal<Certificacion[]>([
-    {
-      nombre: 'oSa Alemania',
-      subtitulo: 'Seguridad Abrasiva',
-      desc: 'Garantiza que cada herramienta es fabricada bajo estándares de seguridad, con trazabilidad total y pruebas de resistencia extremas.',
-      icon: 'assets/brand/shared/icons/award.svg',
-    },
-    {
-      nombre: 'ISO 9001',
-      subtitulo: 'Gestión de Calidad',
-      desc: 'Certifica un sistema enfocado en la excelencia operativa y la mejora continua para entregar productos consistentes de alta calidad.',
-      icon: 'assets/brand/shared/icons/award.svg',
-    },
-    {
-      nombre: 'ISO 45001',
-      subtitulo: 'Salud y Seguridad',
-      desc: 'Valida un entorno laboral seguro que previene riesgos laborales, protegiendo la integridad de todos nuestros colaboradores.',
-      icon: 'assets/brand/shared/icons/award.svg',
-    },
-  ]);
+  public readonly subtitle = signal('');
+  public readonly sectionTitle = signal('');
+  public readonly mainDescription = signal('');
+  public readonly certSectionTitle = signal('');
+  public readonly certSectionDesc = signal('');
+  public readonly quote = signal('');
+  public readonly quoteAuthor = signal('');
+  public readonly stats = signal<Stat[]>([]);
+  public readonly certificaciones = signal<Certificacion[]>([]);
 
   // Recibir información sobre la sección de "Nosotros" para cada landing
   @Input() set infoConfig(config: LandingInfoConfig | undefined) {

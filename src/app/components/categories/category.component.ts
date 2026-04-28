@@ -25,81 +25,6 @@ interface Category {
   link: string;
 }
 
-// Información de las categorías
-const DEFAULT_CATEGORIES: Category[] = [
-  {
-    title: 'ABRASIVOS SÓLIDOS',
-    image: 'assets/brand/austromex/categories-austromex/01.webp',
-    color: '#d2242a',
-    link: 'https://mersolsureste.com.mx/tienda?search=AUSTROMEX',
-  },
-  {
-    title: 'PRODUCTOS DE LIJA',
-    image: 'assets/brand/austromex/categories-austromex/02.webp',
-    color: '#d2242a',
-    link: 'https://mersolsureste.com.mx/tienda?search=AUSTROMEX',
-  },
-  {
-    title: 'PRODUCTOS DE FIBRA',
-    image: 'assets/brand/austromex/categories-austromex/03.webp',
-    color: '#d2242a',
-    link: 'https://mersolsureste.com.mx/tienda?search=AUSTROMEX',
-  },
-  {
-    title: 'PULIDO Y LIMPIEZA',
-    image: 'assets/brand/austromex/categories-austromex/04.webp',
-    color: '#d2242a',
-    link: 'https://mersolsureste.com.mx/tienda?search=AUSTROMEX',
-  },
-  {
-    title: 'ESTÉTICA AUTOMOTRIZ',
-    image: 'assets/brand/austromex/categories-austromex/05.webp',
-    color: '#d2242a',
-    link: 'https://mersolsureste.com.mx/tienda?search=AUSTROMEX',
-  },
-  {
-    title: 'CONSTRUCCIÓN',
-    image: 'assets/brand/austromex/categories-austromex/06.webp',
-    color: '#d2242a',
-    link: 'https://mersolsureste.com.mx/tienda?search=AUSTROMEX',
-  },
-  {
-    title: 'SUPERABRASIVOS',
-    image: 'assets/brand/austromex/categories-austromex/07.webp',
-    color: '#d2242a',
-    link: 'https://mersolsureste.com.mx/tienda?search=AUSTROMEX',
-  },
-  {
-    title: 'INDUSTRIA AUTOMOTRIZ',
-    image: 'assets/brand/austromex/categories-austromex/08.webp',
-    color: '#d2242a',
-    link: 'https://mersolsureste.com.mx/tienda?search=AUSTROMEX',
-  },
-  {
-    title: 'CEPILLOS DE ALAMBRE',
-    image: 'assets/brand/austromex/categories-austromex/09.webp',
-    color: '#d2242a',
-    link: 'https://mersolsureste.com.mx/tienda?search=AUSTROMEX',
-  },
-  {
-    title: 'HERRAMIENTAS',
-    image: 'assets/brand/austromex/categories-austromex/10.webp',
-    color: '#d2242a',
-    link: 'https://mersolsureste.com.mx/tienda?search=AUSTROMEX',
-  },
-  {
-    title: 'MÁQUINAS',
-    image: 'assets/brand/austromex/categories-austromex/11.webp',
-    color: '#d2242a',
-    link: 'https://mersolsureste.com.mx/tienda?search=AUSTROMEX',
-  },
-  {
-    title: 'ACCESORIOS',
-    image: 'assets/brand/austromex/categories-austromex/12.webp',
-    color: '#d2242a',
-    link: 'https://mersolsureste.com.mx/tienda?search=AUSTROMEX',
-  },
-];
 
 @Component({
   selector: 'app-category-carousel',
@@ -124,7 +49,7 @@ export class CategoryCarouselComponent implements AfterViewInit, OnDestroy {
   // Controlar la cantidad de categorías mostradas en pantalla
   private readonly CARDS_TO_SHOW = 4;
 
-  private readonly _baseCategories = signal<Category[]>(DEFAULT_CATEGORIES);
+  private readonly _baseCategories = signal<Category[]>([]);
 
   // Recibir la información de las categorías para cada landing
   @Input() set categories(items: LandingCategory[] | undefined) {
