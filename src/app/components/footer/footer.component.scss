@@ -9,7 +9,7 @@
 }
 
 .main-footer {
-  background-color: #2b2921;
+  background-color: var(--footer-bg, #2b2921);
   color: #d1d1d1;
   font-family: var(--font-primary);
   position: relative;

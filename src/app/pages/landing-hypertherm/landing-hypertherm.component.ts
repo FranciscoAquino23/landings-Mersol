@@ -414,7 +414,7 @@ export class LandingHyperthermComponent implements OnInit, AfterViewInit, OnDest
 
     // Información componente Footer
     footer: {
-      brandLogoWhite: 'assets/brand/hypertherm/logos-hypertherm/HYPERTHERM-white.png',
+      brandLogoWhite: 'assets/brand/hypertherm/logos-hypertherm/HYPERTHERM.webp',
       contactInfo: {
         phone: '+52 993 980 5654',
         email: 'ventas@mersolsureste.com.mx',

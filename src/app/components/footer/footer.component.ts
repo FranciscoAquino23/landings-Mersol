@@ -28,6 +28,9 @@ export class FooterComponent {
   // Recibir nombre de la empresa aliada para el footer (Copyright)
   @Input() partnerName = '';
 
+  // Color de fondo configurable para cada landing
+  @Input() backgroundColor = '#2b2921';
+
   // Información contactos
   public contactInfo: LandingFooterContactInfo = {
     phone: '+52 993 980 5654',
