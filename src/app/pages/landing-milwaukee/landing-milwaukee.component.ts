@@ -118,14 +118,6 @@ export class LandingMilwaukeeComponent implements OnInit, AfterViewInit, OnDestr
           link: 'https://mersolsureste.com.mx/tienda?search=MILWAUKEE',
           alt: 'Sistema inalámbrico M18 Milwaukee en Mersol Sureste',
         },
-        {
-          id: 2,
-          titulo: 'Milwaukee PACKOUT - Sistema de Almacenamiento',
-          imgDesktop: 'assets/brand/milwaukee/promo-milwaukee/promoH1.webp',
-          imgMobile: 'assets/brand/milwaukee/promo-milwaukee/promoV1.webp',
-          link: 'https://mersolsureste.com.mx/tienda?search=MILWAUKEE',
-          alt: 'Sistema de almacenamiento PACKOUT Milwaukee en Mersol Sureste',
-        },
       ],
     },
 

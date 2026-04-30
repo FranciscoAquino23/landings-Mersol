@@ -118,14 +118,6 @@ export class LandingUrreaComponent implements OnInit, AfterViewInit, OnDestroy {
           link: 'https://mersolsureste.com.mx/tienda?search=URREA',
           alt: 'Herramientas de mano URREA en Mersol Sureste',
         },
-        {
-          id: 2,
-          titulo: 'URREA - Herramientas Neumáticas',
-          imgDesktop: 'assets/brand/urrea/promo-urrea/promoH1.webp',
-          imgMobile: 'assets/brand/urrea/promo-urrea/promoV1.webp',
-          link: 'https://mersolsureste.com.mx/tienda?search=URREA',
-          alt: 'Herramientas neumáticas URREA en Mersol Sureste',
-        },
       ],
     },
 

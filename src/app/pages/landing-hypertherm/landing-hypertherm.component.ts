@@ -118,14 +118,6 @@ export class LandingHyperthermComponent implements OnInit, AfterViewInit, OnDest
           link: 'https://mersolsureste.com.mx/tienda?search=HYPERTHERM',
           alt: 'Sistemas Powermax Hypertherm en Mersol Sureste',
         },
-        {
-          id: 2,
-          titulo: 'Hypertherm - Consumibles Originales',
-          imgDesktop: 'assets/brand/hypertherm/promo-hypertherm/promoH1.webp',
-          imgMobile: 'assets/brand/hypertherm/promo-hypertherm/promoV1.webp',
-          link: 'https://mersolsureste.com.mx/tienda?search=HYPERTHERM',
-          alt: 'Consumibles originales Hypertherm en Mersol Sureste',
-        },
       ],
     },
 

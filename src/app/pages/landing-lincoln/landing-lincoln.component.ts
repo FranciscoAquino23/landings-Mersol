@@ -119,14 +119,6 @@ export class LandingLincolnComponent implements OnInit, AfterViewInit, OnDestroy
           link: 'https://mersolsureste.com.mx/tienda?search=LINCOLN',
           alt: 'Máquinas de soldar Power Wave Lincoln Electric en Mersol Sureste',
         },
-        {
-          id: 2,
-          titulo: 'Lincoln Electric - Consumibles y Caretas Viking',
-          imgDesktop: 'assets/brand/lincoln/promo-lincoln/promoH1.webp',
-          imgMobile: 'assets/brand/lincoln/promo-lincoln/promoV1.webp',
-          link: 'https://mersolsureste.com.mx/tienda?search=LINCOLN',
-          alt: 'Consumibles y caretas Viking Lincoln Electric en Mersol Sureste',
-        },
       ],
     },
 
